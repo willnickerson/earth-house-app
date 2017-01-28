@@ -1,0 +1,18 @@
+<!--<img class="under-header" src="https://github.com/willnickerson/earth-house-juice/blob/master/shop.jpeg?raw=true">-->
+<section class="buy">
+    <h1>Where to buy.</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde laboriosam suscipit neque sit ea atque sint voluptate saepe soluta molestiae non ipsa, harum voluptatibus et eligendi vitae error, veritatis ab!</p>
+    <h2>Online store coming soon!</h2>
+</section>
+<section class="items">
+        <ul>
+            <li class="item" ng-repeat="juice in $ctrl.juices">
+                <img src="{{juice.imgUrl}}">
+                <div class="item-info">
+                    <h4 ui-sref="item({
+                    id: juice._id})">{{juice.name}}</h4>
+                    <p>${{juice.price}}.00</p>
+                </div>
+            </li>
+        </ul>
+</section>
