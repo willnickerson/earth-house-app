@@ -42,6 +42,7 @@ export default function routes($stateProvider, $urlRouterProvider) {
             item: ['juiceService', '$transition$', (juiceService, t) => {
                 return juiceService.get(t.params().id);
             }],
+            ingredients: ['item', item => item.ingredients]
         },
         views: {
             main: {
