@@ -123,15 +123,6 @@ header {
     transition: all .3s ease;
 }
 
-// .icon-twitter:hover {
-//     color: yellow;
-// }
-
-// .icon {
-//     transition: all .3s ease;
-// }
-
-// .icon:hover {
-//     color: yellow;
-//     cursor: crosshair;
-// }
+.clearfix {
+    overflow: auto;
+}

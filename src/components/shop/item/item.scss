@@ -1,5 +1,47 @@
 :local(.item) {
+    margin-bottom: 5%;
+
+    section {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    h2 {
+        font-size: 2.5em;
+        margin: 0;
+    }
     img {
         width: 20%;
+        float: left;
+        margin: 5% 5%;
+    }
+    ul {
+        float: left;
+        width: 65%;
+        margin: 0 5% 0 0;
+    }
+
+    h3 {
+        font-size: 2em;
+        margin: 5% 0 0 0;
+    }
+
+}
+:local(.ingredient) {
+    display: inline-block;
+    width: 30%;
+    margin: 0 1.5%;
+    img {
+        width: 82%;
+        margin: 0;
+    }
+    span {
+        display: block;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    p {
+        font-size: .75em;
+
     }
 }
