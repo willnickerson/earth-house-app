@@ -1,0 +1,39 @@
+.image-text {
+    position: relative;
+    display: inline-block;
+    // width: 100%;
+
+    .text-box {
+        position: absolute;
+        height: 50%;
+        bottom: 0;
+        text-align: right;
+        width: 70%;
+        right: 0;
+        z-index: 1;
+        margin-right: 20px;
+    }
+
+    // .text-box:before {
+    //     content: '';
+    //     display: inline-block;
+    //     height: 100%;
+    //     vertical-align: middle;
+    // }
+
+    h2 {
+       display: inline;
+       font-size: 2.5em;
+       color: white;
+       font-weight: 650;
+    }
+
+    span {
+        display: inline;
+        font-size: 1.5em;
+        color: white;
+    }
+    img {
+        height: auto;
+    }
+}
