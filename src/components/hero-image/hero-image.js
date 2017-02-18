@@ -31,5 +31,15 @@ function controller() {
 
     this.isCurrIndex = function(index) {
         return this.currIndex === index;
-    }
+    };
+
+    this.prevSlide = function() {
+        console.log(this.currIndex);
+        this.currIndex = (this.currIndex < this.slides.length - 1) ? ++this.currIndex : 0;
+    };
+
+    this.nextSlide = function() {
+        this.currIndex = (this.currIndex > 0) ? --this.currIndex : this.slides.length -1;
+        console.log(this.currIndex);
+    };
 }

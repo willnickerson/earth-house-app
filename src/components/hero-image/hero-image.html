@@ -6,6 +6,9 @@
     <img ng-repeat="slide in $ctrl.slides" 
          ng-hide="!$ctrl.isCurrIndex($index)"
          ng-src="{{slide.imgUrl}}">
+
+    <a class="arrow next" href="#" ng-click="$ctrl.nextSlide()">NEXT</a>
+    <a class="arrow prev" href="#" ng-click="$ctrl.prevSlide()">PREV</a>
     
     <nav class="slider-nav">
         <div class="wrapper">
