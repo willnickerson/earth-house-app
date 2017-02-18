@@ -2,9 +2,11 @@
 
 <div class="image-text">
     <div class="text-box">
-        <h2><span>Online store coming soon!</span> In the meantime, check out our juices below and place you orders by email. <span class="icon-arrow-down2"></span></h2>
+        <h2><span>Online store coming soon!</span> In the meantime, check out our juices below and place you orders by email. <button ng-click="$ctrl.gotoItems()">Our Juices <span class="icon-arrow-right2"></span></button></h2>
     </div>
     <img src="http://res.cloudinary.com/lejipni8p/image/upload/v1482867018/earth%20house/blue-spread_ixxxfx.jpg">
 </div>
 
-<ui-view name="main" autoscroll></ui-view>
+<div id="items">
+    <ui-view name="main"></ui-view>
+</div>
