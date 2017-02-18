@@ -1,3 +1,21 @@
-<section>
+<!--<section>
     <img ng-src="http://res.cloudinary.com/lejipni8p/image/upload/v1482867043/earth house/wood-spread-1_cda0uc.jpg">
-</section>
+</section>-->
+
+<div class="slider">
+    <img ng-repeat="slide in $ctrl.slides" 
+         ng-hide="!$ctrl.isCurrIndex($index)"
+         ng-src="{{slide.imgUrl}}">
+    
+    <nav class="slider-nav">
+        <div class="wrapper">
+            <ul class="dots">
+                <li class="dot" ng-repeat="slide in $ctrl.slides">
+                    <a href="#" 
+                        ng-class="{'active':isCurrIndex($index)}"
+                        ng-click="$ctrl.setCurrIndex($index)"></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

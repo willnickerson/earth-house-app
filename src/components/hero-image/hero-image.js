@@ -1,4 +1,5 @@
 import template from './hero-image.html';
+import styles from './hero-image.scss';
 
 export default {
     template,
@@ -6,6 +7,7 @@ export default {
 };
 
 function controller() {
+    this.styles = styles;
     this.slides = [
         {
             name: 'img1',
@@ -20,4 +22,14 @@ function controller() {
             imgUrl: 'http://res.cloudinary.com/lejipni8p/image/upload/v1487379374/IMG_1125.tiff_dxfsmv.jpg'
         }
     ];
+
+    this.currIndex = 0;
+
+    this.setCurrIndex = function(index) {
+        this.currIndex = index;
+    };
+
+    this.isCurrIndex = function(index) {
+        return this.currIndex === index;
+    }
 }
