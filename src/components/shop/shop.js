@@ -17,7 +17,7 @@ function controller($scope, $document) {
     const items = angular.element(document.getElementById('items')); //eslint-disable-line
     this.gotoItems = function() {
         console.log('angular scroll function called');
-        $document.scrollToElement(items, 0, 700);
+        $document.scrollToElement(items, 0, 600);
     };
 }
 
