@@ -1,0 +1,14 @@
+import TweenMax from 'gsap';
+
+export default function animationService() {
+    return {
+        addClass(className, element, done) {
+
+            },
+        removeClass(className, element, done) {
+
+            }
+    }
+}
+
+//TODO: figure out how to move the animation functions out into a service
