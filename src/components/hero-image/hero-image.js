@@ -1,6 +1,7 @@
 import template from './hero-image.html';
 import styles from './hero-image.scss';
 
+
 export default {
     template,
     controller
@@ -33,12 +34,12 @@ function controller() {
         return this.currIndex === index;
     };
 
-    this.prevSlide = function() {
+    this.nextSlide = function() {
         console.log(this.currIndex);
         this.currIndex = (this.currIndex < this.slides.length - 1) ? ++this.currIndex : 0;
     };
 
-    this.nextSlide = function() {
+    this.prevSlide = function() {
         this.currIndex = (this.currIndex > 0) ? --this.currIndex : this.slides.length -1;
         console.log(this.currIndex);
     };
