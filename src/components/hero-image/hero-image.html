@@ -5,7 +5,7 @@
              class="slide-image slide-animation ">
          <div ng-if="$ctrl.isCurrIndex($index)"
             class="slide-text fade">
-            <p>{{slide.text}}</p>
+            <p ng-bind-html="$ctrl.currText"></p>
          </div>
     </div>
 

@@ -6,10 +6,9 @@ import uiRouter from 'angular-ui-router';
 import defaultRoute from 'angular-ui-router-default';
 import routes from './routes';
 import duScroll from 'angular-scroll';
-// import carousel from 'angular-carousel';
-// var ngTouch = require('angular-touch'); //eslint-disable-line
 import TweenMax from 'gsap';
 import ngAnimate from 'angular-animate';
+import ngSanitize from 'angular-sanitize';
 //TODO: figure out why things broken when a imported angular animate in the es6y way
 
 
@@ -19,6 +18,7 @@ const app = angular.module('myApp', [
     uiRouter,
     duScroll,
     ngAnimate,
+    ngSanitize,
     defaultRoute
 ]);
 

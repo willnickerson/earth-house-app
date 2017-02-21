@@ -13,7 +13,7 @@ function controller() {
         {
             name: 'img1',
             imgUrl: 'http://res.cloudinary.com/lejipni8p/image/upload/v1482867043/earth%20house/wood-spread-1_cda0uc.jpg',
-            text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo.'
+            text: 'Sed ut perspiciatis omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo. <span>follow us on instagram!</span>'
         },
         {
             name: 'img2',
@@ -28,10 +28,15 @@ function controller() {
     ];
 
     this.currIndex = 0;
+    this.currText = this.slides[0].text;    
+    
+    this.setCurrText = function() {
+        this.currText = this.slides[this.currIndex].text;
+    };
 
     this.setCurrIndex = function(index) {
         this.currIndex = index;
-        console.log('set index called', this.currIndex);
+        this.setCurrText();
     };
 
 
@@ -40,12 +45,12 @@ function controller() {
     };
 
     this.nextSlide = function() {
-        console.log(this.currIndex);
         this.currIndex = (this.currIndex < this.slides.length - 1) ? ++this.currIndex : 0;
+        this.setCurrText();
     };
 
     this.prevSlide = function() {
         this.currIndex = (this.currIndex > 0) ? --this.currIndex : this.slides.length -1;
-        console.log(this.currIndex);
+        this.setCurrText();
     };
 }

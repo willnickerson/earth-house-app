@@ -8,11 +8,17 @@
     width: 50%;
     z-index: 1002;
     p {
-        font-size: 2.3em;
+        font-size: 2em;
         color: white;
         font-weight: bold;
         text-align: right;
         margin-right: 5%;  
+    }
+    span {
+        font-size: 1.7em;
+        font-family: 'Amatic SC', cursive;
+        display: block;
+        text-decoration: underline;
     }
 }
 
