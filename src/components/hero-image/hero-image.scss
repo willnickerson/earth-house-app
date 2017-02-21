@@ -1,6 +1,6 @@
 @import 'image-text';
 
-.text-box {
+.slide-text {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -8,10 +8,11 @@
     width: 50%;
     z-index: 1002;
     p {
-        font-size: 2em;
+        font-size: 2.3em;
         color: white;
         font-weight: bold;
         text-align: right;
+        margin-right: 5%;  
     }
 }
 
@@ -21,7 +22,7 @@
     height: 100vh;
 }
 
-.slide {
+.slide-image {
     position: absolute;
     top: 0;
     left: 0;
@@ -126,8 +127,26 @@
     -webkit-transform: scale(1.2);
     -ms-transform: scale(1.2);
     transform: scale(1.2);
-    // border: 5px solid rgba(255,255,255, 1);
-    // border-radius: 100%;
 }
+
+.fade.ng-enter {
+    transition: .5s linear all;
+    opacity: 0;
+}
+
+.fade.ng-enter.ng-enter-active {
+    opacity: 1;
+}
+
+.fade.ng-leave {
+    transition: .5s linear all;
+    opacity: 1;
+}
+
+.fade.ng-leave.ng-leave-active {
+    opacity: 0;
+}
+
+
 
 
