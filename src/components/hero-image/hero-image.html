@@ -1,11 +1,20 @@
 <div class="slider">
-    <img ng-repeat="slide in $ctrl.slides" 
+    <div ng-repeat="slide in $ctrl.slides">
+        <img ng-hide="!$ctrl.isCurrIndex($index)"
+         ng-src="{{slide.imgUrl}}"
+         class="slide-animation slide">
+         <div class="text-box">
+            <p>{{slide.text}}</p>
+         </div>
+    </div>
+
+    <!--<img ng-repeat="slide in $ctrl.slides" 
          ng-hide="!$ctrl.isCurrIndex($index)"
          ng-src="{{slide.imgUrl}}"
-         class="slide-animation">
+         class="slide-animation slide">-->
 
-    <a class="arrow next" href="#" ng-click="$ctrl.nextSlide()">NEXT</a>
-    <a class="arrow prev" href="#" ng-click="$ctrl.prevSlide()">PREV</a>
+    <a class="arrow next" href="#" ng-click="$ctrl.nextSlide()"><span class="icon-arrow-right2"></span></a>
+    <a class="arrow prev" href="#" ng-click="$ctrl.prevSlide()"><span class="icon-arrow-left2"></span></a>
     
     <nav class="slider-nav">
         <div class="wrapper">

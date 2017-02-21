@@ -33,27 +33,6 @@ app.factory('apiUrl', function() {
 });
 
 app.animation('.slide-animation', function ($window) {
-    // return {
-    //     addClass: function (element, className, done) {
-    //         if (className === 'ng-hide') {
-    //             TweenMax.to(element, 1, {right: $window.innerWidth, onComplete: done });
-    //         }
-    //         else {
-    //             done();
-    //         }
-    //     },
-    //     removeClass: function (element, className, done) {
-    //         if (className === 'ng-hide') {
-    //             console.log('remove class called')
-    //             element.removeClass('ng-hide');
-    //             TweenMax.set(element, { right: $window.innerWidth });
-    //             TweenMax.to(element, 1, {right: 0, onComplete: done });
-    //         }
-    //         else {
-    //             done();
-    //         }
-    //     }
-    // };
 
     return {
         beforeAddClass: function (element, className, done) {
@@ -64,7 +43,7 @@ app.animation('.slide-animation', function ($window) {
                 if(scope.direction !== 'right') {
                     finishPoint = -finishPoint;
                 }
-                TweenMax.to(element, 2, {left: finishPoint, onComplete: done });
+                TweenMax.to(element, 1, {left: finishPoint, onComplete: done });
             }
             else {
                 done();
@@ -72,7 +51,7 @@ app.animation('.slide-animation', function ($window) {
         },
         removeClass: function (element, className, done) {
             var scope = element.scope();
-            console.log('remove class called')
+            console.log('remove class called');
             if (className == 'ng-hide') {
                 element.removeClass('ng-hide');
                 console.log('element', element);
@@ -82,7 +61,7 @@ app.animation('.slide-animation', function ($window) {
                     startPoint = -startPoint;
                 }
 
-                TweenMax.fromTo(element, 2, { left: startPoint }, {left: 0, onComplete: done });
+                TweenMax.fromTo(element, 1, { left: startPoint }, {left: 0, onComplete: done });
             }
             else {
                 done();
