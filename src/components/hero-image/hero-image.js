@@ -7,9 +7,9 @@ export default {
     controller
 };
 
-controller.$inject = ['$window', '$document'];
+controller.$inject = ['$window', '$interval'];
 
-function controller($window, $document) {
+function controller($window, $interval) {
     this.styles = styles;
     this.slides = [
         {
@@ -47,6 +47,7 @@ function controller($window, $document) {
     };
 
     this.nextSlide = function() {
+        console.log('next slide called ')
         this.currIndex = (this.currIndex < this.slides.length - 1) ? ++this.currIndex : 0;
         this.setCurrText();
     };
@@ -56,13 +57,23 @@ function controller($window, $document) {
         this.setCurrText();
     };
 
+    $interval(() => {
+        console.log('slide should change');
+        this.nextSlide();
+    }, 4000);
+
     //TODO: figure out some sort of way to adjust slider height based off of image height, we might have to use jQuery :/
 
     // this.sliderHeight = {'height': ($window.innerHeight - 50) + 'px'};
 
+    // const image = $document.getElementsByClassName('.slide-image')[0]; //eslint-disable-line
+
+    // const images = $document.getElementsByClassName('slide-image');
+    // console.log('here', $document[0].querySelectorAll('.slide-image'));
+
     // angular.element(document.getElementsByClassName('slide-image')[0]).bind('resize', function () {
-    //     this.sliderHeight = {'height': ($window.innerHeight - 50) + 'px'};
-    //     console.log('Height', this.sliderHeight);
+    //     // this.sliderHeight = {'height': ($window.innerHeight - 50) + 'px'};
+    //     console.log('Height', this.imageHeight);
     // });
 
     // angular.element($window).bind('resize', function () {
