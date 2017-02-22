@@ -4,7 +4,7 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    height: 50%;
+    // height: 45%;
     width: 50%;
     z-index: 1002;
     p {
@@ -12,14 +12,19 @@
         color: white;
         font-weight: bold;
         text-align: right;
-        margin-right: 5%;  
+        margin-right: 5%; 
+        margin-bottom: 8%;
     }
-    span {
+    a {
         font-size: 1.7em;
         font-family: 'Amatic SC', cursive;
         display: block;
-        text-decoration: underline;
+        transition: .5s ease all;
     }
+    a:hover {
+        color: #FFC107;
+    }
+
 }
 
 .slider {
@@ -96,7 +101,8 @@
 }
 
 .dots .dot a.active {
-    border-color: #FFF;
+    // border-color: #FFF;
+    border-color: #FFC107;
     background-color: transparent;
 }
 
