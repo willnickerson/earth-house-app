@@ -1,3 +1,5 @@
+@import 'colors';
+
 body {
     font-family: sans-serif;
     margin: 0;
@@ -24,14 +26,14 @@ a:hover {
     cursor: pointer;    
 }
 .link {
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
 }
 .link:hover {
-    -webkit-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    transform: scale(1.1);
-    // color: #d4f442;
+    // -webkit-transform: scale(1.1);
+    // -ms-transform: scale(1.1);
+    // transform: scale(1.1);
     cursor: pointer;
+    color: $accent-color;
 }
 
 
@@ -94,7 +96,7 @@ header {
             padding: 0;
             li {
                 text-align: center;
-                border-right: 1px solid white;
+                border-right: 2px solid white;
                 width: 23%;
                 display: inline-block;
                 color: white;

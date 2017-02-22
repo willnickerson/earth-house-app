@@ -7,7 +7,9 @@ export default {
     controller
 };
 
-function controller() {
+controller.$inject = ['$window', '$document'];
+
+function controller($window, $document) {
     this.styles = styles;
     this.slides = [
         {
@@ -53,4 +55,25 @@ function controller() {
         this.currIndex = (this.currIndex > 0) ? --this.currIndex : this.slides.length -1;
         this.setCurrText();
     };
+
+    //TODO: figure out some sort of way to adjust slider height based off of image height, we might have to use jQuery :/
+
+    // this.sliderHeight = {'height': ($window.innerHeight - 50) + 'px'};
+
+    // angular.element(document.getElementsByClassName('slide-image')[0]).bind('resize', function () {
+    //     this.sliderHeight = {'height': ($window.innerHeight - 50) + 'px'};
+    //     console.log('Height', this.sliderHeight);
+    // });
+
+    // angular.element($window).bind('resize', function () {
+    //     this.sliderHeight = {'height': ($window.innerHeight - 50) + 'px'};
+    //     console.log('Height', this.sliderHeight);
+    // });
+    // const slideImgs =  document.getElementsByClassName('slide-image'); //eslint-disable-line
+    
+    // const wrappedImgs = angular.element(slideImgs);
+    // var imgs = angular.element(document.querySelector('.slide-image'));
+
+    // console.log(imgs);
+
 }
