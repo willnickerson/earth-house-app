@@ -1,5 +1,23 @@
+@import 'colors';
+
 :local(.item) {
     margin-bottom: 5%;
+
+    .description {
+        .item-name {
+            float: left;
+        }
+        .item-description {
+            float: left;
+            width: 60%;
+        }
+        p {
+            margin-top: 1%;
+            margin-bottom: 0;
+            padding-top: 20px;
+        }
+
+    }
 
     section {
         width: 90%;
@@ -13,17 +31,26 @@
     img {
         width: 20%;
         float: left;
-        margin: 5% 5%;
+        margin: 0% 6%;
     }
     ul {
         float: left;
-        width: 65%;
-        margin: 0 5% 0 0;
+        width: 60%;
+        margin: 0 0 2% 0;
     }
 
     h3 {
         font-size: 2em;
-        margin: 5% 0 0 0;
+        margin: 1% 0 0 1.1%;
+    }
+
+    a {
+        color: blue;
+        transition: .3s all ease;
+    }
+
+    a:hover {
+        color: $accent-color;
     }
 
 }
@@ -36,8 +63,8 @@
         margin: 0;
     }
     span {
-        display: block;
-        font-size: 1.5em;
+        display: inline;
+        font-size: 2em;
         font-weight: bold;
     }
     p {

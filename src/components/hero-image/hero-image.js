@@ -24,7 +24,7 @@ function controller($window, $interval) {
         },
         {
             name: 'img3',
-            imgUrl: 'http://res.cloudinary.com/lejipni8p/image/upload/c_crop,g_south,h_2238,w_4096/v1487807406/platter2-cropped_t3v2cx.jpg',
+            imgUrl: 'http://res.cloudinary.com/lejipni8p/image/upload/c_crop,g_south,w_3750/v1487807406/platter2-cropped_t3v2cx.jpg',
             text: 'Sit voluptatem accusantium doloremque laudantium, totam rem aperiam <a ui-sref="shop">Check out our online store</a>'
         }
     ];

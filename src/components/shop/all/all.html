@@ -6,8 +6,8 @@
             <li class="item" ng-repeat="juice in $ctrl.juices" ng-click="$ctrl.gotoItems">
                 <img src="{{juice.imgUrl}}">
                 <div class="item-info">
-                    <a ui-sref="shop.item({
-                    id: juice._id})">{{juice.name}}</a>
+                    <h3 ui-sref="shop.item({
+                    id: juice._id})">{{juice.name}}</h3>
                     <p>${{juice.price}}.00</p>
                 </div>
             </li>
