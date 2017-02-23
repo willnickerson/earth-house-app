@@ -1,3 +1,5 @@
+@import 'colors';
+
 .image-text {
     position: relative;
     display: inline-block;
@@ -5,13 +7,13 @@
 
     .text-box {
         position: absolute;
-        height: 50%;
         bottom: 0;
         text-align: right;
-        width: 70%;
+        width: 45%;
         right: 0;
         z-index: 1;
         margin-right: 3%;
+        margin-bottom: 3%;
     }
 
     // this is for centering the text on the the image
@@ -24,7 +26,7 @@
 
     h2 {
        display: inline;
-       font-size: 2.5em;
+       font-size: 2em;
        color: white;
        font-weight: 650;
     }
@@ -56,7 +58,8 @@
         color: white;
         font-weight: bold;
         display: block;
-        margin: 0 auto;
+        width: 60%;
+        margin-left: 39%;
         border: 4px solid white;
         transition: all .3s ease;
     }
@@ -66,9 +69,12 @@
     }
 
     button:hover {
-        opacity: .7;
-        -webkit-transform: scale(0.9);
-        -ms-transform: scale(0.9);
-        transform: scale(0.9);
+        // opacity: .7;
+        // -webkit-transform: scale(0.9);
+        // -ms-transform: scale(0.9);
+        // transform: scale(0.9);
+        color: $accent-color;
+        border-color: $accent-color;
+        // background-color: rgba(255,255,255,.3);
     }
 }

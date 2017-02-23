@@ -20,6 +20,7 @@ img {
 
 a {
     text-decoration: none;
+    color: white;
 }
 
 a:hover {
@@ -96,10 +97,15 @@ header {
             padding: 0;
             li {
                 text-align: center;
-                border-right: 2px solid white;
-                width: 23%;
+                // border-right: 2px solid white;
+                width: 22%;
                 display: inline-block;
                 color: white;
+                font-weight: bold;
+            }
+            .mid-dot {
+                width: auto;
+                margin: 0;
             }
             li:last-child {
                 border: none;

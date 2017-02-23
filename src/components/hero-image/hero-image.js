@@ -15,7 +15,7 @@ function controller($window, $interval) {
         {
             name: 'img1',
             imgUrl: 'http://res.cloudinary.com/lejipni8p/image/upload/c_crop,g_south,h_2100,w_3750/v1487806715/platter-cropped_ntr56a.jpg',
-            text: 'Sed ut perspiciatis omnis iste natus error sit voluptatem accusantium doloremque laudantium. <a>follow us on instagram!</a>'
+            text: 'Sed ut perspiciatis omnis iste natus error sit voluptatem accusantium doloremque laudantium. <a href="https://www.instagram.com">follow us on instagram!</a>'
         },
         {
             name: 'img2',
@@ -25,7 +25,7 @@ function controller($window, $interval) {
         {
             name: 'img3',
             imgUrl: 'http://res.cloudinary.com/lejipni8p/image/upload/c_crop,g_south,h_2238,w_4096/v1487807406/platter2-cropped_t3v2cx.jpg',
-            text: 'Sit voluptatem accusantium doloremque laudantium, totam rem aperiam <a>Check out our online store</a>'
+            text: 'Sit voluptatem accusantium doloremque laudantium, totam rem aperiam <a ui-sref="shop">Check out our online store</a>'
         }
     ];
 
@@ -47,7 +47,6 @@ function controller($window, $interval) {
     };
 
     this.nextSlide = function() {
-        console.log('next slide called ')
         this.currIndex = (this.currIndex < this.slides.length - 1) ? ++this.currIndex : 0;
         this.setCurrText();
     };
@@ -58,7 +57,6 @@ function controller($window, $interval) {
     };
 
     $interval(() => {
-        console.log('slide should change');
         this.nextSlide();
     }, 4000);
 

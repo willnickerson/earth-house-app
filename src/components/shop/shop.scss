@@ -1,10 +1,10 @@
 @import 'image-text';
+@import 'fonts';
 
 section.shop-info {
     width: 60%;
     margin: 0 auto;
     position: relative;
-    // top: -360px;
     h1 {
         font-size: 4em;
         color: rgb(130,130,255);
@@ -25,17 +25,11 @@ section.shop-info {
 }
 
 h2.item-header {
-    font-size: 4em;
+    font-size: 4.5em;
     margin: 1.5%  0 3% 3%;
-    text-decoration: underline;
+    font-family: $decorative-font;
+    
 }
-
-// img.under-header {
-//     z-index: -1;
-//     position: relative;
-//     top: -110px;
-//     display: block;
-// }
 
 //we need to move these styles to a file specifically for the "all" view
 
