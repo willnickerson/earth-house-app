@@ -42,12 +42,25 @@ export default function routes($stateProvider, $urlRouterProvider) {
             item: ['juiceService', '$transition$', (juiceService, t) => {
                 return juiceService.get(t.params().id);
             }],
+            ingredients: ['item', item => item.ingredients]
         },
         views: {
             main: {
                 component: 'item'
             }
         }
+    });
+
+    $stateProvider.state({
+        name: 'about',
+        url: '/about',
+        component: 'about'
+    });
+
+    $stateProvider.state({
+        name: 'contact',
+        url: '/contact',
+        component: 'contact'
     });
 
     $urlRouterProvider.otherwise('/home');

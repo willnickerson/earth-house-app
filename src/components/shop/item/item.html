@@ -1,5 +1,19 @@
-<div ng-class="$ctrl.styles.item">
-    <h2>{{$ctrl.item.name}}</h2>
-    <p>{{$ctrl.item.description}}</p>
-    <img src="{{$ctrl.item.imgUrl}}">
+<div ng-class="$ctrl.styles.item" class="clearfix">
+    <section class="description">
+        <h2 class="item-header item-name">{{$ctrl.item.name}}</h2>
+        <p class="item-description">{{$ctrl.item.description}} <a ui-sref="shop.all">&larr;Back to all juices</a></p>
+        
+    </section>
+
+
+    <section>
+        <img src="{{$ctrl.item.imgUrl}}">
+        <ul>
+            <h3>Ingredients</h3>
+            <li ng-class="$ctrl.styles.ingredient" ng-repeat="ingredient in $ctrl.item.ingredients">
+                <img class="ingredient" src="{{ingredient.imgUrl}}">
+                <p><span>{{ingredient.name}}. </span>{{ingredient.description}}</p>
+            </li>
+        </ul>
+    </section>
 </div>

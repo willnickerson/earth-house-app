@@ -1,3 +1,29 @@
-<section>
-    <img ng-src="http://res.cloudinary.com/lejipni8p/image/upload/v1482867043/earth house/wood-spread-1_cda0uc.jpg">
-</section>
+<div class="slider">
+    <div ng-repeat="slide in $ctrl.slides">
+        <img ng-hide="!$ctrl.isCurrIndex($index)"
+            ng-src="{{slide.imgUrl}}"
+             class="slide-image slide-animation ">
+         <div ng-if="$ctrl.isCurrIndex($index)"
+            class="slide-text fade">
+            <p ng-bind-html="$ctrl.currText"></p>
+         </div>
+    </div>
+
+    <!--<a class="arrow next" href="#" ng-click="$ctrl.nextSlide()"><span class="icon-arrow-right2"></span></a>
+    <a class="arrow prev" href="#" ng-click="$ctrl.prevSlide()"><span class="icon-arrow-left2"></span></a>-->
+    
+    <nav class="slider-nav">
+        <div class="wrapper">
+            <ul class="dots">
+                <li class="dot" ng-repeat="slide in $ctrl.slides">
+                    <a href="#" 
+                        ng-class="{'active': $ctrl.isCurrIndex($index)}"
+                        ng-click="$ctrl.setCurrIndex($index)"></a>
+                </li>
+            </ul>
+            <!--<div id="progress-bar" ng-class="$ctrl.progress"></div>-->
+        </div>
+    </nav>
+</div>
+
+

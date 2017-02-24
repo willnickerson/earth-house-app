@@ -1,8 +1,10 @@
+@import 'image-text';
+@import 'fonts';
+
 section.shop-info {
     width: 60%;
     margin: 0 auto;
     position: relative;
-    // top: -360px;
     h1 {
         font-size: 4em;
         color: rgb(130,130,255);
@@ -22,22 +24,43 @@ section.shop-info {
     }
 }
 
-img.under-header {
-    z-index: -1;
-    position: relative;
-    top: -110px;
-    display: block;
+h2.item-header {
+    font-size: 4.5em;
+    margin: 1%  0 0 3%;
+    font-family: $decorative-font;
+    width: 30%;
+    
 }
+
+//we need to move these styles to a file specifically for the "all" view
 
 .items {
     width: 80%;
     margin: 0 auto;
+    ul {
+        margin-top: 0;
+        margin-bottom: 10%;
+    }
 }
 
 .item {
+    margin-top: 40px;
     margin-right: 10%;
     width: 17%;
     display: inline-block;
+    h3 {
+        margin-bottom: 0;
+        font-family: $decorative-font;
+        font-size: 1.5em;
+    }
+    h3:hover {
+        cursor: pointer;
+    }
+    p {
+        font-weight: 300;
+        color: #999;
+        font-family: $thin-font;
+    }
 }
 
 .item:nth-child(4) {
@@ -57,3 +80,9 @@ img.under-header {
         margin-top: 0;
     }
 }
+
+// .divider {
+//     width: 100%;
+//     height: 50px;
+//     background-color: blue;
+// }

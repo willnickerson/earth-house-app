@@ -1,5 +1,76 @@
+@import 'colors';
+@import 'fonts';
+
 :local(.item) {
+    margin-bottom: 5%;
+
+    .description {
+        .item-name {
+            float: left;
+        }
+        .item-description {
+            float: left;
+            width: 60%;
+        }
+        p {
+            margin-top: 1%;
+            margin-bottom: 0;
+            padding-top: 20px;
+            font-family: $main-font;
+        }
+
+    }
+
+    section {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    h2 {
+        font-size: 1.75em;
+        margin: 0 auto;
+    }
     img {
         width: 20%;
+        float: left;
+        margin: 0% 6%;
+    }
+    ul {
+        float: left;
+        width: 60%;
+        margin: 0 0 2% 0;
+    }
+
+    h3 {
+        font-size: 2em;
+        margin: 1% 0 0 1.1%;
+    }
+
+    a {
+        color: blue;
+        transition: .3s all ease;
+    }
+
+    a:hover {
+        color: $accent-color;
+    }
+
+}
+:local(.ingredient) {
+    display: inline-block;
+    width: 30%;
+    margin: 0 1.5%;
+    font-family: $main-font;
+    img {
+        width: 82%;
+        margin: 0;
+    }
+    span {
+        display: inline;
+        font-size: 2em;
+        font-weight: bold;
+    }
+    p {
+        font-size: .75em;
     }
 }

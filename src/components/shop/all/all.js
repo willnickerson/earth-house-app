@@ -3,6 +3,7 @@ import template from './all.html';
 export default {
     template,
     bindings: {
-        juices: '<'
+        juices: '<',
+        gotoItems: '<'
     }
 };

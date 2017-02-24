@@ -1,5 +1,14 @@
 <shop-head></shop-head>
 
-<h2>Shop</h2>
+<div class="image-text">
+    <div class="text-box">
+        <h2><span>Online store coming soon!</span> In the meantime, check out our juices below and place you orders by email. <button ng-click="$ctrl.gotoItems()">Our Juices &darr;</button></h2>
+    </div>
+    <img src="http://res.cloudinary.com/lejipni8p/image/upload/c_crop,g_south,h_2530,w_4096/v1482867018/earth%20house/blue-spread_ixxxfx.jpg">
+</div>
 
-<ui-view name="main"></ui-view>
+
+<div id="items">
+    <!-- TODO: work out some way to autoscroll when navigating from all items view to individual item view-->
+    <ui-view name="main"></ui-view>
+</div>

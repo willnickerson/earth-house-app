@@ -1,5 +1,5 @@
-import template from './nav-bar.html';
-import styles from './nav-bar.scss';
+import template from './about.html';
+import styles from './about.scss';
 
 export default {
     template,
@@ -7,4 +7,3 @@ export default {
         this.styles = styles;
     }
 };
-
