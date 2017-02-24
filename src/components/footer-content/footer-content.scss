@@ -1,9 +1,12 @@
+@import 'colors';
+
 .footer-container {
-    background-color: #DDD;
+    background-color: #EEE;
     height: 300px;
     width: 100%;
     color: #666;
-    border-top: 2px solid #AAA;
+    border-top: 5px solid #CCC;
+    // border-top: 2px solid $accent-color;
     display: block;
 
     div {

@@ -1,5 +1,8 @@
+@import 'colors';
+
 .articles {
     border-top: 5px solid #CCC;
+    // border-top: 5px solid $accent-color;
     background-color: #EEE;
     margin: 0;
     padding: 0;

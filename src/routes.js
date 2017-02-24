@@ -51,5 +51,17 @@ export default function routes($stateProvider, $urlRouterProvider) {
         }
     });
 
+    $stateProvider.state({
+        name: 'about',
+        url: '/about',
+        component: 'about'
+    });
+
+    $stateProvider.state({
+        name: 'contact',
+        url: '/contact',
+        component: 'contact'
+    });
+
     $urlRouterProvider.otherwise('/home');
 }

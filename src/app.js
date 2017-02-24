@@ -43,7 +43,7 @@ app.animation('.slide-animation', function ($window) {
                 if(scope.direction !== 'right') {
                     finishPoint = -finishPoint;
                 }
-                TweenMax.to(element, 1.5, {left: finishPoint, onComplete: done, ease: Power2.easeIn});
+                TweenMax.to(element, 1.5, {left: finishPoint, onComplete: done, ease: Power2.easeIn}); //eslint-disable-line
             }
             else {
                 done();
@@ -51,7 +51,6 @@ app.animation('.slide-animation', function ($window) {
         },
         removeClass: function (element, className, done) {
             var scope = element.scope();
-            console.log('remove class called');
             if (className == 'ng-hide') {
                 element.removeClass('ng-hide');
                 console.log('element', element);
@@ -61,7 +60,7 @@ app.animation('.slide-animation', function ($window) {
                     startPoint = -startPoint;
                 }
 
-                TweenMax.fromTo(element, 1.5, { left: startPoint }, {left: 0, onComplete: done, ease: Power2.easeIn});
+                TweenMax.fromTo(element, 1.5, { left: startPoint }, {left: 0, onComplete: done, ease: Power2.easeIn}); //eslint-disable-line
             }
             else {
                 done();

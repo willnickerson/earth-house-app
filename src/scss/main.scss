@@ -1,4 +1,5 @@
 @import 'colors';
+@import 'fonts';
 
 body {
     font-family: sans-serif;
@@ -34,7 +35,8 @@ a:hover {
     // -ms-transform: scale(1.1);
     // transform: scale(1.1);
     cursor: pointer;
-    color: $accent-color;
+    // color: $accent-color;
+    // font-family: $decorative-font;
 }
 
 
@@ -125,11 +127,18 @@ header {
     font-size: 30px;
 }
 
+// .icon-twitter {
+//     transition: all .3s ease;  
+// }
+
+// .icon-twitter:hover {
+//     color: $accent-color;
+// }
+
 .icon-twitter:before {
     content: "\ea96";
     color: white;
     font-size: 30px;
-    transition: all .3s ease;
 }
 
 .icon-arrow-down2:before {

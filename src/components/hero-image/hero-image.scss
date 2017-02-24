@@ -62,6 +62,34 @@
     padding: 1em 0 .8em;
 }
 
+// .progress-bar {
+//     width: 100%;
+//     position: absolute;
+//     bottom: 10px;
+//     height: 3px;
+//     // background-color: rgab(255,255,255,.7);
+// }
+
+#progress-bar {
+    position: absolute;
+    bottom: 10px;
+    height: 3px;
+    background-color: $accent-color;
+    height: 3px;
+    opacity: .7;
+    transition: width 4s linear;
+}
+
+// :local(.start) {
+//     width: 100%;
+// }
+
+// :local(.finish) {
+//     width: 100%;
+// }
+
+
+
 .slider-nav ul {
     margin: 0;
     width: 100%;
@@ -74,7 +102,7 @@
 
 .dots .dot {
     position: relative;
-    margin: 0 8px;
+    margin: 0 10px;
     width: 12px;
     height: 12px;
 }

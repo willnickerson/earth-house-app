@@ -11,6 +11,8 @@ controller.$inject = ['$window', '$interval'];
 
 function controller($window, $interval) {
     this.styles = styles;
+    // this.progress = this.styles.start;
+    // this.progress = this.styles.finish;
     this.slides = [
         {
             name: 'img1',
@@ -47,6 +49,8 @@ function controller($window, $interval) {
     };
 
     this.nextSlide = function() {
+        // this.progress = this.styles.finish;
+        // console.log(this.progress);
         this.currIndex = (this.currIndex < this.slides.length - 1) ? ++this.currIndex : 0;
         this.setCurrText();
     };
@@ -57,6 +61,8 @@ function controller($window, $interval) {
     };
 
     $interval(() => {
+        // this.progress = this.styles.start;
+        // console.log(this.progress);
         this.nextSlide();
     }, 4000);
 
