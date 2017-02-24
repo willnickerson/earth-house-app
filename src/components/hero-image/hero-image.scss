@@ -171,6 +171,21 @@
     transform: scale(1.2);
 }
 
+@media all and (max-width: 500px) {
+    .slider {
+        height: 230px;
+    }
+    .slide-text {
+        p {
+            visibility: hidden;
+        }
+        a {
+            visibility: visible;
+            font-size: 1em;
+        }
+    }
+}
+
 
 
 

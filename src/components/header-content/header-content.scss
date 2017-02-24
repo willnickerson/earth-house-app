@@ -1,0 +1,93 @@
+.header-container {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        // height: 125px;
+        div {
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+        }
+        .left {
+            float: left;
+            max-width: 350px;
+            margin-top: -5px;
+        }
+        .right {
+            margin-top: 20px;
+            float: right;
+            text-align: right;
+            // z-index: 1;
+            span {
+                margin-right: 20px;
+            }
+        }
+        h1 {
+            text-align: left;
+            margin: 0 20px;
+            font-family: 'Amatic SC', cursive;
+            font-size: 6em;
+            color: white;
+        }
+
+        .icon-facebook2:before {
+            content: "\ea91";
+            color: white;
+            font-size: 1.9em;
+            //used to be 30px
+        }
+
+        .icon-instagram:before {
+            content: "\ea92";
+            color: white;
+            font-size: 1.9em;
+        }
+
+        .icon-twitter:before {
+            content: "\ea96";
+            color: white;
+            font-size: 1.9em;
+        }
+        .icon-menu:before {
+            content: "\e9bd";
+            visibility: hidden;
+            font-size: 1.5em;
+            color: white;
+        }
+    }
+
+
+@media all and (max-width: 500px) {
+    .header-container {
+        .left {
+            margin-top: -5px;
+        }
+        .right {
+            margin-top: 12px;
+            span {
+                margin-right: 10px;
+            }
+        }
+        h1 {
+            margin: 0 1%;
+            font-size: 3.5em;
+        }
+        .icon-facebook2:before, .icon-twitter:before, .icon-instagram:before {
+            font-size: 1.2em;
+            visibility: hidden;
+        }
+        .icon-menu:before {
+            visibility: visible
+        }
+
+        .icon-menu:hover {
+        nav {
+            ul {
+                visibility: visible;
+            }
+        }
+    }
+    }
+
+}
