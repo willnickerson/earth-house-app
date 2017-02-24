@@ -1,4 +1,5 @@
 @import 'colors';
+@import 'fonts';
 
 :local(.item) {
     margin-bottom: 5%;
@@ -15,6 +16,7 @@
             margin-top: 1%;
             margin-bottom: 0;
             padding-top: 20px;
+            font-family: $main-font;
         }
 
     }
@@ -42,6 +44,7 @@
     h3 {
         font-size: 2em;
         margin: 1% 0 0 1.1%;
+        font-family: $main-font;
     }
 
     a {
@@ -58,6 +61,7 @@
     display: inline-block;
     width: 30%;
     margin: 0 1.5%;
+    font-family: $main-font;
     img {
         width: 82%;
         margin: 0;
