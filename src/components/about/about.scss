@@ -1,0 +1,38 @@
+@import 'fonts';
+
+.wood-header {
+    border-bottom: 3px solid #AAA;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    img {
+        margin-top: 20px;
+        // position: relative;
+        z-index: -1;
+        width: 100%
+    }
+
+    h1 {
+        font-size: 3em;
+        text-align: center
+    }
+
+    h2 {
+        margin-top: 0;
+        font-family: $decorative-font;
+        font-size: 2em;
+    }
+
+    .about-text {
+        position: relative;
+    }
+
+    .behind-text {
+        position: absolute;
+        top: 0;
+        margin-top: 0;
+    }
+}
+
