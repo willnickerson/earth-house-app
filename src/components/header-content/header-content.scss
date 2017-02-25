@@ -11,14 +11,13 @@
         }
         .left {
             float: left;
-            max-width: 350px;
+            // max-width: 350px;
             margin-top: -5px;
         }
         .right {
             margin-top: 20px;
             float: right;
             text-align: right;
-            // z-index: 1;
             span {
                 margin-right: 20px;
             }
@@ -49,19 +48,22 @@
             color: white;
             font-size: 1.9em;
         }
-        .icon-menu:before {
-            content: "\e9bd";
-            visibility: hidden;
-            font-size: 1.5em;
-            color: white;
-        }
     }
 
 
 @media all and (max-width: 500px) {
     .header-container {
         .left {
+            float: none;
             margin-top: -5px;
+            width: 100%;
+            z-index: 10000;
+            h1 {
+                float: left;
+            }
+            nav-bar {
+                float: right;
+            }
         }
         .right {
             margin-top: 12px;
@@ -75,19 +77,8 @@
         }
         .icon-facebook2:before, .icon-twitter:before, .icon-instagram:before {
             font-size: 1.2em;
-            visibility: hidden;
+            display: none;
         }
-        .icon-menu:before {
-            visibility: visible
-        }
-
-        .icon-menu:hover {
-        nav {
-            ul {
-                visibility: visible;
-            }
-        }
-    }
     }
 
 }

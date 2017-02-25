@@ -53,7 +53,6 @@ app.animation('.slide-animation', function ($window) {
             var scope = element.scope();
             if (className == 'ng-hide') {
                 element.removeClass('ng-hide');
-                console.log('element', element);
 
                 var startPoint = $window.innerWidth;
                 if(scope.direction === 'right') {

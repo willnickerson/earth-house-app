@@ -3,8 +3,13 @@ import styles from './nav-bar.scss';
 
 export default {
     template,
-    controller() {
-        this.styles = styles;
-    }
+    controller
 };
+
+function controller() {
+    this.styles = styles;
+    this.toggleNav = function() {
+        console.log('click is working');
+    };
+}
 

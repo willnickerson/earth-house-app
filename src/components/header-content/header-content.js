@@ -4,7 +4,9 @@ import styles from './header-content.scss';
 
 export default {
     template,
-    controller() {
-        this.styles = styles;
-    }
+    controller
 };
+
+function controller() {
+    this.styles = styles;
+}
