@@ -8,8 +8,11 @@ export default {
 
 function controller() {
     this.styles = styles;
+    this.navVisibility = this.styles.hide;
+    
     this.toggleNav = function() {
-        console.log('click is working');
+        if(this.navVisibility === this.styles.hide) this.navVisibility = this.styles.show;
+        else this.navVisibility = this.styles.hide;
     };
 }
 

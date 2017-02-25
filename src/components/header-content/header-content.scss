@@ -48,7 +48,7 @@
             color: white;
             font-size: 1.9em;
         }
-    }
+}
 
 
 @media all and (max-width: 500px) {
@@ -57,7 +57,7 @@
             float: none;
             margin-top: -5px;
             width: 100%;
-            z-index: 10000;
+            z-index: 1003;
             h1 {
                 float: left;
             }
@@ -81,4 +81,13 @@
         }
     }
 
+
+}
+
+@media all and (min-width: 501px) {
+    .header-container {
+        .left {
+            max-width: 350px;
+        }
+    }
 }

@@ -17,28 +17,39 @@ nav.site-navigation {
             margin: 0;
         }
     }
-
-    .icon-menu:before {
+    a.icon-menu:before {
         content: "\e9bd";
         font-size: 1.9em;
         color: white;
-        position: relative;
-        display: inline-block;
+        display: none;
+        width: 20px;
+        margin-top: 12px;
+        margin-right: 20px;
+        float: right;
     }
 }
+
+
 
 
 @media all and (max-width: 500px) {
     nav.site-navigation {
         float: right;
         ul {
+            float: right;
             margin: 12px 5px;
-            .link {
+            :local(.hide) {
                 display: none;
+            }
+            :local(.show) {
+                display: block;
             }
             .mid-dot {
                 display: none;
             }
+        }
+        a.icon-menu:before {
+            display: inline-block;
         }
     }
 }

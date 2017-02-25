@@ -60,11 +60,9 @@ function controller($window, $interval) {
         this.setCurrText();
     };
 
-    // $interval(() => {
-    //     // this.progress = this.styles.start;
-    //     // console.log(this.progress);
-    //     this.nextSlide();
-    // }, 4000);
+    $interval(() => {
+        this.nextSlide();
+    }, 4000);
 
     //TODO: figure out some sort of way to adjust slider height based off of image height, we might have to use jQuery :/
 
