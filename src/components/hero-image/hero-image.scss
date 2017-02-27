@@ -173,15 +173,37 @@
 
 @media all and (max-width: 500px) {
     .slider {
-        height: 230px;
+        height: 240px;
+    }
+
+    .slider-nav {
+        height: 35px;
+    }
+    .slider-nav .wrapper {
+        padding-bottom: 0;
+        bottom: 0;
+    }
+
+    .dots .dot {
+        margin: 0 5px;
+        width: 12px;
+        height: 12px;
+    }
+    .dots .dot a {
+        height: 4px;
+        width: 4px;
     }
     .slide-text {
-        p {
-            visibility: hidden;
-        }
-        a {
+        width: 100%;
+        // p {
+        //     visibility: hidden;
+        // }
+        p { 
             visibility: visible;
-            font-size: 1em;
+            font-size: 1.2em;
+            margin-bottom: 3%;
+            text-align: center;
+            margin-right: 0;
         }
     }
 }

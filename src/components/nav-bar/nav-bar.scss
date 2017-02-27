@@ -37,7 +37,7 @@ nav.site-navigation {
         float: right;
         ul {
             float: right;
-            margin: 12px 5px;
+            margin: 0px 10px;
             :local(.hide) {
                 display: none;
             }
@@ -46,6 +46,13 @@ nav.site-navigation {
             }
             .mid-dot {
                 display: none;
+            }
+            li {
+                width: 100%;
+                text-align: right;
+                font-weight: 100;
+                font-size: 1em;
+                margin-bottom: 3px;
             }
         }
         a.icon-menu:before {
