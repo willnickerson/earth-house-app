@@ -1,3 +1,7 @@
+$black: rgba(50,50,50,.7);
+
+//think about taking the nav off of the image
+
 .header-container {
         width: 100%;
         position: absolute;
@@ -53,6 +57,7 @@
 
 @media all and (max-width: 500px) {
     .header-container {
+        background-color: $black;
         .left {
             float: none;
             margin-top: -5px;
