@@ -170,11 +170,31 @@
     -ms-transform: scale(1.2);
     transform: scale(1.2);
 }
+@media all and (max-width: 380px) {
+    .slider {
+        height: 210px;
+    }
+}
 
-@media all and (max-width: 500px) {
+@media all and (min-width:381px) and (max-width: 450px) {
     .slider {
         height: 250px;
     }
+}
+
+@media all and (min-width: 451px) and (max-width: 550px) {
+    .slider {
+        height: 295px;
+    }
+}
+
+@media all and (min-width: 551px) and (max-width: 750px) {
+    .slider {
+        height: 350px;
+    }
+}
+
+@media all and (max-width: 700px) {
 
     .slider-nav {
         height: 35px;
@@ -195,9 +215,6 @@
     }
     .slide-text {
         width: 100%;
-        // p {
-        //     visibility: hidden;
-        // }
         p { 
             visibility: visible;
             font-size: 1.2em;
