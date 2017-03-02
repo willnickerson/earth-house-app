@@ -81,13 +81,31 @@
     }
 }
 
-@media all and (min-width: 551px) {
+@media all and (min-width: 551px) and (max-width: 700px) {
     .header-container {
         .left {
-            max-width: 350px;
+            max-width: 250px;
             h1 {
                 font-size: 4em;
             }
+        }
+
+        .right {
+            margin-top: 15px;
+            .icon-facebook2:before, .icon-instagram:before, .icon-twitter:before {
+                font-size: 1.5em;
+            }
+            span {
+                margin-right: 15px;
+            }
+        }
+    }
+}
+
+@media all and (min-width: 701px) {
+    .header-container {
+        .left {
+            max-width: 350px;
         }
     }
 }

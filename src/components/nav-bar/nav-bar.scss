@@ -60,3 +60,16 @@ nav.site-navigation {
         }
     }
 }
+
+@media all and (min-width: 551px) and (max-width: 700px) {
+    nav.site-navigation {
+        ul {
+            margin-left: 2.5%;
+            margin-top: -5px;
+            li {
+                font-size: .9em;
+                width: 17%;
+            }
+        }
+    }
+}

@@ -16,7 +16,7 @@ function controller($window, $interval) {
     this.slides = [
         {
             name: 'img1',
-            imgUrl: 'http://res.cloudinary.com/lejipni8p/image/upload/v1488324606/sumpreme-green-centered_wp639t.jpg',
+            imgUrl: 'http://res.cloudinary.com/lejipni8p/image/upload/c_crop,g_south_west,h_2603,w_3800/v1488324606/sumpreme-green-centered_wp639t.jpg',
             // text: 'Sed ut perspiciatis omnis iste natus error sit voluptatem accusantium doloremque laudantium. <a href="https://www.instagram.com">follow us on instagram!</a>'
             text: '<a>Supreme Green</a>'
         },
@@ -63,9 +63,9 @@ function controller($window, $interval) {
         this.setCurrText();
     };
 
-    $interval(() => {
-        this.nextSlide();
-    }, 4000);
+    // $interval(() => {
+    //     this.nextSlide();
+    // }, 4000);
 
     //TODO: figure out some sort of way to adjust slider height based off of image height, we might have to use jQuery :/
 
