@@ -1,6 +1,22 @@
 @import 'colors';
 @import 'fonts';
 
+.loading-bar {
+    position: absolute;
+    height: 5px;
+    background-color: $accent-color;
+    opacity: .6;
+    transition: width 4s;
+}
+
+:local(.start) {
+    width: 0;
+}
+
+:local(.done) {
+    width: 100%;
+}
+
 .articles {
     border-top: 5px solid $lightgrey;
     background-color: rgb(250,250,250);
