@@ -21,12 +21,14 @@
 
         ul{
             list-style-type: none;
+            margin: 0 auto;
             height: 200px;
             li {
                 padding-left: 50px;
                 margin: 15px 0;
                 font-size: .85em;
-                font-weight: lighter;   
+                font-weight: lighter;
+                width: 100%;   
             }
         }
     }
