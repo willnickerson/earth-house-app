@@ -10,7 +10,7 @@
     div {
         margin-top: 25px;
         height: 80%;
-        width: 25%;
+        width: 24%;
         float: left;
         border-right: .12em solid $lightgrey;
         h3 {
@@ -36,7 +36,7 @@
     border-right: none;
 }
 
-@media all and (max-width: 500px) {
+@media all and (max-width: 650px) {
     .footer-container {
         div {
             margin-top: 25px;

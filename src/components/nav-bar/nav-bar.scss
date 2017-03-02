@@ -1,3 +1,5 @@
+@import 'colors';
+
 nav.site-navigation {
     margin-left: 5%;
     margin-top: 0;  
@@ -11,6 +13,11 @@ nav.site-navigation {
             display: inline-block;
             color: white;
             font-weight: bold;
+            transition: all .35s ease;
+        }
+        li:hover {
+            cursor: pointer;
+            color: $accent-color;
         }
         .mid-dot {
             width: auto;
