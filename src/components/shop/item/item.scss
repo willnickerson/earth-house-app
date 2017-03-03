@@ -4,73 +4,62 @@
 :local(.item) {
     margin-bottom: 5%;
 
-    .description {
-        .item-name {
-            float: left;
+    .item-name {
+        font-size: 3em;
+        text-align: center;
+        font-family: $decorative-font;
+        margin: 0 0 3% 0;
+    }
+
+    .item-description {
+        font-family: $main-font;
+        font-size: 1.2em;
+        width: 50%;
+        float: right;
+        text-indent: 20px;
+        margin-top: 0;
+        margin-right: 2%;
+        a {
+            color: blue;
+            display: block;
         }
-        .item-description {
-            float: left;
-            width: 60%;
-        }
-        p {
-            margin-top: 1%;
-            margin-bottom: 0;
-            padding-top: 20px;
-            font-family: $main-font;
-        }
-
     }
 
-    section {
-        width: 90%;
-        margin: 0 auto;
+    .item-img {
+        width: 40%;
+        margin: -2% auto 0 auto;
     }
-
-    h2 {
-        font-size: 1.75em;
-        margin: 0 auto;
-    }
-    img {
-        width: 20%;
-        float: left;
-        margin: 0% 6%;
-    }
-    ul {
-        float: left;
-        width: 60%;
-        margin: 0 0 2% 0;
-    }
-
-    h3 {
-        font-size: 2em;
-        margin: 1% 0 0 1.1%;
-    }
-
-    a {
-        color: blue;
-        transition: .3s all ease;
-    }
-
-    a:hover {
-        color: $accent-color;
-    }
-
 }
-:local(.ingredient) {
-    display: inline-block;
-    width: 30%;
-    margin: 0 1.5%;
-    font-family: $main-font;
-    img {
-        width: 82%;
+
+
+:local(.ingredients) {
+    h3 {
+        font-size: 3em;
+        font-family: $decorative-font;
+        text-align: center;
         margin: 0;
     }
+
+    li {
+        float: left;
+        width: 49%;
+        margin-bottom: 5%;
+    }
+
+    img {
+        width: 70%;
+        margin: 0 auto;
+    }
+    p {
+        width: 70%;
+        margin: 0 auto;
+        font-family: $main-font;
+    }
+
     span {
-        display: inline;
+        font-family: $decorative-font;
         font-size: 2em;
         font-weight: bold;
     }
-    p {
-        font-size: .75em;
-    }
 }
+
