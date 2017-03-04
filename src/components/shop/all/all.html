@@ -13,10 +13,10 @@
                     <h3 ui-sref="shop.item({
                     id: juice._id})">{{juice.name}}</h3>
                     <p>${{juice.price}}.00</p>
-                    <select ng-model="$ctrl.quantity">
+                    <select ng-model="quantity">
                         <option ng-repeat="number in $ctrl.selectArray" ng-value="number">{{number}}</option>
                     </select>
-                    <button ng-click="$ctrl.addToCart($ctrl.quantity)">Add to Cart</button>
+                    <button ng-click="$ctrl.addToCart(quantity)">Add to Cart</button>
                 </div>
             </li>
         </ul>

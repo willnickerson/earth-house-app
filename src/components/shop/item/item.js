@@ -4,7 +4,10 @@ import styles from './item.scss';
 export default {
     template,
     bindings: {
-        item: '<'
+        item: '<',
+        selectArray: '<',
+        addToCart: '<',
+        quantity: '='
     },
     controller
 };

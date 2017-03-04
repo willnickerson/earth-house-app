@@ -19,5 +19,19 @@ function controller($scope, $document) {
         console.log('angular scroll function called');
         $document.scrollToElement(items, 0, 600);
     };
+
+    
+    this.selectArray = [];
+
+    for(var i = 0; i < 10; i++) {
+        this.selectArray.push(i + 1);
+    }
+
+    this.quantity = 0;
+
+    this.addToCart = function(quantity) {
+        console.log('add to cart', quantity);
+        this.quantity = 0;
+    };
 }
 
