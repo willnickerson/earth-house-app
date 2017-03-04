@@ -2,17 +2,20 @@
     <div class="description">
         <h2 class="item-name">{{$ctrl.item.name}}</h2>
         <p class="item-description">{{$ctrl.item.description}} <a ui-sref="shop.all">&larr;Back to all juices</a></p>    
-        <img class="item-img" src="{{$ctrl.item.imgUrl}}">
+    </div>
+    <div class="item-img">
+        <img src="{{$ctrl.item.imgUrl}}">
     </div>
 
-
     <div ng-class="$ctrl.styles.ingredients" class="clearfix">
-        <ul>
-            <h3>Ingredients</h3>
-            <li ng-repeat="ingredient in $ctrl.item.ingredients">
-                <img class="ingredient" src="{{ingredient.imgUrl}}">
-                <p><span>{{ingredient.name}}. </span>{{ingredient.description}}</p>
-            </li>
-        </ul>
+        <h3>Ingredients</h3>
+        <div class="list" ng-style="$ctrl.listHeight">
+            <ul>
+                <li ng-repeat="ingredient in $ctrl.item.ingredients">
+                    <img class="ingredient" src="{{ingredient.imgUrl}}">
+                    <p><span>{{ingredient.name}}. </span>{{ingredient.description}}</p>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
