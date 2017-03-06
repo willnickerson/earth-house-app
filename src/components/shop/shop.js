@@ -4,7 +4,8 @@ import styles from './shop.scss';
 export default {
     template,
     bindings: {
-        juices: '<'
+        juices: '<',
+        cart: '='
     },
     controller 
 };
@@ -27,11 +28,20 @@ function controller($scope, $document) {
         this.selectArray.push(i + 1);
     }
 
-    this.quantity = 0;
 
     this.addToCart = function(juice) {
-        console.log('add to cart',juice.name, ':', juice.quantity);
+        console.log('add to cart', juice.name, ':', juice.quantity);
+        if(this.cart.hasOwnProperty(juice._id)) {
+            this.cart[juice._id].quantity += juice.quantity;
+        } else {
+            this.cart[juice._id]= {
+                name: juice.name,
+                price: juice.price,
+                quantity: juice.quantity
+            };
+        }
         juice.quantity = 0;
+        console.log(this.cart);
     };
-}
 
+}

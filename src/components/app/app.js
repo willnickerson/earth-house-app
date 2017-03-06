@@ -2,5 +2,9 @@ import template from './app.html';
 
 export default {
     template,
-    controller() {}
+    controller() {
+        this.cart = {
+            totalItems: 0
+        };
+    }
 };

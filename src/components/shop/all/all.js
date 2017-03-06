@@ -7,7 +7,7 @@ export default {
         gotoItems: '<',
         selectArray: '<',
         addToCart: '<',
-        quantity: '='
+        cart: '='
     },
     controller
 };
