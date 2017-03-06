@@ -29,9 +29,9 @@ function controller($scope, $document) {
 
     this.quantity = 0;
 
-    this.addToCart = function(quantity) {
-        console.log('add to cart', quantity);
-        this.quantity = 0;
+    this.addToCart = function(juice) {
+        console.log('add to cart',juice.name, ':', juice.quantity);
+        juice.quantity = 0;
     };
 }
 

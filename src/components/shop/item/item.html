@@ -6,10 +6,10 @@
     <div class="item-img">
         <img src="{{$ctrl.item.imgUrl}}">
     <p>{{$ctrl.item.price}}.00</p>
-    <select ng-model="$ctrl.quantity">
+    <select ng-model="$ctrl.item.quantity">
         <option ng-repeat="number in $ctrl.selectArray" ng-value="number">{{number}}</option>
     </select>
-    <button ng-click="$ctrl.addToCart($ctrl.quantity)">Add to Cart</button>
+    <button ng-click="$ctrl.addToCart($ctrl.item)">Add to Cart</button>
     </div>
 
     <div ng-class="$ctrl.styles.ingredients" class="clearfix">
