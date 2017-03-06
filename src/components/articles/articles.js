@@ -14,7 +14,6 @@ function controller($interval) {
     this.loading = this.styles.done;
 
     $interval(() => {
-        console.log(this.loading);
         this.loading = this.styles.start;
     }, 4000);
 }

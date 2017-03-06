@@ -6,7 +6,8 @@ export default {
     bindings: {
         item: '<',
         selectArray: '<',
-        addToCart: '<'
+        addToCart: '<',
+        cart: '='
     },
     controller
 };

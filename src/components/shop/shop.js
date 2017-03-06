@@ -40,8 +40,9 @@ function controller($scope, $document) {
                 quantity: juice.quantity
             };
         }
-        juice.quantity = 0;
+        this.cart.updateTotalItems(juice.quantity);
         console.log(this.cart);
+        juice.quantity = 0;
     };
 
 }
