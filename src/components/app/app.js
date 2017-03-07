@@ -13,11 +13,19 @@ export default {
                     totalItems: 0
                 };
             }
-            this.cart.updateTotalItems = function(quantity) {
-                this.totalItems += quantity;
+            this.cart.updateTotalItems = function() {
+                this.totalItems = 0;
+                Object.keys(this).forEach(key => {
+                    if(key !== 'totalItems' && key !== 'updateTotalItems'&& key !== 'storeCart') {
+                        this.totalItems += this[key].quantity;
+                    }
+                });
             };
 
-            console.log('our cart', this.cart);
+            this.cart.storeCart = function() {
+                const cartString = JSON.stringify(this);
+                localStorage.setItem('earth-house-cart', cartString); //eslint-disable-line
+            };
         };
     }
 };
