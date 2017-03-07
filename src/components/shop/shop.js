@@ -41,7 +41,8 @@ function controller($scope, $document) {
             };
         }
         this.cart.updateTotalItems(juice.quantity);
-        console.log(this.cart);
+        const cartString = JSON.stringify(this.cart);
+        localStorage.setItem('earth-house-cart', cartString); //eslint-disable-line
         juice.quantity = 0;
     };
 
