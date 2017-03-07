@@ -4,6 +4,10 @@
             <nav-bar></nav-bar>
         </div>
         <div class="right">
+            <a ui-sref="checkout" class="cart-icon">
+                <h5 class="total-items">{{$ctrl.cart.totalItems}}</h5>
+                <span class="icon-cart"></span> 
+            </a>
             <a href="https://twitter.com/">
                 <span class="icon-twitter"></span>
             </a>
@@ -13,6 +17,5 @@
             <a href="https://www.instagram.com/">
                 <span class="icon-instagram"></span>
             </a>
-            <span class="icon-menu"></span>
         </div>
 </div>

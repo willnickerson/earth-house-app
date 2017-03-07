@@ -1,19 +1,18 @@
 @import 'colors';
 
 .footer-container {
-    background-color: #EEE;
-    height: 300px;
+    background-color: $black;
     width: 100%;
-    color: #666;
-    border-top: 5px solid #CCC;
-    // border-top: 2px solid $accent-color;
-    display: block;
+    color: $lightgrey;
+    border-top: 3px solid $lightgrey;
+    padding-bottom: 25px;
 
     div {
         margin-top: 25px;
         height: 80%;
-        width: 25%;
+        width: 24%;
         float: left;
+        border-right: .12em solid $lightgrey;
         h3 {
             margin-top: 0;
             text-align: center;
@@ -22,15 +21,34 @@
 
         ul{
             list-style-type: none;
-            border-right: .05em solid #666;
+            margin: 0 auto;
             height: 200px;
             li {
                 padding-left: 50px;
                 margin: 15px 0;
                 font-size: .85em;
-                font-weight: lighter;   
+                font-weight: lighter;
+                width: 100%;   
             }
         }
+    }
+}
+
+.footer-category:last-child {
+    border-right: none;
+}
+
+@media all and (max-width: 650px) {
+    .footer-container {
+        div {
+            margin-top: 25px;
+            width: 49.5%;
+            height: 170px;
+            }
+    }
+
+    .footer-category:nth-child(2) {
+        border-right: none;
     }
 }
 

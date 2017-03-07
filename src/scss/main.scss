@@ -1,18 +1,6 @@
 @import 'colors';
 @import 'fonts';
 
-@media all and (max-width: 500px) {
-    img {
-        opacity: .5;
-    }
-}
-
-@media all and (max-width: 900px) {
-    img {
-        opacity: 1;
-    }
-}
-
 html {
     font-size: 16px;
 }

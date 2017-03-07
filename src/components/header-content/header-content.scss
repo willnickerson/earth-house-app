@@ -1,3 +1,6 @@
+@import 'colors';
+@import 'fonts';
+
 .header-container {
         width: 100%;
         position: absolute;
@@ -11,14 +14,12 @@
         }
         .left {
             float: left;
-            max-width: 350px;
             margin-top: -5px;
         }
         .right {
             margin-top: 20px;
             float: right;
             text-align: right;
-            // z-index: 1;
             span {
                 margin-right: 20px;
             }
@@ -29,6 +30,20 @@
             font-family: 'Amatic SC', cursive;
             font-size: 6em;
             color: white;
+        }
+        .cart-icon {
+            position: relative;
+        }
+        .total-items {
+            display: inline-block;
+            position: relative;
+            bottom: 17px;
+            left: 33px;
+            color: $accent-color;
+            font-family: $main-font;
+            font-size: 1em;
+            font-weight: bold;
+            margin: 0;
         }
 
         .icon-facebook2:before {
@@ -49,19 +64,28 @@
             color: white;
             font-size: 1.9em;
         }
-        .icon-menu:before {
-            content: "\e9bd";
-            visibility: hidden;
-            font-size: 1.5em;
+
+        .icon-cart:before {
+            content: "\e93a";
             color: white;
+            font-size: 1.9em;
         }
-    }
+}
 
 
-@media all and (max-width: 500px) {
+@media all and (max-width: 550px) {
     .header-container {
         .left {
+            float: none;
             margin-top: -5px;
+            width: 100%;
+            z-index: 1003;
+            h1 {
+                float: left;
+            }
+            nav-bar {
+                float: right;
+            }
         }
         .right {
             margin-top: 12px;
@@ -73,21 +97,54 @@
             margin: 0 1%;
             font-size: 3.5em;
         }
-        .icon-facebook2:before, .icon-twitter:before, .icon-instagram:before {
+        .icon-facebook2:before, .icon-twitter:before, .icon-instagram:before, .icon-cart:before {
             font-size: 1.2em;
-            visibility: hidden;
+            display: none;
         }
-        .icon-menu:before {
-            visibility: visible
+    }
+}
+
+@media all and (min-width: 551px) and (max-width: 700px) {
+    .header-container {
+        .left {
+            max-width: 250px;
+            h1 {
+                font-size: 4em;
+            }
         }
 
-        .icon-menu:hover {
-        nav {
-            ul {
-                visibility: visible;
+        .right {
+            margin-top: 15px;
+            .icon-facebook2:before, .icon-instagram:before, .icon-twitter:before, .icon-cart:before {
+                font-size: 1.5em;
+            }
+            span {
+                margin-right: 15px;
             }
         }
     }
-    }
+}
 
+@media all and (min-width: 701px) and (max-width: 1083px) {
+    .header-container {
+        .left {
+            width: 350px;
+        }
+    }
+}
+
+@media all and (min-width: 1083px) {
+    .header-container {
+        .left {
+            width: 500px;
+            h1 {
+                font-size: 7em;
+            }
+        }
+        .right {
+            .icon-facebook2:before, .icon-twitter:before, .icon-instagram:before, .icon-cart:before {
+                font-size: 2.2em;
+            }
+        }
+    }
 }

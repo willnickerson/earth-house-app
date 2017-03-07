@@ -1,4 +1,6 @@
-nav {
+@import 'colors';
+
+nav.site-navigation {
     margin-left: 5%;
     margin-top: 0;  
     ul {
@@ -11,26 +13,82 @@ nav {
             display: inline-block;
             color: white;
             font-weight: bold;
+            transition: all .35s ease;
+        }
+        li:hover {
+            cursor: pointer;
+            color: $accent-color;
         }
         .mid-dot {
             width: auto;
             margin: 0;
         }
     }
+    a.icon-menu:before {
+        content: "\e9bd";
+        font-size: 1.9em;
+        color: white;
+        display: none;
+        width: 20px;
+        margin-top: 12px;
+        margin-right: 20px;
+        float: right;
+    }
 }
 
 
-@media all and (max-width: 500px) {
-    nav{
+
+
+@media all and (max-width: 551px) {
+    nav.site-navigation {
+        float: right;
         ul {
-            visibility: hidden;
+            float: right;
+            margin: 0px 10px;
+            :local(.hide) {
+                display: none;
+            }
+            :local(.show) {
+                display: block;
+            }
+            .mid-dot {
+                display: none;
+            }
+            li {
+                width: 100%;
+                text-align: right;
+                font-weight: 100;
+                font-size: 1em;
+                margin-bottom: 3px;
+            }
+        }
+        a.icon-menu:before {
+            display: inline-block;
         }
     }
+}
 
-    span.icon-menu:hover {
-        nav {
-            ul {
-                visibility: visible;
+@media all and (min-width: 551px) and (max-width: 700px) {
+    nav.site-navigation {
+        ul {
+            margin-left: 2.5%;
+            margin-top: -5px;
+            li {
+                font-size: .9em;
+                width: 17%;
+            }
+        }
+    }
+}
+
+@media all and (min-width: 1083px) {
+    nav.site-navigation {
+        margin-left: 3%;
+        margin-top: -2.5%;
+        ul {
+            li {
+                font-size: 1.5em;
+                width: 17%;
             }
         }
     }

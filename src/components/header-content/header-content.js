@@ -4,7 +4,13 @@ import styles from './header-content.scss';
 
 export default {
     template,
-    controller() {
-        this.styles = styles;
-    }
+    bindings: {
+        cart: '<'
+    },
+    controller
 };
+
+function controller() {
+    this.styles = styles;
+    console.log(this.cart);
+}
