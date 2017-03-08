@@ -46,3 +46,33 @@
     </tfoot>
 </table>
 
+<form stripe-form="$ctrl.stripeCallback">
+    <input ng-model="number" placeholder="Card Number" />
+    <input ng-model="expiry" placeholder="Expiration" />
+    <input ng-model="cvc" placeholder="CVC" />
+    <button type="submit">Submit</button>
+</form>
+
+<!--<button stripe-checkout="$ctrl.checkout"
+        data-key="pk_test_HS62OmJo7gCzA7fcN2ObL2rF"
+        data-name="juices"
+        data-description="Your juices!"
+        data-amount="500"
+        data-currency="usd">
+    Checkout
+</button>-->
+
+
+<!--<form ng-submit="$ctrl.checkout()">
+    <script
+    src ="https://checkout.stripe.com/checkout.js"
+    class="stripe-button"
+    data-key="pk_test_HS62OmJo7gCzA7fcN2ObL2rF"
+    data-amount= "300"
+    data-name="juice order"
+    data-description="You just bought some juice"
+    data-locale="auto"
+    data-currency="usd">
+    </script>
+</form>-->
+

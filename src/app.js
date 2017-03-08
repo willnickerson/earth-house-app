@@ -9,6 +9,9 @@ import duScroll from 'angular-scroll';
 import TweenMax from 'gsap';
 import ngAnimate from 'angular-animate';
 import ngSanitize from 'angular-sanitize';
+// import stripeCheckout from 'angular-stripe-checkout';
+// import angularPayments from 'angular-payments';
+// import stripe from 'stripe';
 //TODO: figure out why things broken when a imported angular animate in the es6y way
 
 
@@ -20,11 +23,19 @@ const app = angular.module('myApp', [
     ngAnimate,
     ngSanitize,
     defaultRoute
+    // 'angular-payments'
+    // stripe,
+    // stripeCheckout
 ]);
 
 const dev = 'http://localhost:3000/api';
 
 app.config(routes);
+
+app.config(function($windowProvider) {
+    const $window = $windowProvider.$get();
+    $window.Stripe.setPublishableKey('pk_test_HS62OmJo7gCzA7fcN2ObL2rF');
+});
 
 app.value('apiUrl', dev);
 

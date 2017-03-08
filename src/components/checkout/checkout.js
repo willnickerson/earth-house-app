@@ -1,6 +1,7 @@
 import template from './checkout.html';
 import styles from './checkout.scss';
 
+
 export default {
     template,
     bindings: {
@@ -9,7 +10,9 @@ export default {
     controller
 };
 
-function controller() {
+controller.$inject = ['paymentService'];
+
+function controller(paymentService) {
     this.styles = styles;
     this.items = {};
     this.selectArray = [];
@@ -49,7 +52,7 @@ function controller() {
         console.log(this.cart);
     };
 
-    this.removeItem = function(item) {
+    this.removeItem = item => {
         Object.keys(this.cart).forEach(key => {
             if(this.cart[key].name === item.name) {
                 delete this.cart[key];
@@ -60,5 +63,21 @@ function controller() {
         this.cart.updateTotalItems();
         this.cart.storeCart();
     };
+
+    this.checkout = () => {
+        console.log('checkout function called');
+        paymentService.post()
+            .then(data => console.log('payment request made on front end, recieved:', data));
+    };
+
+    this.stripeCallback = (code, res) => {
+        if(res.error) console.log('ERROR', res.error.message);
+        else console.log('SUCCESS! token: ', res.id);
+    };
+
+    // this.doCheckout = token => {
+    //     this.checkout();
+    //     console.log('Got Stripe token: ' + token.id);
+    // };
 }
 
