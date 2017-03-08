@@ -45,13 +45,19 @@
         </tr>
     </tfoot>
 </table>
-
-<form stripe-form="stripeCallback">
-    <input ng-model="number" placeholder="Card Number" />
-    <input ng-model="expiry" placeholder="Expiration" />
-    <input ng-model="cvc" placeholder="CVC" />
+<h3>Delivery Information</h3>
+<button>Checkout</button>
+<h3>Payment Information</h3>
+<form stripe-form="stripeCallback" name="checkoutForm">
+    <input ng-model="number" placeholder="Card Number" payments-format="card" payments-validate="card" name="card"/>
+    <input ng-model="expiry" placeholder="Expiration" payments-formate="expiry" payments-validate="expiry" name="expiry"/>
+    <input ng-model="cvc" placeholder="CVC" payments-format="cvc" payments-validate="cvc" name="cvc"/>
     <button type="submit">Submit</button>
 </form>
+
+<div ng-if="checkoutForm.card.$invalid">
+    Error: invalid card number!
+</div>
 
 <!--<button stripe-checkout="$ctrl.checkout"
         data-key="pk_test_HS62OmJo7gCzA7fcN2ObL2rF"

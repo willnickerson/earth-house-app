@@ -75,6 +75,11 @@ function controller(paymentService, $scope) {
             console.log('ERROR', result.error.message);
         } else {
             console.log('SUCCESS! token: ', result.id);
+            const orderInfo = {
+                stripeToken: result.id,
+                chargeAmount: 10000
+            };
+            paymentService.post(orderInfo);
         }
     };
 
