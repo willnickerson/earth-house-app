@@ -10,9 +10,9 @@ export default {
     controller
 };
 
-controller.$inject = ['paymentService'];
+controller.$inject = ['paymentService', '$scope'];
 
-function controller(paymentService) {
+function controller(paymentService, $scope) {
     this.styles = styles;
     this.items = {};
     this.selectArray = [];
@@ -70,9 +70,12 @@ function controller(paymentService) {
             .then(data => console.log('payment request made on front end, recieved:', data));
     };
 
-    this.stripeCallback = (code, res) => {
-        if(res.error) console.log('ERROR', res.error.message);
-        else console.log('SUCCESS! token: ', res.id);
+    $scope.stripeCallback = function(code, result) {
+        if(result.error) {
+            console.log('ERROR', result.error.message);
+        } else {
+            console.log('SUCCESS! token: ', result.id);
+        }
     };
 
     // this.doCheckout = token => {
