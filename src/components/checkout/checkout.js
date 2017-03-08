@@ -17,6 +17,7 @@ function controller(paymentService, $scope) {
     this.items = {};
     this.selectArray = [];
     this.maxQuant = 10;
+    this.total = 0;
 
     for(var i = 0; i <= this.maxQuant; i++) {
         this.selectArray.push(i);
@@ -27,15 +28,17 @@ function controller(paymentService, $scope) {
     };
     
     this.getItems = function() {
-        this.total = 0;
         Object.keys(this.cart).forEach(key => {
             if(key !== 'totalItems' && key !== 'updateTotalItems' && key !== 'storeCart') {
                 this.items[key] = this.cart[key];
                 this.items[key].subTotal = this.items[key].price * this.items[key].quantity;
                 this.total += this.items[key].subTotal;
+                $scope.total = this.total * 100; //this is because stripe will need a total in cents not dollars
             }
         });
     };
+
+    console.log(this.total);
 
     this.updateCart = function(item, newQunatity) {
         let juiceToUpdate = {};
@@ -64,28 +67,18 @@ function controller(paymentService, $scope) {
         this.cart.storeCart();
     };
 
-    this.checkout = () => {
-        console.log('checkout function called');
-        paymentService.post()
-            .then(data => console.log('payment request made on front end, recieved:', data));
-    };
 
     $scope.stripeCallback = function(code, result) {
         if(result.error) {
             console.log('ERROR', result.error.message);
         } else {
-            console.log('SUCCESS! token: ', result.id);
+            console.log('token: ', result.id, 'total: ', $scope.total);
             const orderInfo = {
                 stripeToken: result.id,
-                chargeAmount: 10000
+                chargeAmount: $scope.total
             };
             paymentService.post(orderInfo);
         }
     };
-
-    // this.doCheckout = token => {
-    //     this.checkout();
-    //     console.log('Got Stripe token: ' + token.id);
-    // };
 }
 
