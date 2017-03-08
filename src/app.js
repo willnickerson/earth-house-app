@@ -9,8 +9,8 @@ import duScroll from 'angular-scroll';
 import TweenMax from 'gsap';
 import ngAnimate from 'angular-animate';
 import ngSanitize from 'angular-sanitize';
+import angularPayments from 'angular-payments'; //eslint-disable-line
 // import stripeCheckout from 'angular-stripe-checkout';
-// import angularPayments from 'angular-payments';
 // import stripe from 'stripe';
 //TODO: figure out why things broken when a imported angular animate in the es6y way
 
@@ -22,7 +22,8 @@ const app = angular.module('myApp', [
     duScroll,
     ngAnimate,
     ngSanitize,
-    defaultRoute
+    defaultRoute,
+    'angularPayments'
     // 'angular-payments'
     // stripe,
     // stripeCheckout
