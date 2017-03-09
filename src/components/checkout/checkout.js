@@ -10,9 +10,9 @@ export default {
     controller
 };
 
-controller.$inject = ['paymentService', '$scope'];
+controller.$inject = ['paymentService', '$scope', '$state'];
 
-function controller(paymentService, $scope) {
+function controller(paymentService, $scope, $state) {
     this.styles = styles;
     this.items = {};
     this.address = {};
@@ -78,13 +78,17 @@ function controller(paymentService, $scope) {
     $scope.stripeCallback = function(code, result) {
         if(result.error) {
             console.log('ERROR', result.error.message);
+            $scope.invalidPayment = true;
+            console.log($scope.invalidPayment);
         } else {
+            //we need to put an order into our db and send the _id as the metadata to stripe
             console.log('token: ', result.id, 'total: ', $scope.total);
             const orderInfo = {
                 stripeToken: result.id,
                 chargeAmount: $scope.total
             };
             paymentService.post(orderInfo);
+            $state.go('success');
         }
     };
 

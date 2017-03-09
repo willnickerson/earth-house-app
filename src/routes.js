@@ -69,5 +69,11 @@ export default function routes($stateProvider, $urlRouterProvider) {
         component: 'checkout'
     });
 
+    $stateProvider.state({
+        name: 'success',
+        url:'/cart/thankyou',
+        component: 'success'
+    });
+
     $urlRouterProvider.otherwise('/home');
 }
