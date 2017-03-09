@@ -74,21 +74,48 @@ function controller(paymentService, $scope, $state) {
         this.showPayment = true;
     };
 
+    this.setOrderInfo = () => {
+        const itemsArray = [];
+        Object.keys(this.items).forEach(key => {
+            itemsArray.push(this.items[key]);
+        });
+        $scope.orderInfo = {
+            name: this.address.firstName + ' ' + this.address.lastName,
+            address: {
+                line_1: this.address.line1,
+                line_2: this.address.line2,
+                city: this.address.city,
+                state: this.address.state,
+                zip: this.address.zip
+            },
+            items: itemsArray,
+            total: this.total
+        };
+    };
+
 
     $scope.stripeCallback = function(code, result) {
+        console.log('In stripe callback', $scope.orderInfo);
         if(result.error) {
             console.log('ERROR', result.error.message);
             $scope.invalidPayment = true;
             console.log($scope.invalidPayment);
         } else {
             //we need to put an order into our db and send the _id as the metadata to stripe
-            console.log('token: ', result.id, 'total: ', $scope.total);
-            const orderInfo = {
-                stripeToken: result.id,
-                chargeAmount: $scope.total
-            };
-            paymentService.post(orderInfo);
-            $state.go('success');
+            paymentService.createOrder($scope.orderInfo)
+                .then(data => {
+                    const orderId = data._id;
+                    console.log('data returned from payment service', data, orderId);
+                    const paymentInfo = {
+                        stripeToken: result.id,
+                        chargeAmount: $scope.total,
+                        metadata: orderId
+                    };
+                    paymentService.post(paymentInfo);
+                    $state.go('success');
+                });
+            
+
         }
     };
 

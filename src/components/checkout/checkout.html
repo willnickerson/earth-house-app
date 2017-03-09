@@ -50,7 +50,7 @@
 
 <div class="cart" ng-if="$ctrl.confirmCart">
     <h2>Your Order</h2>
-    <p ng-click="$ctrl.confirmCart = false">edit</p>
+    <p ng-click="$ctrl.confirmCart = false" ng-if="!$ctrl.showPayment">edit</p>
     <table>
         <tr ng-repeat="item in $ctrl.items">
             <td>{{item.name}}</td>
@@ -66,7 +66,7 @@
 <div class="checkoutInfo" ng-if="$ctrl.showAddressForm">
     <h2>Delivery Info</h2>
 
-    <form name="address-form" ng-submit="$ctrl.showPaymentDiv(); $ctrl.showAddressForm = false">
+    <form name="address-form" ng-submit="$ctrl.showPaymentDiv(); $ctrl.showAddressForm = false; $ctrl.setOrderInfo()">
         <h4>Name for order</h4>
         <input placeholder="first name" ng-model="$ctrl.address.firstName" required>
         <input placeholder="last name" ng-model="$ctrl.address.lastName" required>
