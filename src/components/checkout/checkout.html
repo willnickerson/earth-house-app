@@ -45,12 +45,12 @@
             </tr>
         </tfoot>
     </table>
-    <button ng-click="$ctrl.confirmCart = true">Confirm Cart</button>
+    <button ng-click="$ctrl.confirmCart = true; $ctrl.showAddressForm = true">Confirm Cart</button>
 </div>
 
 <div class="cart" ng-if="$ctrl.confirmCart">
     <h2>Your Order</h2>
-    <p href="#" ng-click="$ctrl.confirmCart = false">edit</p>
+    <p ng-click="$ctrl.confirmCart = false">edit</p>
     <table>
         <tr ng-repeat="item in $ctrl.items">
             <td>{{item.name}}</td>
@@ -63,55 +63,57 @@
     <tfoot>${{$ctrl.total}}.00</tfoot>
 </div>
 
-<div class="checkoutInfo" ng-if="$ctrl.confirmCart">
+<div class="checkoutInfo" ng-if="$ctrl.showAddressForm">
     <h2>Delivery Info</h2>
 
-    <form name="address-form">
+    <form name="address-form" ng-submit="$ctrl.showPaymentDiv(); $ctrl.showAddressForm = false">
         <h4>Name for order</h4>
-        <input placeholder="first name" ng-model="$ctrl.address.firstName">
-        <input placeholder="last name" ng-model="$ctrl.address.lastName">
+        <input placeholder="first name" ng-model="$ctrl.address.firstName" required>
+        <input placeholder="last name" ng-model="$ctrl.address.lastName" required>
 
         <h4>Adress for delivery</h4>
-        <input placeholder="street line 1" ng-model="$ctrl.address.line1">
+        <input placeholder="street line 1" ng-model="$ctrl.address.line1" required>
         <input placeholder="street line 2" ng-model="$ctrl.address.line2">
-        <select name="city" ng-model="$ctrl.address.city">
-            <option ng-repeat="city in $ctrl.cityArray" ng-value="city">{{city}}</option>
+        <select name="city" ng-model="$ctrl.address.city" required>
+            <option></option>
+            <option ng-repeat="city in $ctrl.cityArray" ng-value="city" ng-required="required">{{city}}</option>
         </select>
-        <select name="state" ng-model="$ctrl.address.state">
+        <select name="state" ng-model="$ctrl.address.state" required>
+            <option></option>
             <option value="Oregon">Oregon</option>
             <option value="Washington">Washington</option>
         </select>
-        <input name="zip" placeholder="zip code" ng-model="$ctrl.address.zip">
+        <input name="zip" placeholder="zip code" ng-model="$ctrl.address.zip" required>
+        <button type="submit">Checkout</button>
+    </form>
+</div>
+
+
+<div class="payment" ng-show="$ctrl.showPayment && !$ctrl.showAddressForm">
+    <div class="address-table">
+        <h3>Delivery Info</h3>
+        <p ng-click="$ctrl.showAddressForm = true">edit</p>
+        
+        <h5>name:</h5>
+        <p>{{$ctrl.address.firstName}} {{$ctrl.address.lastName}}<p>
+
+        <h5>address</h5>
+        <p><span>line 1: </span>{{$ctrl.address.line1}}</p>
+        <p><span>line 2: </span>{{$ctrl.address.line2}}</p>
+        <p>{{$ctrl.address.city}}, ${{$ctrl.address.state}} {{$ctrl.address.zip}}</p>
+    </div>
+
+
+    <h3>Payment Information</h3>
+    <form stripe-form="stripeCallback" name="checkoutForm">
+        <input ng-model="number" placeholder="Card Number" payments-format="card" payments-validate="card" name="card"/>
+        <input ng-model="expiry" placeholder="Expiration" payments-formate="expiry" payments-validate="expiry" name="expiry"/>
+        <input ng-model="cvc" placeholder="CVC" payments-format="cvc" payments-validate="cvc" name="cvc"/>
+        <button type="submit">Submit</button>
     </form>
 
-    <button ng-click="$ctrl.showPaymentDiv = true; ">Checkout</button>
-
-    <div class="payment" ng-if="$ctrl.showPaymentDiv">
-        <div class="address-table">
-            <h3>Delivery Info</h3>
-            <p ng-click="$ctrl.showPaymentDiv = flase">edit</p>
-            
-            <h5>name:</h5>
-            <p>{{$ctrl.address.firstName}} {{$ctrl.address.lastName}}<p>
-
-            <h5>address</h5>
-            <p><span>line 1: </span>{{$ctrl.address.line1}}</p>
-            <p><span>line 2: </span>{{$ctrl.address.line2}}</p>
-            <p>{{$ctrl.address.city}}, ${{$ctrl.address.state}} {{$ctrl.address.zip}}</p>
-        </div>
-
-
-        <h3>Payment Information</h3>
-        <form stripe-form="stripeCallback" name="checkoutForm">
-            <input ng-model="number" placeholder="Card Number" payments-format="card" payments-validate="card" name="card"/>
-            <input ng-model="expiry" placeholder="Expiration" payments-formate="expiry" payments-validate="expiry" name="expiry"/>
-            <input ng-model="cvc" placeholder="CVC" payments-format="cvc" payments-validate="cvc" name="cvc"/>
-            <button type="submit">Submit</button>
-        </form>
-
-        <div ng-if="checkoutForm.card.$invalid">
-            Error: invalid card number!
-        </div>
+    <div ng-if="checkoutForm.card.$invalid">
+        Error: invalid card number!
     </div>
 </div>
 

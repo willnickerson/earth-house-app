@@ -70,6 +70,10 @@ function controller(paymentService, $scope) {
         this.cart.storeCart();
     };
 
+    this.showPaymentDiv = () => {
+        this.showPayment = true;
+    };
+
 
     $scope.stripeCallback = function(code, result) {
         if(result.error) {
@@ -83,5 +87,6 @@ function controller(paymentService, $scope) {
             paymentService.post(orderInfo);
         }
     };
+
 }
 
