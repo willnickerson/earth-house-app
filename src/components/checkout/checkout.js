@@ -15,9 +15,12 @@ controller.$inject = ['paymentService', '$scope'];
 function controller(paymentService, $scope) {
     this.styles = styles;
     this.items = {};
+    this.address = {};
     this.selectArray = [];
     this.maxQuant = 10;
     this.total = 0;
+    this.cityArray = ['Portland', 'Beaverton', 'Vancouver', 'Gresham', 'Lake Oswego'];
+    this.confirmCart = false;
 
     for(var i = 0; i <= this.maxQuant; i++) {
         this.selectArray.push(i);
