@@ -10,13 +10,17 @@ export default {
     controller
 };
 
-controller.$inject = ['paymentService'];
+controller.$inject = ['paymentService', '$scope', '$state'];
 
-function controller(paymentService) {
+function controller(paymentService, $scope, $state) {
     this.styles = styles;
     this.items = {};
+    this.address = {};
     this.selectArray = [];
     this.maxQuant = 10;
+    this.total = 0;
+    this.cityArray = ['Portland', 'Beaverton', 'Vancouver', 'Gresham', 'Lake Oswego'];
+    this.confirmCart = false;
 
     for(var i = 0; i <= this.maxQuant; i++) {
         this.selectArray.push(i);
@@ -27,15 +31,17 @@ function controller(paymentService) {
     };
     
     this.getItems = function() {
-        this.total = 0;
         Object.keys(this.cart).forEach(key => {
             if(key !== 'totalItems' && key !== 'updateTotalItems' && key !== 'storeCart') {
                 this.items[key] = this.cart[key];
                 this.items[key].subTotal = this.items[key].price * this.items[key].quantity;
                 this.total += this.items[key].subTotal;
+                $scope.total = this.total * 100; //this is because stripe will need a total in cents not dollars
             }
         });
     };
+
+    console.log(this.total);
 
     this.updateCart = function(item, newQunatity) {
         let juiceToUpdate = {};
@@ -64,20 +70,27 @@ function controller(paymentService) {
         this.cart.storeCart();
     };
 
-    this.checkout = () => {
-        console.log('checkout function called');
-        paymentService.post()
-            .then(data => console.log('payment request made on front end, recieved:', data));
+    this.showPaymentDiv = () => {
+        this.showPayment = true;
     };
 
-    this.stripeCallback = (code, res) => {
-        if(res.error) console.log('ERROR', res.error.message);
-        else console.log('SUCCESS! token: ', res.id);
+
+    $scope.stripeCallback = function(code, result) {
+        if(result.error) {
+            console.log('ERROR', result.error.message);
+            $scope.invalidPayment = true;
+            console.log($scope.invalidPayment);
+        } else {
+            //we need to put an order into our db and send the _id as the metadata to stripe
+            console.log('token: ', result.id, 'total: ', $scope.total);
+            const orderInfo = {
+                stripeToken: result.id,
+                chargeAmount: $scope.total
+            };
+            paymentService.post(orderInfo);
+            $state.go('success');
+        }
     };
 
-    // this.doCheckout = token => {
-    //     this.checkout();
-    //     console.log('Got Stripe token: ' + token.id);
-    // };
 }
 
