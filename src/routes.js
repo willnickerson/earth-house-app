@@ -14,24 +14,65 @@ export default function routes($stateProvider, $urlRouterProvider) {
 
     $stateProvider.state({
         name: 'shop',
+        abstract: true,
+        default: '.all',
         url: '/shop',
         resolve: {
             juices: ['juiceService', juiceService => {
                 return juiceService.getAll();
             }]
         },
-        component: 'buy'
+        component: 'shop'
     });
 
     $stateProvider.state({
-        name: 'item',
+        name: 'shop.all',
+        url: '/all',
+        views: {
+            main: {
+                component: 'all'
+            }
+        }
+    });
+
+    $stateProvider.state({
+        name: 'shop.item',
         url: '/item/:id',
         resolve: {
             item: ['juiceService', '$transition$', (juiceService, t) => {
                 return juiceService.get(t.params().id);
             }],
+            ingredients: ['item', item => item.ingredients]
         },
-        component: 'item'
+        views: {
+            main: {
+                component: 'item'
+            }
+        }
+    });
+
+    $stateProvider.state({
+        name: 'about',
+        url: '/about',
+        component: 'about'
+    });
+
+    $stateProvider.state({
+        name: 'contact',
+        url: '/contact',
+        component: 'contact'
+    });
+
+    $stateProvider.state({
+        name: 'checkout',
+        url: '/cart',
+        component: 'checkout'
+    });
+
+    $stateProvider.state({
+        name: 'success',
+        url:'/cart/thankyou',
+        component: 'success'
     });
 
     $urlRouterProvider.otherwise('/home');

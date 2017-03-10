@@ -1,0 +1,292 @@
+@import 'fade-text';
+@import 'fonts';
+@import 'colors';
+
+.slide-text {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1002;
+    p {
+        font-size: 2em;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+
+        margin-bottom: 3%;
+    }
+    a {
+        font-size: 2em;
+        font-family: $decorative-font;
+        display: block;
+        transition: .5s ease all;
+    }
+    a:hover {
+        color: $accent-color;
+    }
+
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.slide-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.slider-nav {
+    text-align: center;
+    display: block;
+    position: absolute;
+    z-index: 1002;
+    left: 0;
+    bottom: -4px;
+    right: 0;
+    height: 48px;
+}
+
+.nonDraggableImage{
+    -webkit-user-drag: none;
+}
+
+.slider-nav .wrapper {
+    margin: 0 auto;
+    width: 100%;
+    padding: 1em 0 .8em;
+}
+
+// .progress-bar {
+//     width: 100%;
+//     position: absolute;
+//     bottom: 10px;
+//     height: 3px;
+//     // background-color: rgab(255,255,255,.7);
+// }
+
+#progress-bar {
+    position: absolute;
+    bottom: 10px;
+    height: 3px;
+    background-color: $accent-color;
+    height: 3px;
+    opacity: .7;
+    transition: width 4s linear;
+}
+
+// :local(.start) {
+//     width: 100%;
+// }
+
+// :local(.finish) {
+//     width: 100%;
+// }
+
+
+
+.slider-nav ul {
+    margin: 0;
+    width: 100%;
+}
+
+.slider-nav .dot, .slider-nav .dot a {
+    display: inline-block;
+    zoom: 1;
+}
+
+.dots .dot {
+    position: relative;
+    margin: 0 10px;
+    width: 12px;
+    height: 12px;
+}
+
+.dots .dot a {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 6px;
+    height: 6px;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    background: #FFF;
+    border: 1px solid transparent;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-transition: background-color 1s, border-color 1s;
+    -moz-transition: background-color 1s, border-color 1s;
+    transition: background-color 1s, border-color 1s;
+}
+
+.dots .dot a.active {
+    // border-color: #FFF;
+    border-color: $accent-color;
+    background-color: $accent-color;
+}
+
+.arrow {
+    position: absolute;
+    z-index: 1002;
+    display: block;
+    top: 50%;
+    margin-top: -35px;
+    width: auto;
+    height: auto;
+    outline: none;
+    cursor: pointer;
+    color: white;
+    font-size: 4em; 
+    border: 5px solid rgba(255,255,255,0);
+}
+
+.arrow.prev {
+    opacity: 0.2;
+    left: 5%;
+    
+    transition: 0.2s linear all;
+}
+
+.arrow.next {
+    opacity: 0.2;
+    right: 5%;
+    transition: 0.3s linear all;
+}
+
+.arrow:hover {
+    opacity: 1;
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+}
+@media all and (max-width: 358px) {
+    .slider {
+        height: 210px;
+    }
+}
+
+@media all and (min-width:359px) and (max-width: 450px) {
+    .slider {
+        height: 250px;
+    }
+}
+
+@media all and (min-width: 451px) and (max-width: 550px) {
+    .slider {
+        height: 295px;
+    }
+}
+
+@media all and (min-width: 551px) and (max-width: 750px) {
+    .slider {
+        a {
+            font-size: 2em;
+            margin-bottom: 1%;
+        }
+    }
+}
+
+@media all and (min-width: 551px) and (max-width: 600px) {
+    .slider {
+        height: 350px; 
+    }
+}
+
+@media all and (min-width: 601px) and (max-width: 650px) {
+    .slider {
+        height: 410px; 
+    }
+}
+
+@media all and (min-width: 651px) and (max-width: 750px) {
+    .slider {
+        height: 440px; 
+    }
+}
+
+@media all and (max-width: 700px) {
+
+    .slider-nav {
+        height: 35px;
+    }
+    .slider-nav .wrapper {
+        padding-bottom: 0;
+        bottom: 0;
+    }
+
+    .dots .dot {
+        margin: 0 5px;
+        width: 12px;
+        height: 12px;
+    }
+    .dots .dot a {
+        height: 4px;
+        width: 4px;
+    }
+    .slide-text {
+        width: 100%;
+        p { 
+            visibility: visible;
+            font-size: 1.2em;
+            margin-bottom: 3%;
+            text-align: center;
+            margin-right: 0;
+        }
+    }
+}
+
+@media all and (min-width: 750px) and (max-width: 815px) {
+    .slider {
+        height: 500px;
+    }
+}
+
+@media all and (min-width: 816px) {
+    .slider {
+        height: 550px;
+    }
+}
+
+@media all and (min-width: 1000px) and (max-width: 1100px) {
+    .slider {
+        img {
+            top: -35px;
+        }
+    }
+}
+
+@media all and (min-width: 1100px) and (max-width: 1200px) {
+    .slider {
+        img {
+            top: -60px;
+        }
+    }
+}
+
+@media all and (min-width: 1200px) {
+    .slider {
+        height: 600px;
+        img {
+            top: -93px;
+        }
+    }
+}
+
+
+
+
+
+
+
+

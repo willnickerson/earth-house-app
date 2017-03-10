@@ -1,11 +1,13 @@
-
 <div class="header-container">
-    <!--<img class="banner-img" src="http://res.cloudinary.com/lejipni8p/image/upload/v1482867039/earth%20house/wood-banner_rbetwp.jpg">-->
         <div class="left">
-            <h1>Earth House</h1>
+            <h1 class="main-title">Earth House</h1>
             <nav-bar></nav-bar>
         </div>
         <div class="right">
+            <a ui-sref="checkout" class="cart-icon">
+                <h5 class="total-items">{{$ctrl.cart.totalItems}}</h5>
+                <span class="icon-cart"></span> 
+            </a>
             <a href="https://twitter.com/">
                 <span class="icon-twitter"></span>
             </a>

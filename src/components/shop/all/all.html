@@ -1,0 +1,23 @@
+<div class="clearfix">
+    <h2 class="item-header">Our Juices</h2>
+    <!--<p class="item-text"> Online store coming soon! In the meantime feel free to email us and place an order.</p>-->
+</div>
+<section class="items">
+
+        <ul>
+            <li class="item" ng-repeat="juice in $ctrl.juices" ng-click="$ctrl.gotoItems">
+                <img src="{{juice.imgUrl}}"
+                    ui-sref="shop.item({
+                    id: juice._id})">
+                <div class="item-info">
+                    <h3 ui-sref="shop.item({
+                    id: juice._id})">{{juice.name}}</h3>
+                    <p>${{juice.price}}.00</p>
+                    <select ng-model="juice.quantity">
+                        <option ng-repeat="number in $ctrl.selectArray" ng-value="number">{{number}}</option>
+                    </select>
+                    <button ng-click="$ctrl.addToCart(juice)">Add to Cart</button>
+                </div>
+            </li>
+        </ul>
+</section>

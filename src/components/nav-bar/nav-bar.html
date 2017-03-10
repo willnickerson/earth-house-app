@@ -1,8 +1,12 @@
-<nav>
+<nav class="site-navigation">
+    <a class="icon-menu" ng-click="$ctrl.toggleNav()"></a>
     <ul>
-        <li ui-sref="home" class="link">Home</li>
-        <li ui-sref="shop" class="link"link>Shop</li>
-        <li class="link">About</li>
-        <li class="link">Contact</li>
+        <li ui-sref="home" ng-class="$ctrl.navVisibility" class="link">Home</li>
+        <li class="mid-dot">&middot;</li>
+        <li ui-sref="shop" ng-class="$ctrl.navVisibility" class="link"link>Shop</li>
+        <li class="mid-dot">&middot;</li>
+        <li ui-sref='about' ng-class="$ctrl.navVisibility" class="link">About</li>
+        <li class="mid-dot">&middot;</li>
+        <li ui-sref="contact" ng-class="$ctrl.navVisibility" class="link">Contact</li>
     </ul>
 </nav>
