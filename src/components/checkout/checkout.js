@@ -38,7 +38,7 @@ function controller(paymentService, $scope, $state) {
             item.subTotal = item.price * item.quantity;
             this.total += item.subTotal;
         });
-        $scope.total = this.total;
+        $scope.total = this.total * 100; //stripe takes payment as a cents value 
     };
     
     this.updateCart = function(item, newQunatity) {
@@ -59,12 +59,23 @@ function controller(paymentService, $scope, $state) {
     };
 
     this.showPaymentDiv = () => {
-        this.showPayment = true;
+        if(this.address.email === this.address.emailCheck) {
+            console.log('in if');
+            this.showPayment = true;
+            this.emailWarning = false;
+            this.showAddressForm = false; 
+            this.setOrderInfo();
+        }
+        else {
+            console.log('in else');
+            this.emailWarning = true;
+        }
     };
 
     this.setOrderInfo = () => {
         $scope.orderInfo = {
             name: this.address.firstName + ' ' + this.address.lastName,
+            email: this.address.email,
             address: {
                 line_1: this.address.line1,
                 line_2: this.address.line2,
@@ -94,7 +105,7 @@ function controller(paymentService, $scope, $state) {
                     const paymentInfo = {
                         stripeToken: result.id,
                         chargeAmount: $scope.total,
-                        metadata: orderId
+                        description: orderId
                     };
                     paymentService.post(paymentInfo);
                     localStorage.removeItem('earth-house-cart'); //eslint-disable-line

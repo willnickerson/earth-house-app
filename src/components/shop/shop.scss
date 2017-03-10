@@ -2,7 +2,10 @@
 @import 'fonts';
 @import 'colors';
 
-
+.cart-message {
+    position: absolute;
+    width: 100%;
+}
 section.shop-info {
     width: 60%;
     margin: 0 auto;
@@ -57,6 +60,7 @@ section.shop-info {
 }
 
 .item {
+    position: relative;
     margin-top: 40px;
     // margin-right: 10%;
     margin: 0 auto;

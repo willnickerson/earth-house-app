@@ -17,6 +17,7 @@
                         <option ng-repeat="number in $ctrl.selectArray" ng-value="number">{{number}}</option>
                     </select>
                     <button ng-click="$ctrl.addToCart(juice)">Add to Cart</button>
+                    <p class="cart-message" ng-if="juice.cartMessage">{{juice.messageNum}} added to cart</p>
                 </div>
             </li>
         </ul>

@@ -10,10 +10,11 @@ export default {
     controller 
 };
 
-controller.$inject = ['$scope', '$document'];
+controller.$inject = ['$scope', '$document', '$timeout'];
 
-function controller($scope, $document) {
+function controller($scope, $document, $timeout) {
     this.styles = styles;
+    this.cartMessage = false;
 
     const items = angular.element(document.getElementById('items')); //eslint-disable-line
     this.gotoItems = function() {
@@ -33,7 +34,6 @@ function controller($scope, $document) {
         if(Number.isInteger(juice.quantity)) {
             let cartHasItem = false;
             let index = null;
-
             this.cart.items.forEach(item => {
                 if(item.id === juice._id) {
                     cartHasItem = true;
@@ -53,6 +53,11 @@ function controller($scope, $document) {
             this.cart.updateTotalItems();
             this.cart.storeCart();
             console.log(this.cart);
+            juice.messageNum = juice.quantity;
+            juice.cartMessage = true;
+            $timeout(() => {
+                juice.cartMessage = false;
+            }, 1500);
             juice.quantity = 0;
         } else {
             console.log('not an integer, display a message telling them to select a quantity');
