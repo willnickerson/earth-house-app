@@ -1,12 +1,11 @@
 <img class="wood-header" src="http://res.cloudinary.com/lejipni8p/image/upload/c_crop,g_east,h_514,w_3754/v1482867039/earth%20house/wood-banner_rbetwp.jpg">
 
 <div class="checkout">
-    <h2>Ordering Online</h2>
-    <p>Due to the unpasturized nature of our product, we are unable to ship our products and complete our orders by delivery. Because of this, we have a $50 minimum on online purchases and exclusively service the Portland Metro Area.</p>
     <div class="cart-edit" ng-if="!$ctrl.confirmCart">
+        <h2>Ordering Online</h2>
+        <p>Due to the unpasturized nature of our product, we are only able to deliver to the Portland Metro Area and require a minimum of $50 for online purchases.</p>
         <h2>Shopping Cart</h2>
         
-        <h3 ui-sref="shop">Keep shopping!</h3>
         <p class="empty-cart" ng-if="$ctrl.cartEmpty">There is nothing in your cart</p>
         
         <div class="cart-table" ng-if="!$ctrl.cartEmpty">
@@ -15,8 +14,9 @@
                     <tr>
                         <th>Product</th>
                         <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Sub total</th>
+                        <th colspan="2">Quantity</th>
+                        <th></th>
+                        <th>Total</th>
                     </tr>
                 </thead>
 
@@ -37,10 +37,14 @@
                                     {{number}}
                                 </option>
                             </select>
-                            <button ng-click="$ctrl.updateCart(item, item.quantity)">Update</button>
-                            <span class="remove-item" ng-click="$ctrl.removeItem(item)">x remove-item</span>
                         </td>
-                        <td>${{item.subTotal}}.00</td>
+                        <td>
+                            <button ng-click="$ctrl.updateCart(item, item.quantity)">Update</button>
+                        </td>
+                        <td>
+                            <span class="remove-item" ng-click="$ctrl.removeItem(item)">x remove</span>
+                        </td>
+                        <td class="total">${{item.subTotal}}.00</td>
                     </tr>
                 </tbody>
 
@@ -49,51 +53,70 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>Total: ${{$ctrl.total}}.00</td>
+                        <td></td>
+                        <td><span class="bold">Total:</span></td>
+                        <td class="total"> ${{$ctrl.total}}.00</td>
                     </tr>
                 </tfoot>
             </table>
             <h3 ng-if="$ctrl.total < $ctrl.minPurchase">Online purchases must be over ${{$ctrl.minPurchase}}.00</h3>
-            <button ng-if="$ctrl.total > $ctrl.minPurchase" ng-click="$ctrl.confirmCart = true; $ctrl.showAddressForm = true">Confirm Cart</button>
+            <div class="form-bottom">
+                <a ui-sref="shop">Keep shopping!</a>
+                <button class="confirm-cart" ng-if="$ctrl.total > $ctrl.minPurchase" ng-click="$ctrl.confirmCart = true; $ctrl.showAddressForm = true">Confirm Cart</button>
+            </div>
 
         </div>
     </div>
 
     <div class="cart" ng-if="$ctrl.confirmCart">
         <h2>Your Order</h2>
-        <p ng-click="$ctrl.confirmCart = false" ng-if="!$ctrl.showPayment">edit</p>
         <table>
-            <tr ng-repeat="item in $ctrl.cart.items">
-                <td>{{item.name}}</td>
-                <td>x</td>
-                <td>{{item.quantity}}</td>
-                <td>${{item.price * item.quantity}}.00</td>
-            </tr>
+            <thead>
+                <th>Product</th>
+                <th></th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in $ctrl.cart.items">
+                    <td>{{item.name}}</td>
+                    <td>x</td>
+                    <td class="quant">{{item.quantity}}</td>
+                    <td class="total">${{item.price * item.quantity}}.00</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <td><a ng-click="$ctrl.confirmCart = false" ng-if="!$ctrl.showPayment">edit</a></td>
+                <td></td>
+                <td></td>
+                <td class="total">
+                    <span class="bold">Total:</span>${{$ctrl.total}}.00
+                </td>
+            </tfoot>
         </table>
-        <hr>
-        <tfoot>${{$ctrl.total}}.00</tfoot>
+        
     </div>
 
-    <div class="checkoutInfo" ng-if="$ctrl.showAddressForm">
+    <div class="checkoutInfo" ng-if="$ctrl.showAddressForm && $ctrl.confirmCart">
         <h2>Delivery Info</h2>
 
         <form name="address-form" ng-submit="$ctrl.showPaymentDiv()">
-            <h4>Name for order</h4>
+            <h4>Name for order*</h4>
             <input placeholder="first name" ng-model="$ctrl.address.firstName" required>
             <input placeholder="last name" ng-model="$ctrl.address.lastName" required>
-            <h4>Email</h4>
+            <h4>Email*</h4>
             <input type="email" placeholder="enter a valid email address" ng-model="$ctrl.address.email" required>
             <input type="email" placeholder="confirm email address" ng-model="$ctrl.address.emailCheck" required> 
-            <h4 ng-if="$ctrl.emailWarning">Make sure your email addresses are the same!!!!</h4>
-            <h4>Adress for delivery</h4>
+            <p class="warning" ng-if="$ctrl.emailWarning">Make sure your email addresses are the same!!!!</p>
+            <h4>Adress for delivery*</h4>
             <input placeholder="street line 1" ng-model="$ctrl.address.line1" required>
             <input placeholder="street line 2" ng-model="$ctrl.address.line2">
-            <select name="city" ng-model="$ctrl.address.city" required>
-                <option></option>
+            <select name="city" ng-model="$ctrl.address.city" placeholder="city" required>
+                <option value="" disable selected>city</option>
                 <option ng-repeat="city in $ctrl.cityArray" ng-value="city" ng-required="required">{{city}}</option>
             </select>
             <select name="state" ng-model="$ctrl.address.state" required>
-                <option></option>
+                <option value="" disable selected>state</option>
                 <option value="Oregon">Oregon</option>
                 <option value="Washington">Washington</option>
             </select>
@@ -105,16 +128,12 @@
 
     <div class="payment" ng-show="$ctrl.showPayment && !$ctrl.showAddressForm">
         <div class="address-table">
-            <h3>Delivery Info</h3>
-            <p ng-click="$ctrl.showAddressForm = true">edit</p>
-            
-            <h5>name:</h5>
-            <p>{{$ctrl.address.firstName}} {{$ctrl.address.lastName}}<p>
-            <h5>Email for order confirmation:</h5>
-            <p>{{$ctrl.address.email}}</p>
-            <h5>address</h5>
-            <p><span>line 1: </span>{{$ctrl.address.line1}}</p>
-            <p><span>line 2: </span>{{$ctrl.address.line2}}</p>
+            <h3>Delivery Info <a ng-click="$ctrl.showAddressForm = true">edit</a></h3>
+            <p><span class="bold">name: </span>{{$ctrl.address.firstName}} {{$ctrl.address.lastName}}<p>
+            <p><span class="bold">email for order: </span>{{$ctrl.address.email}}</p>
+            <h4>Address: </h4>
+            <p>{{$ctrl.address.line1}}</p>
+            <p>{{$ctrl.address.line2}}</p>
             <p>{{$ctrl.address.city}}, {{$ctrl.address.state}} {{$ctrl.address.zip}}</p>
         </div>
 
@@ -130,10 +149,6 @@
         <div ng-show="invalidPayment">
             There was a problem processing your card. Make sure you entered all of your payment information correctly.
         </div>
-
-        <!--<div ng-if="checkoutForm.card.$invalid">
-            Error: invalid card number!
-        </div>-->
     </div>
 </div>
 

@@ -54,10 +54,15 @@ function controller($scope, $document, $timeout) {
             this.cart.storeCart();
             console.log(this.cart);
             juice.messageNum = juice.quantity;
+            juice.checkoutMessage = false;
             juice.cartMessage = true;
             $timeout(() => {
                 juice.cartMessage = false;
-            }, 1500);
+                juice.checkoutMessage = true;
+            }, 1000);
+            $timeout(() => {
+                juice.checkoutMessage = false;
+            }, 6000);
             juice.quantity = 0;
         } else {
             console.log('not an integer, display a message telling them to select a quantity');
