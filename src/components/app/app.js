@@ -2,30 +2,34 @@ import template from './app.html';
 
 export default {
     template,
-    controller() {
-        this.$onInit = () => {
-            const storedCart = localStorage.getItem('earth-house-cart'); //eslint-disable-line
-            if(storedCart) {
-                this.cart = JSON.parse(storedCart);
+    controller
+};
+function controller() {
+    this.$onInit = () => {
+        this.cart.initializeCart();
+    };
+
+    this.cart = {
+        storeCart() {
+            const cartString = JSON.stringify(this.items);
+            localStorage.setItem('earth-house-cart', cartString); //eslint-disable-line
+        },
+        updateTotalItems() {
+            this.totalItems = 0;
+            this.items.forEach(item => {
+                this.totalItems += item.quantity;
+            });
+        },
+        initializeCart() {
+            const storedItems = JSON.parse(localStorage.getItem('earth-house-cart')); //eslint-disable-line
+            if(storedItems) {
+                this.items = storedItems;
+                this.updateTotalItems();
             } else {
                 console.log('we didnt find anything');
-                this.cart = {
-                    totalItems: 0
-                };
-            }
-            this.cart.updateTotalItems = function() {
+                this.items = [];
                 this.totalItems = 0;
-                Object.keys(this).forEach(key => {
-                    if(key !== 'totalItems' && key !== 'updateTotalItems'&& key !== 'storeCart') {
-                        this.totalItems += this[key].quantity;
-                    }
-                });
-            };
-
-            this.cart.storeCart = function() {
-                const cartString = JSON.stringify(this);
-                localStorage.setItem('earth-house-cart', cartString); //eslint-disable-line
-            };
-        };
-    }
-};
+            }    
+        }
+    };
+}
