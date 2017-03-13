@@ -27,10 +27,15 @@ const app = angular.module('myApp', [
 
 const dev = 'http://localhost:3000/api';
 const url = process.env.API_URL || dev;
+const test = process.env.TEST_VAR;
 
 console.log('this is the api url', url);
+console.log('this is the test to see if we can access the env', test), 
 app.value('apiUrl', url);
 
+// app.factory('apiUrl', function() {
+//     return url;
+// });
 
 app.config(routes);
 app.config(function($windowProvider) {
@@ -38,9 +43,6 @@ app.config(function($windowProvider) {
     $window.Stripe.setPublishableKey('pk_test_HS62OmJo7gCzA7fcN2ObL2rF');
 });
 
-// app.factory('apiUrl', function() {
-//     return url;
-// });
 
 app.animation('.slide-animation', function ($window) {
 
