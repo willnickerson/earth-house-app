@@ -10,8 +10,7 @@ import TweenMax from 'gsap';
 import ngAnimate from 'angular-animate';
 import ngSanitize from 'angular-sanitize';
 import angularPayments from 'angular-payments'; //eslint-disable-line
-// import stripeCheckout from 'angular-stripe-checkout';
-// import stripe from 'stripe';
+
 //TODO: figure out why things broken when a imported angular animate in the es6y way
 
 
@@ -24,25 +23,19 @@ const app = angular.module('myApp', [
     ngSanitize,
     defaultRoute,
     'angularPayments'
-    // 'angular-payments'
-    // stripe,
-    // stripeCheckout
 ]);
 
 const dev = 'http://localhost:3000/api';
+const url = process.env.API_URL || dev;
+
+app.value('apiUrl', url);
 
 app.config(routes);
-
 app.config(function($windowProvider) {
     const $window = $windowProvider.$get();
     $window.Stripe.setPublishableKey('pk_test_HS62OmJo7gCzA7fcN2ObL2rF');
 });
 
-app.value('apiUrl', dev);
-
-app.factory('apiUrl', function() {
-    return dev;
-});
 
 app.animation('.slide-animation', function ($window) {
 

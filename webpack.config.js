@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const webpack = require('webpack');
 module.exports = {
     entry: './src/app.js',
     output: {
@@ -12,6 +12,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html'
         }),
+        new webpack.EnvironmentPlugin(['API_URL'])
     ],
 
     module: {
