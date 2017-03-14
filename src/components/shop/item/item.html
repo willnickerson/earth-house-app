@@ -5,11 +5,13 @@
     </div>
     <div class="item-img">
         <img src="{{$ctrl.item.imgUrl}}">
-    <p>{{$ctrl.item.price}}.00</p>
-    <select ng-model="$ctrl.item.quantity">
-        <option ng-repeat="number in $ctrl.selectArray" ng-value="number">{{number}}</option>
-    </select>
-    <button ng-click="$ctrl.addToCart($ctrl.item)">Add to Cart</button>
+        <p>{{$ctrl.item.price}}.00</p>
+        <select ng-model="$ctrl.item.quantity">
+            <option ng-repeat="number in $ctrl.selectArray" ng-value="number">{{number}}</option>
+        </select>
+        <button ng-click="$ctrl.addToCart($ctrl.item)">Add to Cart</button>
+        <p class="cart-message" ng-if="$ctrl.item.cartMessage">{{$ctrl.item.messageNum}} added to cart</p>
+        <p class="cart-message" ng-if="$ctrl.item.checkoutMessage" ui-sref="checkout">Go to cart</p>
     </div>
 
     <div ng-class="$ctrl.styles.ingredients" class="clearfix">

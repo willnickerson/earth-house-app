@@ -10,14 +10,14 @@ export default {
     controller 
 };
 
-controller.$inject = ['$scope', '$document'];
+controller.$inject = ['$scope', '$document', '$timeout'];
 
-function controller($scope, $document) {
+function controller($scope, $document, $timeout) {
     this.styles = styles;
+    this.cartMessage = false;
 
     const items = angular.element(document.getElementById('items')); //eslint-disable-line
     this.gotoItems = function() {
-        console.log('angular scroll function called');
         $document.scrollToElement(items, 0, 600);
     };
 
@@ -31,19 +31,42 @@ function controller($scope, $document) {
 
     this.addToCart = function(juice) {
         console.log('add to cart', juice.name, ':', juice.quantity);
-        if(this.cart.hasOwnProperty(juice._id)) {
-            this.cart[juice._id].quantity += juice.quantity;
+        if(Number.isInteger(juice.quantity)) {
+            let cartHasItem = false;
+            let index = null;
+            this.cart.items.forEach(item => {
+                if(item.id === juice._id) {
+                    cartHasItem = true;
+                    index = this.cart.items.indexOf(item);
+                }
+            });
+            if(!cartHasItem) {
+                this.cart.items.push({
+                    id: juice._id,
+                    name: juice.name,
+                    price: juice.price,
+                    quantity: juice.quantity
+                });
+            } else {
+                this.cart.items[index].quantity += juice.quantity;
+            }
+            this.cart.updateTotalItems();
+            this.cart.storeCart();
+            console.log(this.cart);
+            juice.messageNum = juice.quantity;
+            juice.checkoutMessage = false;
+            juice.cartMessage = true;
+            $timeout(() => {
+                juice.cartMessage = false;
+                juice.checkoutMessage = true;
+            }, 1000);
+            $timeout(() => {
+                juice.checkoutMessage = false;
+            }, 6000);
+            juice.quantity = 0;
         } else {
-            this.cart[juice._id]= {
-                name: juice.name,
-                price: juice.price,
-                quantity: juice.quantity
-            };
+            console.log('not an integer, display a message telling them to select a quantity');
         }
-        this.cart.updateTotalItems(juice.quantity);
-        const cartString = JSON.stringify(this.cart);
-        localStorage.setItem('earth-house-cart', cartString); //eslint-disable-line
-        juice.quantity = 0;
     };
 
 }
