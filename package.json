@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "karma start --single-run",
-    "build": "webpack",
+    "build": "API_URL=https://earth-house.herokuapp.com/api webpack",
     "start": "webpack-dev-server --inline"
   },
   "repository": {
