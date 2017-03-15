@@ -9,7 +9,7 @@
     width: 100%;
     z-index: 1002;
     p {
-        font-size: 2em;
+        font-size: 1em;
         color: white;
         font-weight: bold;
         text-align: center;
@@ -17,7 +17,7 @@
         margin-bottom: 3%;
     }
     a {
-        font-size: 2em;
+        font-size: 1.5em;
         font-family: $decorative-font;
         display: block;
         transition: .5s ease all;
@@ -195,6 +195,11 @@
             margin-bottom: 1%;
         }
     }
+    .slide-text {
+        a {
+            font-size: 2em;
+        }
+    }
 }
 
 @media all and (min-width: 551px) and (max-width: 600px) {
@@ -207,11 +212,21 @@
     .slider {
         height: 410px; 
     }
+    .slide-text {
+        a {
+            font-size: 2.5em;
+        }
+    }
 }
 
 @media all and (min-width: 651px) and (max-width: 750px) {
     .slider {
         height: 440px; 
+    }
+    .slide-text {
+        a {
+            font-size: 3em;
+        }
     }
 }
 
@@ -234,27 +249,38 @@
         height: 4px;
         width: 4px;
     }
-    .slide-text {
-        width: 100%;
-        p { 
-            visibility: visible;
-            font-size: 1.2em;
-            margin-bottom: 3%;
-            text-align: center;
-            margin-right: 0;
-        }
-    }
+    // .slide-text {
+        // width: 100%;
+        // p { 
+        //     visibility: visible;
+        //     font-size: 1.2em;
+        //     margin-bottom: 3%;
+        //     text-align: center;
+        //     margin-right: 0;
+        // }
+    // }
 }
 
 @media all and (min-width: 750px) and (max-width: 815px) {
     .slider {
         height: 500px;
     }
+    .slide-text {
+        a { 
+            font-size: 3.5em;
+            margin-bottom: 10px;
+        }
+    }
 }
 
 @media all and (min-width: 816px) {
     .slider {
         height: 550px;
+    }
+    .slide-text {
+        a { 
+            font-size: 4em;
+        }
     }
 }
 
@@ -264,12 +290,22 @@
             top: -35px;
         }
     }
+    .slide-text {
+        a { 
+            font-size: 4em;
+        }
+    }
 }
 
 @media all and (min-width: 1100px) and (max-width: 1200px) {
     .slider {
         img {
             top: -60px;
+        }
+    }
+    .slide-text {
+        a { 
+            font-size: 5em;
         }
     }
 }
