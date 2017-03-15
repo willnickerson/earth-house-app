@@ -4,14 +4,9 @@ export default {
     template,
     bindings: {
         juices: '<',
-        gotoItems: '<',
+        gotoItem: '<',
         selectArray: '<',
         addToCart: '<',
         cart: '='
-    },
-    controller
+    }
 };
-
-function controller() {
-    console.log(this);
-}
