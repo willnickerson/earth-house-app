@@ -1,17 +1,21 @@
 <div ng-class="$ctrl.styles.item" class="clearfix">
     <div class="description">
-        <h2 class="item-name">{{$ctrl.item.name}}</h2>
+        <div ng-class="$ctrl.styles.header" class="clearfix">
+            <h2 class="item-name">{{$ctrl.item.name}}</h2>
+            <form ng-class="$ctrl.styles.purchase" ng-submit="$ctrl.addToCart($ctrl.item)">
+                <p>price: ${{$ctrl.item.price}}.00</p>
+                <select ng-model="$ctrl.item.quantity">
+                    <option ng-repeat="number in $ctrl.selectArray" ng-value="number">{{number}}</option>
+                </select>
+                <button type="submit">Add to Cart</button>
+            </form>
+        </div>
         <p class="item-description">{{$ctrl.item.description}} <a ui-sref="shop.all">&larr;Back to all juices</a></p>    
     </div>
     <div class="item-img">
-        <img src="{{$ctrl.item.imgUrl}}">
-        <p>{{$ctrl.item.price}}.00</p>
-        <select ng-model="$ctrl.item.quantity">
-            <option ng-repeat="number in $ctrl.selectArray" ng-value="number">{{number}}</option>
-        </select>
-        <button ng-click="$ctrl.addToCart($ctrl.item)">Add to Cart</button>
         <p class="cart-message" ng-if="$ctrl.item.cartMessage">{{$ctrl.item.messageNum}} added to cart</p>
         <p class="cart-message" ng-if="$ctrl.item.checkoutMessage" ui-sref="checkout">Go to cart</p>
+        <img src="{{$ctrl.item.imgUrl}}">
     </div>
 
     <div ng-class="$ctrl.styles.ingredients" class="clearfix">

@@ -5,7 +5,8 @@ export default {
     template,
     bindings: {
         juices: '<',
-        cart: '='
+        cart: '=',
+        hasSeenLanding: '='
     },
     controller 
 };
@@ -15,19 +16,18 @@ controller.$inject = ['$scope', '$document', '$timeout'];
 function controller($scope, $document, $timeout) {
     this.styles = styles;
     this.cartMessage = false;
+    this.selectArray = [];
 
     const items = angular.element(document.getElementById('items')); //eslint-disable-line
     this.gotoItems = function() {
+        this.hasSeenLanding = true;
         $document.scrollToElement(items, 0, 600);
     };
-
-    
-    this.selectArray = [];
+  
 
     for(var i = 0; i < 10; i++) {
         this.selectArray.push(i + 1);
     }
-
 
     this.addToCart = function(juice) {
         console.log('add to cart', juice.name, ':', juice.quantity);

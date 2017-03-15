@@ -33,6 +33,9 @@
         }
         .cart-icon {
             position: relative;
+            img {
+                width: 30px;
+            }
         }
         .total-items {
             display: inline-block;

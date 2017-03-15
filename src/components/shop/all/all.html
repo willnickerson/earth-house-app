@@ -5,7 +5,7 @@
 <section class="items">
 
         <ul>
-            <li class="item" ng-repeat="juice in $ctrl.juices" ng-click="$ctrl.gotoItems">
+            <li class="item" ng-repeat="juice in $ctrl.juices">
                 <img src="{{juice.imgUrl}}"
                     ui-sref="shop.item({
                     id: juice._id})">
