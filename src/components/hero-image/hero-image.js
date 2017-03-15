@@ -17,20 +17,20 @@ function controller($window, $interval) {
         {
             name: 'img3',
             imgUrl: 'http://res.cloudinary.com/lejipni8p/image/upload/v1488324567/IMG_1125.tiff_mt0jkc.jpg',
-            text: '<a>Tranquil Fennel</a>'
+            text: 'Tranquil Fennel',
             // text: 'Sit voluptatem accusantium doloremque laudantium, totam rem aperiam <a ui-sref="shop">Check out our online store</a>'
         },
         {
             name: 'img1',
             imgUrl: 'http://res.cloudinary.com/lejipni8p/image/upload/c_crop,g_south_west,h_2603,w_3800/v1488324606/sumpreme-green-centered_wp639t.jpg',
             // text: 'Sed ut perspiciatis omnis iste natus error sit voluptatem accusantium doloremque laudantium. <a href="https://www.instagram.com">follow us on instagram!</a>'
-            text: '<a>Supreme Green</a>'
+            text: 'Supreme Green'
         },
         {
             name: 'img2',
             imgUrl: 'http://res.cloudinary.com/lejipni8p/image/upload/v1488324567/IMG_1125.tiff_mt0jkc.jpg',
             // text: 'Sed sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. <a>Read about our juices</a>'
-            text: '<a>Pear-adise</a>'
+            text: 'Pear-adise'
         }
     ];
 
