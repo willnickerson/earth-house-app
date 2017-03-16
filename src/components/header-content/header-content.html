@@ -1,28 +1,34 @@
-<div class="header-container">
-        <div class="left">
-            <h1 class="main-title">Earth House</h1>
-            <nav-bar></nav-bar>
-        </div>
-        <div class="right">
-            
-            <a ui-sref="checkout" class="cart-icon">
-                <img src="http://res.cloudinary.com/lejipni8p/image/upload/v1489538579/cart-icon_zewzhg.png">
-                <h5 class="total-items">{{$ctrl.cart.totalItems}}</h5>
+<div class="header-container" id="header-height">
+    <div class="left">
+        <h1 class="main-title">Earth House</h1>
+        <nav-bar></nav-bar>
+    </div>
+
+
+    <div class="right">
+        <a ui-sref="checkout" class="cart-icon">
+            <img src="http://res.cloudinary.com/lejipni8p/image/upload/v1489538579/cart-icon_zewzhg.png">
+            <h5 class="total-items">{{$ctrl.cart.totalItems}}</h5>
+        </a>
+        <div class="hamburger">
+            <a href="#" ng-click="$ctrl.toggleNav()">
+                <span class="icon-menu"></span>
             </a>
-            <!--<a ui-sref="checkout" class="cart-icon">
-                <h5 class="total-items">{{$ctrl.cart.totalItems}}</h5>
-                <span class="icon-cart"></span> 
-            </a>-->
-            <div class="socials">
-                <!--<a href="https://twitter.com/">
-                    <span class="icon-twitter"></span>
-                </a>-->
-                <a href="https://www.facebook.com/">
-                    <span class="icon-facebook2"></span>
-                </a>
-                <a href="https://www.instagram.com/">
-                    <span class="icon-instagram"></span>
-                </a>
-            </div>
         </div>
+        <div class="socials">
+            <!--<a href="https://twitter.com/">
+                <span class="icon-twitter"></span>
+            </a>-->
+            <a href="https://www.facebook.com/">
+                <span class="icon-facebook2"></span>
+            </a>
+            <a href="https://www.instagram.com/">
+                <span class="icon-instagram"></span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="header-background" ng-if="$state.current.name === 'about'"></div>
+<div class="mobile-nav" ng-show="$ctrl.nav">
+    <nav-bar></nav-bar>
 </div>

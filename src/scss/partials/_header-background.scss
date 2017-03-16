@@ -1,0 +1,12 @@
+@import 'colors';
+
+.header-background {
+    background-color: $black;
+    height: 50px;
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: -1000;
+    border-bottom: 1px solid $lightgrey;
+}
