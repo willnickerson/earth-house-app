@@ -10,11 +10,12 @@ export default {
     controller
 };
 
+
+
 function controller() {
     this.nav = false;
     this.styles = styles;
     this.toggleNav = () => {
-        console.log('toggle nav called');
         if(this.nav) {
             this.nav = false;
         } else {
