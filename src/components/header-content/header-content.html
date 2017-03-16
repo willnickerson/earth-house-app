@@ -1,7 +1,10 @@
 <div class="header-container" id="header-height">
     <div class="left">
         <h1 class="main-title">Earth House</h1>
-        <nav-bar></nav-bar>
+            <nav-bar></nav-bar>
+        <div class="mobile-nav" ng-show="$ctrl.nav" ng-click="$ctrl.toggleNav()">
+            <nav-bar></nav-bar>
+        </div>
     </div>
 
 
@@ -10,11 +13,6 @@
             <img src="http://res.cloudinary.com/lejipni8p/image/upload/v1489538579/cart-icon_zewzhg.png">
             <h5 class="total-items">{{$ctrl.cart.totalItems}}</h5>
         </a>
-        <div class="hamburger">
-            <a href="#" ng-click="$ctrl.toggleNav()">
-                <span class="icon-menu"></span>
-            </a>
-        </div>
         <div class="socials">
             <!--<a href="https://twitter.com/">
                 <span class="icon-twitter"></span>
@@ -26,9 +24,11 @@
                 <span class="icon-instagram"></span>
             </a>
         </div>
+        <div class="hamburger">
+            <a ng-click="$ctrl.toggleNav()">
+                <span class="icon-menu"></span>
+            </a>
+        </div>
     </div>
 </div>
 <div class="header-background" ng-if="$state.current.name === 'about'"></div>
-<div class="mobile-nav" ng-show="$ctrl.nav">
-    <nav-bar></nav-bar>
-</div>
