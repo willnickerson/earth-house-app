@@ -1,22 +1,22 @@
-<div class="header-container">
-        <div class="left">
-            <h1 class="main-title">Earth House</h1>
+<div class="header-container" id="header-height">
+    <div class="left">
+        <h1 class="main-title">Earth House</h1>
+            <nav-bar></nav-bar>
+        <div class="mobile-nav" ng-show="$ctrl.nav" ng-click="$ctrl.toggleNav()">
             <nav-bar></nav-bar>
         </div>
-        <div class="right">
-            
-            <!--<a ui-sref="checkout" class="cart-icon">
-                <h5 class="total-items">{{$ctrl.cart.totalItems}}</h5>
-                <img src="http://res.cloudinary.com/lejipni8p/image/upload/v1489538579/cart-icon_zewzhg.png">
-            </a>-->
-            
-            <a ui-sref="checkout" class="cart-icon">
-                <h5 class="total-items">{{$ctrl.cart.totalItems}}</h5>
-                <span class="icon-cart"></span> 
-            </a>
-            <a href="https://twitter.com/">
+    </div>
+
+
+    <div class="right">
+        <a ui-sref="checkout" class="cart-icon">
+            <img src="http://res.cloudinary.com/lejipni8p/image/upload/v1489538579/cart-icon_zewzhg.png">
+            <h5 class="total-items">{{$ctrl.cart.totalItems}}</h5>
+        </a>
+        <div class="socials">
+            <!--<a href="https://twitter.com/">
                 <span class="icon-twitter"></span>
-            </a>
+            </a>-->
             <a href="https://www.facebook.com/">
                 <span class="icon-facebook2"></span>
             </a>
@@ -24,4 +24,11 @@
                 <span class="icon-instagram"></span>
             </a>
         </div>
+        <div class="hamburger">
+            <a ng-click="$ctrl.toggleNav()">
+                <span class="icon-menu"></span>
+            </a>
+        </div>
+    </div>
 </div>
+<div class="header-background" ng-if="('about' | isState) || ('contact' | isState) || ('checkout' | isState)"></div>

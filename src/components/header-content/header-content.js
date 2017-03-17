@@ -10,7 +10,16 @@ export default {
     controller
 };
 
+
+
 function controller() {
+    this.nav = false;
     this.styles = styles;
-    console.log(this.cart);
+    this.toggleNav = () => {
+        if(this.nav) {
+            this.nav = false;
+        } else {
+            this.nav = true;
+        }
+    }
 }

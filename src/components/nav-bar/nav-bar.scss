@@ -1,5 +1,12 @@
 @import 'colors';
 
+.icon-cross:before {
+  content: "\ea0f";
+  color: white;
+  font-size: .75em;
+  margin-right: 8px;
+}
+
 nav.site-navigation {
     margin-left: 5%;
     margin-top: 0;  
@@ -7,6 +14,10 @@ nav.site-navigation {
         list-style-type: none;
         margin: 0;
         padding: 0;
+        :local(.hamburger) {
+            display: none;
+            text-align: right;
+        }
         li {
             text-align: center;
             width: 20%;
@@ -24,16 +35,6 @@ nav.site-navigation {
             margin: 0;
         }
     }
-    a.icon-menu:before {
-        content: "\e9bd";
-        font-size: 1.9em;
-        color: white;
-        display: none;
-        width: 20px;
-        margin-top: 12px;
-        margin-right: 20px;
-        float: right;
-    }
 }
 
 
@@ -41,25 +42,30 @@ nav.site-navigation {
 
 @media all and (max-width: 551px) {
     nav.site-navigation {
-        float: right;
+        width: 100%;
+        position: relative;
+        margin: 0;
+        z-index: 10000;
         ul {
-            float: right;
-            margin: 0px 10px;
-            :local(.hide) {
-                display: none;
-            }
-            :local(.show) {
-                display: block;
-            }
+            width: 100%;
+            position: absolute;
+            margin: 0;
             .mid-dot {
                 display: none;
             }
+            :local(.hamburger) {
+                display: block;
+            }
             li {
+                padding: 5px;
+                display: block;
                 width: 100%;
-                text-align: right;
+                text-align: center;
                 font-weight: 100;
                 font-size: 1em;
-                margin-bottom: 3px;
+                margin: 0;
+                background-color: rgba(50, 50, 50, 1);
+                border-bottom: 1px solid $lightgrey;
             }
         }
         a.icon-menu:before {
@@ -83,7 +89,7 @@ nav.site-navigation {
 
 @media all and (min-width: 1083px) {
     nav.site-navigation {
-        margin-left: 3%;
+        margin-left: 1%;
         margin-top: -2.5%;
         ul {
             li {

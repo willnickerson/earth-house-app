@@ -1,17 +1,11 @@
 @import 'colors';
 @import 'fonts';
+@import 'header-background';
 
 .header-container {
         width: 100%;
         position: absolute;
-        top: 0;
-        left: 0;
-        // height: 125px;
-        div {
-            position: absolute;
-            z-index: 1;
-            width: 100%;
-        }
+        z-index: 1;
         .left {
             float: left;
             margin-top: -5px;
@@ -33,27 +27,20 @@
         }
         .cart-icon {
             position: relative;
-            img {
-                width: 30px;
+            float: left;
+            img{
+                max-width: none;
             }
         }
-        .total-items {
-            display: inline-block;
-            position: relative;
-            bottom: 17px;
-            left: 33px;
+
+        .cart-icon:hover > .total-items {
             color: $accent-color;
-            font-family: $main-font;
-            font-size: 1em;
-            font-weight: bold;
-            margin: 0;
         }
 
         .icon-facebook2:before {
             content: "\ea91";
             color: white;
             font-size: 1.9em;
-            //used to be 30px
         }
 
         .icon-instagram:before {
@@ -67,43 +54,77 @@
             color: white;
             font-size: 1.9em;
         }
-
-        .icon-cart:before {
-            content: "\e93a";
+        .icon-menu:before {
+            content: "\e9bd";
+            font-size: 1.2em;
             color: white;
-            font-size: 1.9em;
+            width: 20px;
         }
+}
+
+.total-items {
+    display: inline-block;
+    position: absolute;
+    color: white;
+    font-family: $main-font;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+}
+.socials {
+    float: right;
+}
+
+.hamburger {
+    display: none;
+    float: left;
 }
 
 
 @media all and (max-width: 550px) {
     .header-container {
+        nav-bar {
+            display: none;
+        }
+        .mobile-nav nav-bar {
+            display: block;
+            margin-top: 5px;
+        }
         .left {
             float: none;
             margin-top: -5px;
             width: 100%;
-            z-index: 1003;
+            z-index: 1;
             h1 {
                 float: left;
-            }
-            nav-bar {
-                float: right;
+                margin: 0 1%;
+                font-size: 2.9em;
             }
         }
         .right {
-            margin-top: 12px;
+            margin-top: 5px;
             span {
                 margin-right: 10px;
             }
         }
-        h1 {
-            margin: 0 1%;
-            font-size: 3.5em;
-        }
-        .icon-facebook2:before, .icon-twitter:before, .icon-instagram:before, .icon-cart:before {
-            font-size: 1.2em;
+        .socials {
             display: none;
         }
+    }
+    .cart-icon {
+        img {
+            width: 22px;
+            margin-right: 5px;
+            
+        }
+    }
+    .total-items {
+        font-size: .5em;
+        top:3px;
+        right: 13px;
+    }
+    .hamburger {
+        display: block;
     }
 }
 
@@ -126,6 +147,19 @@
             }
         }
     }
+    .cart-icon {
+        img {
+            width: 35px;
+            margin-right: 15px;
+            margin-top: -5px;
+        }   
+    }
+    .total-items {
+        font-size: 1em;
+        top: -1px;
+        right: 25px;
+    }
+
 }
 
 @media all and (min-width: 701px) and (max-width: 1083px) {
@@ -133,6 +167,18 @@
         .left {
             width: 350px;
         }
+    }
+    .cart-icon {
+        img {
+            width: 45px;
+            margin-right: 20px;
+            margin-top: -5px;
+        }   
+    }
+    .total-items {
+        font-size: 1.2em;
+        top: 1px;
+        right: 34px;
     }
 }
 
@@ -149,5 +195,16 @@
                 font-size: 2.2em;
             }
         }
+    }
+    .cart-icon {
+        img {
+            margin-top: -8px;
+            margin-right: 19px;
+            width: 55px;
+        }
+    }
+    .total-items {
+        bottom: 23px;
+        right: 35px;
     }
 }
