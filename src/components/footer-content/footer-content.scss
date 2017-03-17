@@ -1,56 +1,102 @@
 @import 'colors';
+@import 'fonts';
 
 .footer-container {
     background-color: $black;
     width: 100%;
     color: $lightgrey;
     border-top: 3px solid $lightgrey;
-    padding-bottom: 25px;
+}
 
-    div {
-        margin-top: 25px;
-        height: 80%;
-        width: 24%;
-        float: left;
-        border-right: .12em solid $lightgrey;
-        h3 {
-            margin-top: 0;
-            text-align: center;
-            font-size: 1em;
-        }
-
-        ul{
-            list-style-type: none;
-            margin: 0 auto;
-            height: 200px;
-            li {
-                padding-left: 50px;
-                margin: 15px 0;
-                font-size: .85em;
-                font-weight: lighter;
-                width: 100%;   
-            }
-        }
+.footer-contact {
+    text-align: center;
+    margin: 10% auto 10% auto;
+    font-family: $main-font;
+    font-size: .75em;
+    ul {
+        list-style-type: none; 
+    }
+    li {
+        margin: 20px 0;
+    }
+    a {
+        color: $lightgrey;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    span {
+        font-style: italic;
     }
 }
 
-.footer-category:last-child {
-    border-right: none;
-}
-
-@media all and (max-width: 650px) {
-    .footer-container {
-        div {
-            margin-top: 25px;
-            width: 49.5%;
-            height: 170px;
-            }
-    }
-
-    .footer-category:nth-child(2) {
-        border-right: none;
+@media all and (min-width: 450px) {
+    .footer-contact {
+        font-size: 1em; 
     }
 }
 
+@media all and (min-width: 600px) {
+    .footer-contact {
+        font-size: 1em; 
+        margin: 8% auto 8% auto;
+    }
+}
+
+@media all and (min-width: 800px) {
+    .footer-contact {
+        font-size: 1em; 
+        margin: 5% auto 5% auto;
+    }
+}
+
+// .footer-category:last-child {
+//     border-right: none;
+// }
+
+// @media all and (max-width: 650px) {
+//     .footer-container {
+//         div {
+//             margin-top: 25px;
+//             width: 49.5%;
+//             height: 170px;
+//             }
+//     }
+
+//     .footer-category:nth-child(2) {
+//         border-right: none;
+//     }
+// }
 
 
+
+
+    // padding-bottom: 25px;
+
+    // div {
+    //     margin-top: 25px;
+    //     height: 80%;
+    //     width: 24%;
+    //     float: left;
+    //     border-right: .12em solid $lightgrey;
+    //     h3 {
+    //         margin-top: 0;
+    //         text-align: center;
+    //         font-size: 1em;
+    //     }
+
+        // ul{
+        //     list-style-type: none;
+        //     margin: 0 auto;
+        //     // height: 200px;
+        //     li {
+        //         // padding-left: 50px;
+        //         margin: 15px 0;
+        //         font-size: 1.2em;
+        //         // font-size: .85em;
+        //         font-family: $main-font;
+        //         font-weight: lighter;
+        //         width: 100%;   
+        //     }
+        // }
+    // }
