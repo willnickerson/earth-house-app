@@ -6,6 +6,7 @@ export default {
 };
 function controller() {
     this.$onInit = () => {
+        this.hasSeenLanding = false;
         this.cart.initializeCart();
     };
 
