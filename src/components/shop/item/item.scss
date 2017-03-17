@@ -8,7 +8,9 @@
 }
 :local(.purchase) {
     float: right;
+    position: relative;
     margin-top: 3%;
+    margin-bottom: 20px;
     p {
         margin-top: 0;
         margin-bottom: 1.5%;

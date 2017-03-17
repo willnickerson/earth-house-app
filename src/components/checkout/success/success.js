@@ -1,4 +1,5 @@
 import template from './success.html';
+import styles from './success.scss';
 
 export default {
     template,
@@ -9,6 +10,7 @@ export default {
 };
 
 function controller() {
+    this.styles = styles;
     this.$onInit = () => {
         this.cart.initializeCart();
     };
