@@ -1,7 +1,8 @@
 @import 'colors';
 
 .header-background {
-    background-color: $black;
+    // background-color: $black;
+    background-color: rgb(88,175,172);
     background-image: url("http://res.cloudinary.com/lejipni8p/image/upload/v1482867039/earth%20house/wood-banner_rbetwp.jpg");
     background-size: 100%;
     height: 60px;
@@ -10,23 +11,24 @@
     top: 0;
     left: 0;
     border-bottom: 1px solid $lightgrey;
+    
 }
 
 
 @media all and (min-width: 550px) {
     .header-background {
-        height: 100px;
+        height: 125px;
     }
 }
 
 @media all and (min-width: 700px) {
     .header-background {
-        height: 150px;
+        height: 160px;
     }
 }
 
 @media all and (min-width: 1083px) {
     .header-background {
-        height: 170px;
+        height: 180px;
     }
 }

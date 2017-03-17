@@ -14,13 +14,23 @@ controller.$inject = ['paymentService', '$scope', '$state'];
 
 function controller(paymentService, $scope, $state) {
     this.styles = styles;
-    this.address = {};
+    this.address = {
+        firstName: null,
+        lastName: null,
+        email: null,
+        line1: null,
+        line2: null,
+        city: null,
+        state: null,
+        zip: null
+    };
     this.selectArray = [];
     this.maxQuant = 10;
     this.total = 0;
     this.cityArray = ['Portland', 'Beaverton', 'Vancouver', 'Gresham', 'Lake Oswego'];
     this.confirmCart = false;
     this.minPurchase = 50;
+    this.invalidAddress = false;
     //we will use min purchase to ensure that you cannot checkout unless you total is greater than this number
 
     for(var i = 0; i <= this.maxQuant; i++) {
@@ -58,16 +68,31 @@ function controller(paymentService, $scope, $state) {
         this.cart.storeCart();
     };
 
+    //for browsers that do not support the form require attribute
+    this.checkAddress = () => {
+        console.log(this.address);
+        let valid = true;
+        Object.keys(this.address).forEach(key => {
+            if(key !== 'line2' && !this.address[key]) {
+                console.log('invalid', this.address[key]);
+                valid = false;  
+            } 
+        });
+        return valid;
+    };
+
     this.showPaymentDiv = () => {
+        if(!this.checkAddress()) {
+            this.invalidAddress = true;
+            return;
+        }
         if(this.address.email === this.address.emailCheck) {
-            console.log('in if');
             this.showPayment = true;
             this.emailWarning = false;
             this.showAddressForm = false; 
             this.setOrderInfo();
         }
         else {
-            console.log('in else');
             this.emailWarning = true;
         }
     };
