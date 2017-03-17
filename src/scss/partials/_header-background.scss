@@ -1,7 +1,6 @@
 @import 'colors';
 
 .header-background {
-    // background-color: #1b5e20;
     background-color: $black;
     background-image: url("http://res.cloudinary.com/lejipni8p/image/upload/v1482867039/earth%20house/wood-banner_rbetwp.jpg");
     background-size: 100%;
@@ -10,8 +9,7 @@
     position: relative;
     top: 0;
     left: 0;
-    // z-index: -1000;
-    border-bottom: 5px solid $lightgrey;
+    border-bottom: 1px solid $lightgrey;
 }
 
 

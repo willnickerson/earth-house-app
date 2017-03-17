@@ -1,0 +1,23 @@
+@import 'colors';
+
+:local(.success) {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    height: 80vh;
+    h2 {
+        text-align: center;
+    }
+    p {
+        font-size: 1em;
+    }
+    a {
+        color: $link-blue;
+        display: block;
+        text-indent: 0;
+        transition: all .35s ease;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+
+}

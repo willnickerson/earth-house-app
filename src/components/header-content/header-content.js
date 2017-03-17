@@ -21,5 +21,5 @@ function controller() {
         } else {
             this.nav = true;
         }
-    }
+    };
 }
