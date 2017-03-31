@@ -68,7 +68,7 @@ function controller($window, $interval) {
 
     $interval(() => {
         this.nextSlide();
-    }, 4000);
+    }, 5000);
 
     //TODO: figure out some sort of way to adjust slider height based off of image height, we might have to use jQuery :/
 

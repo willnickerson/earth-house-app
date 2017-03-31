@@ -62,23 +62,18 @@
     padding: 1em 0 .8em;
 }
 
-// .progress-bar {
-//     width: 100%;
-//     position: absolute;
-//     bottom: 10px;
-//     height: 3px;
-//     // background-color: rgab(255,255,255,.7);
-// }
 
-#progress-bar {
-    position: absolute;
-    bottom: 10px;
-    height: 3px;
-    background-color: $accent-color;
-    height: 3px;
-    opacity: .7;
-    transition: width 4s linear;
-}
+
+// #progress-bar {
+//     position: absolute;
+//     bottom: 0;
+//     height: 3px;
+//     background-color: $accent-color;
+//     height: 3px;
+//     opacity: .7;
+//     transition: width 4s linear;
+//     width: 100%;
+// }
 
 // :local(.start) {
 //     width: 100%;
