@@ -6,6 +6,7 @@
         width: 100%;
         position: absolute;
         z-index: 1;
+        color: white;
         .left {
             float: left;
             margin-top: -5px;
@@ -39,26 +40,25 @@
 
         .icon-facebook2:before {
             content: "\ea91";
-            color: white;
             font-size: 1.9em;
         }
 
         .icon-instagram:before {
             content: "\ea92";
-            color: white;
             font-size: 1.9em;
         }
 
         .icon-twitter:before {
             content: "\ea96";
-            color: white;
             font-size: 1.9em;
         }
         .icon-menu:before {
             content: "\e9bd";
             font-size: 1.2em;
-            color: white;
             width: 20px;
+        }
+        a:hover {
+            color: $accent-color;
         }
 }
 
