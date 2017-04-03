@@ -36,6 +36,13 @@ app.config(function($windowProvider) {
     $window.Stripe.setPublishableKey('pk_test_HS62OmJo7gCzA7fcN2ObL2rF');
 });
 
+app.run(($rootScope, $state, $transitions, $anchorScroll) => {
+    console.log('in run block');
+    $transitions.onSuccess({to: '*'}, () => {
+        console.log('state changing');
+        $anchorScroll();
+    });
+});
 
 app.animation('.slide-animation', function ($window) {
 
