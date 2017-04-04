@@ -6,6 +6,7 @@
         width: 100%;
         position: absolute;
         z-index: 1;
+        color: white;
         .left {
             float: left;
             margin-top: -5px;
@@ -39,26 +40,24 @@
 
         .icon-facebook2:before {
             content: "\ea91";
-            color: white;
             font-size: 1.9em;
         }
 
         .icon-instagram:before {
             content: "\ea92";
-            color: white;
             font-size: 1.9em;
         }
 
         .icon-twitter:before {
             content: "\ea96";
-            color: white;
             font-size: 1.9em;
         }
         .icon-menu:before {
             content: "\e9bd";
-            font-size: 1.2em;
-            color: white;
-            width: 20px;
+            font-size: 2em;
+        }
+        a:hover {
+            color: $accent-color;
         }
 }
 
@@ -114,15 +113,15 @@
     }
     .cart-icon {
         img {
-            width: 22px;
+            width: 36px;
             margin-right: 5px;
             
         }
     }
     .total-items {
-        font-size: .5em;
-        top:3px;
-        right: 12px;
+        font-size: .9em;
+        top: 4px;
+        right: 15px;
     }
     .hamburger {
         display: block;
