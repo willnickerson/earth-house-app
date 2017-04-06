@@ -33,8 +33,8 @@ app.value('apiUrl', url);
 app.config(routes);
 app.config(function($windowProvider) {
     const $window = $windowProvider.$get();
-    const publishableKey = 'pk_test_HS62OmJo7gCzA7fcN2ObL2rF';
-    $window.Stripe.setPublishableKey(publishableKey);
+    //TODO: put in drew's key
+    $window.Stripe.setPublishableKey('pk_test_HS62OmJo7gCzA7fcN2ObL2rF');
 });
 
 app.run(($rootScope, $state, $transitions, $anchorScroll) => {
@@ -56,7 +56,7 @@ app.animation('.slide-animation', function ($window) {
                 if(scope.direction !== 'right') {
                     finishPoint = -finishPoint;
                 }
-                TweenMax.to(element, 1.5, {left: finishPoint, onComplete: done, ease: Power1.easeIn}); //eslint-disable-line
+                TweenMax.to(element, 1.5, {left: finishPoint, onComplete: done, ease: Power2.easeIn}); //eslint-disable-line
             }
             else {
                 done();
@@ -72,7 +72,7 @@ app.animation('.slide-animation', function ($window) {
                     startPoint = -startPoint;
                 }
 
-                TweenMax.fromTo(element, 1.5, { left: startPoint }, {left: 0, onComplete: done, ease: Power1.easeIn}); //eslint-disable-line
+                TweenMax.fromTo(element, 1.5, { left: startPoint }, {left: 0, onComplete: done, ease: Power2.easeIn}); //eslint-disable-line
             }
             else {
                 done();
