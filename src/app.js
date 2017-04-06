@@ -33,7 +33,8 @@ app.value('apiUrl', url);
 app.config(routes);
 app.config(function($windowProvider) {
     const $window = $windowProvider.$get();
-    $window.Stripe.setPublishableKey('pk_test_HS62OmJo7gCzA7fcN2ObL2rF');
+    const publishableKey = process.env.STRIPE_PK || 'pk_test_HS62OmJo7gCzA7fcN2ObL2rF';
+    $window.Stripe.setPublishableKey(publishableKey);
 });
 
 app.run(($rootScope, $state, $transitions, $anchorScroll) => {
