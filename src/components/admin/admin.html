@@ -1,0 +1,12 @@
+<div class="admin-header"></div>
+<div class="admin-body">
+    <h2>Login</h2>
+    <form ng-submit="$ctrl.signin()">
+        <label for="username">username</label>
+        <input type="text" ng-model="$ctrl.credentials.username">
+        <label for="password"></label>
+        <input type="text" ng-model="$ctrl.credentials.password">
+        <button type="submit">Submit</button>
+    </form>
+<button ng-click="$ctrl.getOrders()">Get orders</button>
+</div>

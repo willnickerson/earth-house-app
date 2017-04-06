@@ -55,7 +55,7 @@ app.animation('.slide-animation', function ($window) {
                 if(scope.direction !== 'right') {
                     finishPoint = -finishPoint;
                 }
-                TweenMax.to(element, 1.5, {left: finishPoint, onComplete: done, ease: Power2.easeIn}); //eslint-disable-line
+                TweenMax.to(element, 1.5, {left: finishPoint, onComplete: done, ease: Power1.easeIn}); //eslint-disable-line
             }
             else {
                 done();
@@ -71,7 +71,7 @@ app.animation('.slide-animation', function ($window) {
                     startPoint = -startPoint;
                 }
 
-                TweenMax.fromTo(element, 1.5, { left: startPoint }, {left: 0, onComplete: done, ease: Power2.easeIn}); //eslint-disable-line
+                TweenMax.fromTo(element, 1.5, { left: startPoint }, {left: 0, onComplete: done, ease: Power1.easeIn}); //eslint-disable-line
             }
             else {
                 done();
