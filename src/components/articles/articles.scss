@@ -6,11 +6,23 @@
     height: 5px;
     background-color: $accent-color;
     opacity: .6;
-    transition: width 4s;
+    animation-name: slidein;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes slidein {
+    from {
+        width: 0%; 
+    }
+
+    to {
+        width: 100%;
+    }
 }
 
 :local(.start) {
-    width: 0;
+    width: 50%;
 }
 
 :local(.done) {
@@ -21,7 +33,7 @@
     border-top: 5px solid $lightgrey;
     background-color: rgb(250,250,250);
     margin: 0 0 10px 0;
-    padding: 0 0 10px 0;
+    padding: 2px 0 10px 0;
 }
 
 .text-button {

@@ -4,7 +4,10 @@
         <p>Due to the unpasturized nature of our product, we are only able to deliver to the Portland Metro Area and require a minimum of $50 for online purchases.</p>
         <h2>Shopping Cart</h2>
         
-        <p class="empty-cart" ng-if="$ctrl.cartEmpty">There is nothing in your cart</p>
+        <div ng-if="$ctrl.cartEmpty">
+            <p class="empty-cart">There is nothing in your cart</p>
+            <a ui-sref="shop">Keep shopping!</a>
+        </div>
         
         <div class="cart-table" ng-if="!$ctrl.cartEmpty">
             <table>
@@ -67,7 +70,7 @@
     </div>
 
     <div class="cart" ng-if="$ctrl.confirmCart">
-        <h2>Your Order</h2>
+        <h2>Your Order <a ng-click="$ctrl.confirmCart = false">edit</a></h2>
         <table>
             <thead>
                 <th>Product</th>
@@ -84,7 +87,7 @@
                 </tr>
             </tbody>
             <tfoot>
-                <td><a ng-click="$ctrl.confirmCart = false" ng-if="!$ctrl.showPayment">edit</a></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td class="total">
@@ -120,13 +123,16 @@
             </select>
             <input name="zip" placeholder="zip code" ng-model="$ctrl.address.zip" required>
             <button type="submit">Checkout</button>
+            <div ng-show="$ctrl.invalidAddress">
+                Make sure you have filled out all of the required address fields!
+            </div>
         </form>
     </div>
 
 
     <div class="payment" ng-show="$ctrl.showPayment && !$ctrl.showAddressForm">
         <div class="address-table">
-            <h3>Delivery Info <a ng-click="$ctrl.showAddressForm = true">edit</a></h3>
+            <h2>Delivery Info <a ng-click="$ctrl.showAddressForm = true">edit</a></h2>
             <p><span class="bold">name: </span>{{$ctrl.address.firstName}} {{$ctrl.address.lastName}}<p>
             <p><span class="bold">email for order: </span>{{$ctrl.address.email}}</p>
             <h4>Address: </h4>
@@ -141,7 +147,7 @@
             <input ng-model="number" placeholder="Card Number" payments-format="card" payments-validate="card" name="card">
             <input ng-model="expiry" placeholder="Expiration" payments-formate="expiry" payments-validate="expiry" name="expiry">
             <input ng-model="cvc" placeholder="CVC" payments-format="cvc" payments-validate="cvc" name="cvc">
-            <button type="submit">Submit</button>
+            <button type="submit">Place Order!</button>
         </form>
 
         <div ng-show="invalidPayment">

@@ -11,8 +11,6 @@ controller.$inject = ['$window', '$interval'];
 
 function controller($window, $interval) {
     this.styles = styles;
-    // this.progress = this.styles.start;
-    // this.progress = this.styles.finish;
     this.slides = [
         {
             name: 'img3',
@@ -68,31 +66,6 @@ function controller($window, $interval) {
 
     $interval(() => {
         this.nextSlide();
-    }, 4000);
-
-    //TODO: figure out some sort of way to adjust slider height based off of image height, we might have to use jQuery :/
-
-    // this.sliderHeight = {'height': ($window.innerHeight - 50) + 'px'};
-
-    // const image = $document.getElementsByClassName('.slide-image')[0]; //eslint-disable-line
-
-    // const images = $document.getElementsByClassName('slide-image');
-    // console.log('here', $document[0].querySelectorAll('.slide-image'));
-
-    // angular.element(document.getElementsByClassName('slide-image')[0]).bind('resize', function () {
-    //     // this.sliderHeight = {'height': ($window.innerHeight - 50) + 'px'};
-    //     console.log('Height', this.imageHeight);
-    // });
-
-    // angular.element($window).bind('resize', function () {
-    //     this.sliderHeight = {'height': ($window.innerHeight - 50) + 'px'};
-    //     console.log('Height', this.sliderHeight);
-    // });
-    // const slideImgs =  document.getElementsByClassName('slide-image'); //eslint-disable-line
-    
-    // const wrappedImgs = angular.element(slideImgs);
-    // var imgs = angular.element(document.querySelector('.slide-image'));
-
-    // console.log(imgs);
+    }, 5000);
 
 }

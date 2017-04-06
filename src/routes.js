@@ -75,5 +75,11 @@ export default function routes($stateProvider, $urlRouterProvider) {
         component: 'success'
     });
 
+    $stateProvider.state({
+        name: 'admin',
+        url: '/admin',
+        component: 'admin'
+    });
+
     $urlRouterProvider.otherwise('/home');
 }

@@ -1,0 +1,72 @@
+@import 'fonts';
+@import 'colors';
+
+:local(.contact) {
+    background-color: white;
+    min-height: 70vh;
+    width: 85%;
+    margin: 0 auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    ul, li, p {
+        margin-left: 0;
+        margin-right: 0;
+        font-family: $main-font;
+    }
+    ul {
+        text-align: center;
+        font-size: 1.5em;
+        width: 80%;
+        margin: 0 auto;
+    }
+    a {
+        color: black;
+        transition: all .3s ease;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    h2 {
+        text-align: center;
+        font-family: $decorative-font;
+        font-size: 3em;
+        margin: 0 0 5% 0;
+    }
+    .contact-info {
+        font-size: 1.2em;
+        margin: 2% 0 10% 0;
+        text-indent: 25px;
+    }
+    span {
+        margin: 0 1%;
+    }
+    .icon-instagram:hover, .icon-facebook2:hover {
+        text-decoration: none;
+    }
+}
+
+@media all and (min-width: 500px) {
+    :local(.contact) {
+        font-size: 1.2em;
+    }
+}
+
+@media all and (min-width: 700px) {
+    :local(.contact) {
+        font-size: 1.5em;
+    }
+}
+
+@media all and (min-width: 900px) {
+    :local(.contact) {
+        width: 75%;
+        font-size: 1.5em;
+        h2 {
+            font-size: 4em;
+            margin-top: 2%;
+        }
+        .contact-info {
+            margin: 2% 0;
+        }
+    }
+}
