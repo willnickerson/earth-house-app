@@ -33,7 +33,7 @@ app.value('apiUrl', url);
 app.config(routes);
 app.config(function($windowProvider) {
     const $window = $windowProvider.$get();
-    const publishableKey = process.env.STRIPE_PK || 'pk_test_HS62OmJo7gCzA7fcN2ObL2rF';
+    const publishableKey = 'pk_test_HS62OmJo7gCzA7fcN2ObL2rF';
     $window.Stripe.setPublishableKey(publishableKey);
 });
 
