@@ -15,12 +15,16 @@ function controller(authService, orderService) {
         authService.signin(this.credentials)
             .then(data => {
                 this.token = data.token;
+                this.getOrders();
             });
     };
 
     this.getOrders = () => {
         orderService.getOrders(this.token)
-            .then(data => console.log(data));
+            .then(data => {
+                this.orders = data;
+                console.log(this.orders);
+            });
     };
 
 }

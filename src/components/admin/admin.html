@@ -8,5 +8,16 @@
         <input type="text" ng-model="$ctrl.credentials.password">
         <button type="submit">Submit</button>
     </form>
-<button ng-click="$ctrl.getOrders()">Get orders</button>
+
+    <div class="orders" ng-if="$ctrl.token">
+        <h2>Orders</h2>
+        <select ng-model="$ctrl.completed" ng-init="$ctrl.completed = false">
+            <option ng-value="false">incomplete</option>
+            <option ng-value="true">complete</option>
+            <option ng-value="'all'">all</option>
+        </select>
+        <ul>
+            <li ng-repeat="order in $ctrl.orders" ng-if="order.completed === $ctrl.completed || $ctrl.completed === 'all'">{{order.name}}</li>
+        </ul>
+    </div>
 </div>
