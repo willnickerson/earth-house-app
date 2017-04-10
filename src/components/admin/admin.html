@@ -17,7 +17,10 @@
             <option ng-value="'all'">all</option>
         </select>
         <ul>
-            <li ng-repeat="order in $ctrl.orders" ng-if="order.completed === $ctrl.completed || $ctrl.completed === 'all'">{{order.name}}</li>
+            <li ng-repeat="order in $ctrl.orders" ng-if="order.completed === $ctrl.completed || $ctrl.completed === 'all'">
+                {{order.name}}
+                <button ng-click="$ctrl.removeOrder(order)">delete</button>
+            </li>
         </ul>
     </div>
 </div>

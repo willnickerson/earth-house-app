@@ -13,6 +13,15 @@ export default function orderService($http, apiUrl) {
                 console.log('In service', res.data);
                 return res.data;
             });
+        },
+        deleteOrder(id, token) {
+            return $http({
+                method: 'DELETE',
+                url: `${apiUrl}/orders/${id}`,
+                headers: {
+                    'Authorization': token
+                }
+            }).then(res => res.data);
         }
     };
 }

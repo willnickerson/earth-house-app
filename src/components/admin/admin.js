@@ -23,8 +23,14 @@ function controller(authService, orderService) {
         orderService.getOrders(this.token)
             .then(data => {
                 this.orders = data;
-                console.log(this.orders);
             });
     };
-
+    this.removeOrder = order => {
+        const index = this.orders.indexOf(order);
+        orderService.deleteOrder(order._id, this.token)
+            .then(data => {
+                console.log(data);
+                this.orders.splice(index, 1);
+            });
+    };
 }
