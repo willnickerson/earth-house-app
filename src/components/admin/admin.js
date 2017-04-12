@@ -35,6 +35,8 @@ function controller(authService, orderService) {
     };
     this.updateOrder = update => {
         console.log('update function called', update);
+        orderService.updateOrder(update._id, update, this.token)
+            .then(data => console.log(data));
     };
 
     this.setOrderToUpdate = order => {
