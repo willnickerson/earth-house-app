@@ -33,4 +33,12 @@ function controller(authService, orderService) {
                 this.orders.splice(index, 1);
             });
     };
+    this.updateOrder = update => {
+        console.log('update function called', update);
+    };
+
+    this.setOrderToUpdate = order => {
+        this.orderToUpdate = order;
+        console.log(this.orderToUpdate);
+    };
 }

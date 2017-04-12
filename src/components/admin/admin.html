@@ -1,26 +1,101 @@
-<div class="admin-header"></div>
+<div class="admin-header">
+
+</div>
+
 <div class="admin-body">
-    <h2>Login</h2>
-    <form ng-submit="$ctrl.signin()">
-        <label for="username">username</label>
-        <input type="text" ng-model="$ctrl.credentials.username">
-        <label for="password"></label>
-        <input type="text" ng-model="$ctrl.credentials.password">
-        <button type="submit">Submit</button>
-    </form>
+    <div class="login" ng-if="!$ctrl.token">
+        <h2>Login</h2>
+        <form ng-submit="$ctrl.signin()">
+            <label for="username">username</label>
+            <input type="text" ng-model="$ctrl.credentials.username">
+            <label for="password"></label>
+            <input type="text" ng-model="$ctrl.credentials.password">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 
     <div class="orders" ng-if="$ctrl.token">
-        <h2>Orders</h2>
-        <select ng-model="$ctrl.completed" ng-init="$ctrl.completed = false">
-            <option ng-value="false">incomplete</option>
-            <option ng-value="true">complete</option>
-            <option ng-value="'all'">all</option>
-        </select>
-        <ul>
-            <li ng-repeat="order in $ctrl.orders" ng-if="order.completed === $ctrl.completed || $ctrl.completed === 'all'">
-                {{order.name}}
-                <button ng-click="$ctrl.removeOrder(order)">delete</button>
-            </li>
-        </ul>
+        <div class="static" ng-if="!$ctrl.orderToUpdate">
+            <h2>Orders</h2>
+
+            <h3>Filter</h3>
+            <select ng-model="$ctrl.completed" ng-init="$ctrl.completed = false">
+                <option ng-value="false">incomplete</option>
+                <option ng-value="true">complete</option>
+                <option ng-value="'all'">all</option>
+            </select>
+
+            <ul>
+                <li ng-repeat="order in $ctrl.orders" ng-if="order.completed === $ctrl.completed || $ctrl.completed === 'all'">
+                        <h4>{{order.name}}</h4>
+                        <p>{{order.date}}</p>
+                        <h5>total: ${{order.total}}.00</h5>
+                        <h4>Items</h4>
+                        <table class="order-items">
+                            <tr><th>item</th><th>qty.</th><th>subtotal</th></tr>
+                            <tr ng-repeat="item in order.items">
+                                <td>{{item.name}}</td>
+                                <td>{{item.quantity}}</td>
+                                <td>${{item.subTotal}}.00</td>
+                            </tr>
+                        </table>
+                        <h5>
+                            Address: {{order.address.line_1}}, {{order.address.line_2 || ' '}} 
+                            <br>
+                            {{order.address.city}}, {{order.address.state}}, {{order.address.zip}}
+                        </h5>
+                        <h5>complete: {{order.completed}}</h5>
+                        <button ng-click="$ctrl.removeOrder(order)">delete</button>
+                        <button ng-click="$ctrl.setOrderToUpdate(order)">edit</button>
+                </li>
+            </ul>
+        </div>
+        <div class="update" ng-if="$ctrl.orderToUpdate">
+            <h2>This shouldn't be repeated</h2>
+            {{$ctrl.orderToUpdate}}
+            <button ng-click="$ctrl.updateOrder()">update</button>
+            <button ng-click="$ctrl.setOrderToUpdate(null)">cancel</button>
+        </div>
     </div>
 </div>
+
+
+    <!--<div class="update">
+        <h2>Update Form</h2>
+        {{$ctrl.orderToUpdate}}-->
+        <!--<form>
+            <label>Name:</label>
+            <input type="text" ng-model="update.name" placeholder="{{order.name}}">
+            <label>Total: $</label>
+            <input type="text" ng-model="update.total" placeholder="order.total">
+            <h4>Completed:</h4>
+            <select ng-model="update.completed" ng-init="update.completed = order.completed">
+                <option ng-value="false">incomplete</option>
+                <option ng-value="true">complete</option>
+            </select>
+            {{update.completed}}
+            
+            
+            <h4>Items</h4>
+            <!--<table>
+                <tr><th>item</th><th>qty.</th><th>subtotal</th></tr>
+                <tr ng-repeat="item in order.items">
+                    <td><input type="text" ng-model="item.name" placeholder="{{item.name}}"></td>
+                    <td><input type="text" ng-value="item.quantity" ng-model="item.quantity" placeholder="{{item.quantity}}"></td>
+                    <td ng-value="item.quantity * item.price" ng-model="item.total">${{item.quantity * item.price}}.00</td>
+                </tr>
+            </table>-->
+            <!--<h5>Address</h4>
+            <label>Line 1:</label>
+            <input type="text" placeholder="{{order.address.line_1}}" ng-model="update.address.line_1">
+            <label>Line 2:</label>
+            <input type="text" placeholder="{{order.address.line_2}}" ng-model="update.address.line_2">
+            <label>City:</label>
+            <input type="text" placeholder="{{order.address.city}}" ng-model="update.address.city">
+            <label>State</label>
+            <input type="text" placeholder="{{order.address.state}}" ng-model="update.address.state">
+            <label>Zip</label>
+            <input type="text" placeholder="{{order.address.zip}}" ng-model="update.address.zip">-->
+            <!--<button ng-click="$ctrl.updateOrder(update)">update</button>-->
+        <!--</form>-->
+    <!--</div>-->
