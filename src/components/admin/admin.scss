@@ -8,3 +8,12 @@
 .admin-body {
     min-height: 85vh;
 }
+
+.admin-nav {
+    a {
+        color: blue;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+}

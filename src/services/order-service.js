@@ -9,7 +9,10 @@ export default function orderService($http, apiUrl) {
                 headers: {
                     'Authorization': token
                 }
-            }).then(res => res.data);
+            }).then(res => {
+                console.log('in order service', res.data);
+                return res.data;
+            });
         },
         deleteOrder(id, token) {
             return $http({
