@@ -8,7 +8,7 @@
         <form ng-submit="$ctrl.signin()">
             <label for="username">username</label>
             <input type="text" ng-model="$ctrl.credentials.username">
-            <label for="password"></label>
+            <label for="password">password</label>
             <input type="text" ng-model="$ctrl.credentials.password">
             <button type="submit">Submit</button>
         </form>
@@ -17,9 +17,12 @@
     <ul class="admin-nav" ng-if="$ctrl.token">
         <li>
             <a ui-sref="admin.orders">orders</a>
-        <li>
         </li>
+        <li>
             <a ui-sref="admin.content">content</a>
+        </li>
+        <li>
+            <a ng-click="$ctrl.logOut()">logout</a>
         </li>
     </ul>
 

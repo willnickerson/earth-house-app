@@ -8,11 +8,12 @@ export default ({
     controller
 });
 
-controller.$inject = ['orderService'];
+controller.$inject = ['orderService', '$state'];
 
-function controller(orderService) {
+function controller(orderService, $state) {
     this.$onInit = () => {
-        this.getOrders();
+        if(this.token) this.getOrders();
+        else $state.go('admin.login');
     };
 
     this.getOrders = () => {

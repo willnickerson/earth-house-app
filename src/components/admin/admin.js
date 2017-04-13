@@ -16,5 +16,9 @@ function controller(authService, $state) {
                 $state.go('admin.orders');
             });
     };
+    this.logOut = () => {
+        this.credentials = {};
+        delete this.token;
+    };
     //TODO: ADD email and notes section to each order as well as in model on the server side!
 }
