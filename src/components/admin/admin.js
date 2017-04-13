@@ -58,5 +58,7 @@ function controller(authService, orderService) {
         this.orderToUpdate.items.push(newItem);
         newItem = {};
         console.log(this.orderToUpdate.items);
-    }
+    };
+
+    //TODO: ADD email and notes section to each order as well as in model on the server side!
 }

@@ -84,9 +84,22 @@
                         <td>subtotal: ${{newItem.price * newItem.quantity}}.00</td>
                     </tr>
                     <tr>
-                        <button ng-click="$ctrl.addItem(newItem)">add item</button>
+                        <td><button ng-click="$ctrl.addItem(newItem)">add item</button></td>
                     </tr>
                 </table>
+
+            <h5>Address</h4>
+
+            <label>Line 1:</label>
+            <input type="text" placeholder="{{$ctrl.orderToUpdate.address.line_1}}" ng-model="$ctrl.orderToUpdate.address.line_1">
+            <label>Line 2:</label>
+            <input type="text" placeholder="{{$ctrl.orderToUpdate.address.line_2}}" ng-model="$ctrl.orderToUpdate.address.line_2">
+            <label>City:</label>
+            <input type="text" placeholder="{{$ctrl.orderToUpdate.address.city}}" ng-model="$ctrl.orderToUpdate.address.city">
+            <label>State</label>
+            <input type="text" placeholder="{{$ctrl.orderToUpdate.address.state}}" ng-model="$ctrl.orderToUpdate.address.state">
+            <label>Zip</label>
+            <input type="text" placeholder="{{$ctrl.orderToUpdate.address.zip}}" ng-model="$ctrl.orderToUpdate.address.zip">
             </form>
             <button ng-click="$ctrl.updateOrder($ctrl.orderToUpdate)">update</button>
             <button ng-click="$ctrl.setOrderToUpdate(null)">cancel</button>
@@ -94,16 +107,3 @@
     </div>
 </div>
 
-
-                <!--<h5>Address</h4>
-                <label>Line 1:</label>
-                <input type="text" placeholder="{{order.address.line_1}}" ng-model="update.address.line_1">
-                <label>Line 2:</label>
-                <input type="text" placeholder="{{order.address.line_2}}" ng-model="update.address.line_2">
-                <label>City:</label>
-                <input type="text" placeholder="{{order.address.city}}" ng-model="update.address.city">
-                <label>State</label>
-                <input type="text" placeholder="{{order.address.state}}" ng-model="update.address.state">
-                <label>Zip</label>
-                <input type="text" placeholder="{{order.address.zip}}" ng-model="update.address.zip">-->
-                <!--<button ng-click="$ctrl.updateOrder(update)">update</button>-->
