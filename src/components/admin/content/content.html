@@ -1,8 +1,21 @@
 <h1>Content</h1>
 
 <ul>
-    <li>Image Carousel</li>
-    <li>Shop</li>
-    <li>About</li>
+    <li>
+        <a ng-click="$ctrl.setCms('slider')">Image Carousel</a>
+    </li>
+    <li>
+        <a ng-click="$ctrl.setCms('articles')">Articles</a>
+    </li>
+    <li>
+        <a ng-click="$ctrl.setCms('shop')">Shop</a>
+    </li>
+    <li>
+        <a ng-click="$ctrl.setCms('about')">About</a>
+    </li>
 </ul>
 
+<image-slider-cms ng-if="$ctrl.contentToManage === 'slider'"></image-slider-cms>
+<articles-cms ng-if="$ctrl.contentToManage === 'articles'"></articles-cms>
+<shop-cms ng-if="$ctrl.contentToManage === 'shop'"></shop-cms>
+<about-cms ng-if="$ctrl.contentToManage === 'about'"></about-cms>
