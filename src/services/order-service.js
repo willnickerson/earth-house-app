@@ -3,13 +3,35 @@ orderService.$inject = ['$http', 'apiUrl'];
 export default function orderService($http, apiUrl) {
     return {
         getOrders(token) {
-            $http({
+            return $http({
                 method: 'GET',
                 url: `${apiUrl}/orders`,
                 headers: {
                     'Authorization': token
                 }
+            }).then(res => {
+                console.log('in order service', res.data);
+                return res.data;
             });
+        },
+        deleteOrder(id, token) {
+            return $http({
+                method: 'DELETE',
+                url: `${apiUrl}/orders/${id}`,
+                headers: {
+                    'Authorization': token
+                }
+            }).then(res => res.data);
+        },
+        updateOrder(id, order, token) {
+            return $http({
+                method: 'PUT',
+                url: `${apiUrl}/orders/${id}`,
+                headers: {
+                    'Authorization': token
+                },
+                data: order
+            }).then(res => res.data);
         }
     };
 }

@@ -77,8 +77,30 @@ export default function routes($stateProvider, $urlRouterProvider) {
 
     $stateProvider.state({
         name: 'admin',
+        abstract: true,
+        default: '.login',
         url: '/admin',
         component: 'admin'
+    });
+
+    $stateProvider.state({
+        name: 'admin.login',
+        url: '/login',
+        views: {
+            main: {
+                component: 'login'
+            }
+        }
+    });
+
+    $stateProvider.state({
+        name: 'admin.orders',
+        url: '/orders',
+        views: {
+            main: {
+                component: 'orders'
+            }
+        }
     });
 
     $urlRouterProvider.otherwise('/home');

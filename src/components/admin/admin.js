@@ -5,22 +5,20 @@ export default({
     controller
 });
 
-controller.$inject = ['authService', 'orderService'];
+controller.$inject = ['authService', '$state'];
 
-function controller(authService, orderService) {
+function controller(authService, $state) {
     this.styles = styles;
-    this.message = 'please login';
-
     this.signin = () => {
         authService.signin(this.credentials)
             .then(data => {
                 this.token = data.token;
+                $state.go('admin.orders');
             });
     };
-
-    this.getOrders = () => {
-        orderService.getOrders(this.token)
-            .then(data => console.log(data));
+    this.logOut = () => {
+        this.credentials = {};
+        delete this.token;
     };
-
+    //TODO: ADD email and notes section to each order as well as in model on the server side!
 }
