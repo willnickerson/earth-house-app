@@ -103,5 +103,15 @@ export default function routes($stateProvider, $urlRouterProvider) {
         }
     });
 
+    $stateProvider.state({
+        name: 'admin.content',
+        url: '/content',
+        views: {
+            main: {
+                component: 'content'
+            }
+        }
+    });
+
     $urlRouterProvider.otherwise('/home');
 }
