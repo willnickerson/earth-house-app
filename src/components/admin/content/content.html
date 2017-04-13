@@ -18,4 +18,4 @@
 <image-slider-cms ng-if="$ctrl.contentToManage === 'slider'"></image-slider-cms>
 <articles-cms ng-if="$ctrl.contentToManage === 'articles'"></articles-cms>
 <shop-cms ng-if="$ctrl.contentToManage === 'shop'"></shop-cms>
-<about-cms ng-if="$ctrl.contentToManage === 'about'"></about-cms>
+<about-cms ng-if="$ctrl.contentToManage === 'about'"  aboutArticles="$ctrl.aboutArticles" token="$ctrl.token"></about-cms>

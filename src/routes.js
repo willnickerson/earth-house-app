@@ -110,12 +110,7 @@ export default function routes($stateProvider, $urlRouterProvider) {
             main: {
                 component: 'content'
             }
-        },
-        resolve: {
-            aboutArticles: ['aboutService', aboutService => {
-                return aboutService.getAll();
-            }]
-        },
+        }
     });
 
     $urlRouterProvider.otherwise('/home');

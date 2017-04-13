@@ -22,6 +22,31 @@ export default function aboutService($http, apiUrl) {
                     console.log(res.date);
                     return res.data;
                 });
+        },
+        updateArticle(article, token) {
+            return $http({
+                method: 'PUT',
+                url: `${apiUrl}/about-articles/${article._id}`,
+                headers: {
+                    'Authorization': token
+                },
+                data: article
+            }).then(res => {
+                console.log(res.data);
+                return res.data;
+            });
         }
     };
 }
+
+
+// updateOrder(id, order, token) {
+//     return $http({
+//         method: 'PUT',
+//         url: `${apiUrl}/orders/${id}`,
+//         headers: {
+//             'Authorization': token
+//         },
+//         data: order
+//     }).then(res => res.data);
+// }

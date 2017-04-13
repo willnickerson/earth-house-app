@@ -1,2 +1,33 @@
 <h2>About</h2>
 
+<ul>
+    <li ng-repeat="article in $ctrl.aboutArticles">
+        <div class="cms-title">
+            <label>Title: </label>
+            <input class="article-title" type="text" ng-model="article.title">
+            <label>visible</label>
+            <select ng-model="article.visible">
+                <option ng-value="true">true</option>
+                <option ng-value="false">false</option>
+            </select>
+            <label>position</label>
+            <select ng-if="article.visible" ng-model="article.position">
+                <option ng-repeat="position in $ctrl.positions" ng-value="position">{{position}}</option>
+            </select>
+        </div>
+
+        <div class="cms-img">
+            <label>Image: </label>
+            <input type="text" ng-model="article.imageUrl">
+            <img ng-if="article.imgUrl !== '#'" ng-src="article.imgUrl">
+            <p ng-if="article.imgUrl === '#'">No image provided</p>
+        </div>
+
+        <div class="cms-text">
+            <label>Text: </label>
+            <textarea cols="130" rows="20" ng-model="article.text"></textarea>      
+        </div>
+
+        <button ng-click="$ctrl.updateArticle(article)">Update</button>
+    </li>
+</ul>
