@@ -67,14 +67,26 @@
                 </select>
                  
                 <h4>Items</h4>
-                <!--<table>
+                <table>
                     <tr><th>item</th><th>qty.</th><th>subtotal</th></tr>
-                    <tr ng-repeat="item in order.items">
-                        <td><input type="text" ng-model="item.name" placeholder="{{item.name}}"></td>
+                    <tr ng-repeat="item in $ctrl.orderToUpdate.items">
+                        <td><input type="text" ng-model="item.name" ng-value="item.name" placeholder="{{item.name}}"></td>
                         <td><input type="text" ng-value="item.quantity" ng-model="item.quantity" placeholder="{{item.quantity}}"></td>
-                        <td ng-value="item.quantity * item.price" ng-model="item.total">${{item.quantity * item.price}}.00</td>
+                        <td ng-value="item.quantity * item.price" ng-model="item.subTotal">${{item.quantity * item.price}}.00</td>
                     </tr>
-                </table>-->
+                </table>
+                <table>
+                    <tr><th>item</th><th>price</th><th>qty.</th><th>subtotal</th></tr>
+                    <tr>
+                        <td><input type="text" placeholder="new item name" ng-model="newItem.name"></td>
+                        <td><input type="text" placeholder="price" ng-init="newItem.price = 0" ng-model="newItem.price"></td>
+                        <td><input type="text" placeholder="qty" ng-init="newItem.quantity = 0" ng-model="newItem.quantity"></td>
+                        <td>subtotal: ${{newItem.price * newItem.quantity}}.00</td>
+                    </tr>
+                    <tr>
+                        <button ng-click="$ctrl.addItem(newItem)">add item</button>
+                    </tr>
+                </table>
             </form>
             <button ng-click="$ctrl.updateOrder($ctrl.orderToUpdate)">update</button>
             <button ng-click="$ctrl.setOrderToUpdate(null)">cancel</button>

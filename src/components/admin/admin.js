@@ -34,13 +34,29 @@ function controller(authService, orderService) {
             });
     };
     this.updateOrder = update => {
+        this.calcNewTotal(update);
         console.log('update function called', update);
         orderService.updateOrder(update._id, update, this.token)
-            .then(data => console.log(data));
+            .then(data => {
+                console.log(data);
+                this.setOrderToUpdate(null);
+            });
     };
 
     this.setOrderToUpdate = order => {
         this.orderToUpdate = order;
-        console.log(this.orderToUpdate);
     };
+
+    this.calcNewTotal = order => {
+        order.total = 0;
+        order.items.forEach(item => {
+            item.subTotal = item.quantity * item.price;
+            order.total += item.subTotal;
+        });
+    };
+    this.addItem = newItem => {
+        this.orderToUpdate.items.push(newItem);
+        newItem = {};
+        console.log(this.orderToUpdate.items);
+    }
 }
