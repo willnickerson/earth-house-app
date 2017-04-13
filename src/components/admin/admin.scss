@@ -1,0 +1,21 @@
+@import 'colors';
+
+.admin-header {
+    height: 170px;
+    background-color: $black;
+}
+
+.admin-body {
+    min-height: 85vh;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.admin-nav {
+    a {
+        color: blue;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+}

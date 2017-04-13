@@ -33,6 +33,7 @@ app.value('apiUrl', url);
 app.config(routes);
 app.config(function($windowProvider) {
     const $window = $windowProvider.$get();
+    //TODO: put in drew's key
     $window.Stripe.setPublishableKey('pk_test_HS62OmJo7gCzA7fcN2ObL2rF');
 });
 
