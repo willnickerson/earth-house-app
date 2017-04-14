@@ -29,5 +29,20 @@
         </div>
 
         <button ng-click="$ctrl.updateArticle(article)">Update</button>
+        <button ng-click="$ctrl.deleteArticle(article)">Delete</button>
+        <hr>
     </li>
 </ul>
+
+<div class="add-article">
+    <h2>New Article</h2>
+    <form ng-submit="$ctrl.addArticle(newArticle)">
+        <label>Title: </label>
+        <input type="text" ng-model="newArticle.title">
+        <label>Image: </label>
+        <input type="text" ng-model="newArticle.imgUrl">
+        <label>Text: </label>
+        <textarea cols="130" rows="20" ng-model="newArticle.text"></textarea>
+        <button type="submit">Add article</button>
+    </form>
+</div>

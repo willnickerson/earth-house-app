@@ -16,12 +16,18 @@ export default function aboutService($http, apiUrl) {
                     return res.data;
                 });
         },
-        createArticle(article) {
-            return $http.post(`${apiUrl}/about-articles`, article)
-                .then(res => {
-                    console.log(res.date);
-                    return res.data;
-                });
+        createArticle(article, token) {
+            return $http({
+                method: 'POST',
+                url: `${apiUrl}/about-articles`,
+                data:  article,
+                headers: {
+                    'Authorization': token
+                }
+            }).then(res => {
+                console.log(res.date);
+                return res.data;
+            });
         },
         updateArticle(article, token) {
             return $http({
@@ -35,18 +41,15 @@ export default function aboutService($http, apiUrl) {
                 console.log(res.data);
                 return res.data;
             });
+        },
+        deleteArticle(article, token) {
+            return $http({
+                method: 'DELETE',
+                url: `${apiUrl}/about-articles/${article._id}`,
+                headers: {
+                    'Authorization': token
+                }
+            });
         }
     };
 }
-
-
-// updateOrder(id, order, token) {
-//     return $http({
-//         method: 'PUT',
-//         url: `${apiUrl}/orders/${id}`,
-//         headers: {
-//             'Authorization': token
-//         },
-//         data: order
-//     }).then(res => res.data);
-// }
