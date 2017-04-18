@@ -40,20 +40,13 @@ function controller(aboutService) {
                         this.aboutArticles[newPosition + 1 + i].position += 1;
                         aboutService.updateArticle(this.aboutArticles[newPosition + 1 + i], this.token);
                     }
-                    // this.aboutArticles.forEach(article => {
-                    //     article.position = this.aboutArticles.indexOf(article);
-                    //     aboutService.updateArticle(article);
-                    // });
                 } else {
                     for(i = currIndex + 1; i <= newPosition; i++) {
-                        console.log(i);
                         this.aboutArticles[i].position += -1;
                         aboutService.updateArticle(this.aboutArticles[i], this.token);
                     }
                     this.aboutArticles.splice(newPosition, 0, article);
                 }
-                // console.log(this.aboutArticles);
-                // this.getArticles();
             });
     };
 
