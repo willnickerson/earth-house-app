@@ -32,18 +32,28 @@ function controller(aboutService) {
         aboutService.updateArticle(article, this.token)
             .then(updated => {
                 const newPosition = updated.position;
-                const index = this.aboutArticles.indexOf(article);
-                console.log(index);
-                const otherArticles = this.aboutArticles.splice(index, 1);
-                otherArticles.forEach(otherArticle => {
-                    if(otherArticle.position === newPosition) {
-                        const startIndex = otherArticles.indexOf(otherArticle);
-                        for(var i = startIndex; i < otherArticles.length; i++) {
-                            this.aboutArticles[i].position += 1;
-                        }
+                const currIndex = this.aboutArticles.indexOf(article);
+                this.aboutArticles.splice(currIndex, 1);
+                if(currIndex >= newPosition) {
+                    this.aboutArticles.splice(newPosition, 0, article);
+                    for(var i = 0; i < currIndex - newPosition; i++) {
+                        this.aboutArticles[newPosition + 1 + i].position += 1;
+                        aboutService.updateArticle(this.aboutArticles[newPosition + 1 + i], this.token);
                     }
-                });
-                this.getArticles();
+                    // this.aboutArticles.forEach(article => {
+                    //     article.position = this.aboutArticles.indexOf(article);
+                    //     aboutService.updateArticle(article);
+                    // });
+                } else {
+                    for(i = currIndex + 1; i <= newPosition; i++) {
+                        console.log(i);
+                        this.aboutArticles[i].position += -1;
+                        aboutService.updateArticle(this.aboutArticles[i], this.token);
+                    }
+                    this.aboutArticles.splice(newPosition, 0, article);
+                }
+                // console.log(this.aboutArticles);
+                // this.getArticles();
             });
     };
 
