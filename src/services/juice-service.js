@@ -19,6 +19,15 @@ export default function juiceService($http, apiUrl) {
                 },
                 data: juice
             }).then(res => res.data);
+        },
+        delete(id, token) {
+            return $http({
+                method: 'DELETE',
+                url: `${apiUrl}/juices/${id}`,
+                headers: {
+                    'Authorization': token
+                }
+            }).then(res => res.data);
         }
     };
 }
