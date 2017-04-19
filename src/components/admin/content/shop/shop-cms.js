@@ -49,6 +49,12 @@ function controller(juiceService, ingredientService) {
         console.log('update juice: ', juice);
     };
 
+    this.removeIngredient = (juice, ingredient) => {
+        const index = juice.ingredients.indexOf(ingredient);
+        juice.ingredients.splice(index, 1);
+        juiceService.update(juice, juice._id, this.token);
+    };
+
     this.addIngredient = (juice, newIngredient) => {
         let hasIngredient = false;
         juice.ingredients.forEach(ingredient => {

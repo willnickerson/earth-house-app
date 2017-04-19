@@ -16,6 +16,7 @@
         <ul>
             <li ng-repeat="ingredient in juice.ingredients">
                 {{ingredient.name}}
+                <button ng-click="$ctrl.removeIngredient(juice, ingredient)">remove</button>
             </li>
         </ul>
         <select ng-model="ingredientToAdd" ng-options="ingredient as ingredient.name for ingredient in $ctrl.ingredients">
@@ -24,6 +25,8 @@
         <hr>
     </li>
 </ul>
+
+
 <h2>ingredients</h2>
 <ul>
     <li ng-repeat="ingredient in $ctrl.ingredients">
