@@ -1,30 +1,55 @@
 <h1>Shop</h1>
-
+<h2>Juices</h2>
+<ul>
+    <li ng-repeat="juice in $ctrl.juices">
+        <form ng-submit="$ctrl.updateJuice(juice)">
+            <label>name: </label>
+            <input type="text" ng-model="juice.name">
+            <label>image: </label>
+            <input type="text" ng-model="juice.imgUrl">
+            <img class="thumbnail" ng-src="{{juice.imgUrl}}">
+            <label>description: </label>
+            <textarea cols="80" rows="8" ng-model="juice.description"></textarea>
+            <button type="submit">update</button>
+        </form>
+        <h3>ingredients</h3>
+        <ul>
+            <li ng-repeat="ingredient in juice.ingredients">
+                {{ingredient.name}}
+            </li>
+        </ul>
+        <select ng-model="ingredientToAdd" ng-options="ingredient as ingredient.name for ingredient in $ctrl.ingredients">
+        </select>
+        <button ng-click="$ctrl.addIngredient(juice, ingredientToAdd)">Add ingredient</button>
+        <hr>
+    </li>
+</ul>
 <h2>ingredients</h2>
 <ul>
     <li ng-repeat="ingredient in $ctrl.ingredients">
-        <form ng-submit="$ctrl.update(ingredient)">
+        <form ng-submit="$ctrl.updateIngredient(ingredient)">
             <label>name: </label>
             <input type="text" ng-model="ingredient.name">
             <label>image: </label>
             <input type="text" ng-model="ingredient.imgUrl">
             <img class="thumbnail" ng-src="{{ingredient.imgUrl}}">
-            <label>description</label>
-            <textarea cols="80" rows="15" ng-model="ingredient.description"></textarea>
+            <label>description: </label>
+            <textarea cols="80" rows="8" ng-model="ingredient.description"></textarea>
             <button type="submit">update</button>
         </form>
-        <button ng-click="$ctrl.delete(ingredient)">delete</button>
+        <button ng-click="$ctrl.deleteIngredient(ingredient)">delete</button>
+        <hr>
     </li>
 </ul>
 
 <h2>Add new</h2>
-<form ng-submit="$ctrl.add(new)">
+<form ng-submit="$ctrl.createIngredient()">
     <label>Name: </label>
-    <input type="text" ng-model="new.name">
+    <input type="text" ng-model="$ctrl.newIngredient.name">
     <label>Image url: </label>
-    <input type="text" ng-model="new.imgUrl">
-    <img class="thumbnail" src="{{new.imgUrl}}">
-    <label>Description: </label>
-    <textarea cols="80" rows="15" ng-model="new.description"></textarea>
+    <input type="text" ng-model="$ctrl.newIngredient.imgUrl">
+    <img class="thumbnail" src="{{$ctrl.newIngredient.imgUrl}}">
+    <label>description: </label>
+    <textarea cols="80" rows="15" ng-model="$ctrl.newIngredient.description"></textarea>
     <button type="submit">Add</button>
 </form>
