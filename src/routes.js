@@ -54,6 +54,11 @@ export default function routes($stateProvider, $urlRouterProvider) {
     $stateProvider.state({
         name: 'about',
         url: '/about',
+        resolve: {
+            articles: ['aboutService', aboutService => {
+                return aboutService.getVisible();
+            }]
+        },
         component: 'about'
     });
 

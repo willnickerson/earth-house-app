@@ -8,11 +8,18 @@
 
 .container {
     width: 80%;
-    margin: 5% auto 5% auto;
+    margin: 5% auto 10% auto;
     img {
         margin-top: 20px;
         z-index: -1;
         width: 100%
+    }
+
+    section {
+        img {
+            max-width: 90%;
+            margin: 20px auto;
+        }
     }
 
     h1 {
@@ -25,6 +32,14 @@
         margin-bottom: 2%;
         font-family: $decorative-font;
         font-size: 3em;
+    }
+
+    h3 {
+        font-family: $decorative-font;
+        width: 90%;
+        margin: 20px auto;
+        font-size: 2.2em;
+        color: #AAA;
     }
 
     p {

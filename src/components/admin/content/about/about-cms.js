@@ -20,12 +20,18 @@ function controller(aboutService) {
     this.getArticles = () => {
         aboutService.getAll()
             .then(articles => {
-                articles.sort((curr, next) => {
-                    return curr.position - next.position;
-                });
+                // articles.sort((curr, next) => {
+                //     return curr.position - next.position;
+                // });
+                order(articles);
                 this.aboutArticles = articles;
                 console.log('in about cms', this.aboutArticles);
             });
+    };
+
+    const order = function(arr) {
+        console.log(arr);
+        arr.sort((curr, next) => curr.position - next.position);
     };
 
     this.updateArticle = article => {   
@@ -33,7 +39,9 @@ function controller(aboutService) {
             .then(updated => {
                 const newPosition = updated.position;
                 const currIndex = this.aboutArticles.indexOf(article);
+
                 this.aboutArticles.splice(currIndex, 1);
+
                 if(currIndex >= newPosition) {
                     this.aboutArticles.splice(newPosition, 0, article);
                     for(var i = 0; i < currIndex - newPosition; i++) {
@@ -43,9 +51,11 @@ function controller(aboutService) {
                 } else {
                     for(i = currIndex + 1; i <= newPosition; i++) {
                         this.aboutArticles[i].position += -1;
+                        this.aboutArticles[i - 1] = this.aboutArticles[i];
                         aboutService.updateArticle(this.aboutArticles[i], this.token);
                     }
                     this.aboutArticles.splice(newPosition, 0, article);
+                    order(this.aboutArticles);
                 }
             });
     };
