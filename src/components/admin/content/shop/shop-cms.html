@@ -1,8 +1,30 @@
 <h1>Shop</h1>
 
+<h2>ingredients</h2>
 <ul>
     <li ng-repeat="ingredient in $ctrl.ingredients">
-        <h3>{{ingredient.name}}</h3>
+        <form ng-submit="$ctrl.update(ingredient)">
+            <label>name: </label>
+            <input type="text" ng-model="ingredient.name">
+            <label>image: </label>
+            <input type="text" ng-model="ingredient.imgUrl">
+            <img class="thumbnail" ng-src="{{ingredient.imgUrl}}">
+            <label>description</label>
+            <textarea cols="80" rows="15" ng-model="ingredient.description"></textarea>
+            <button type="submit">update</button>
+        </form>
         <button ng-click="$ctrl.delete(ingredient)">delete</button>
     </li>
 </ul>
+
+<h2>Add new</h2>
+<form ng-submit="$ctrl.add(new)">
+    <label>Name: </label>
+    <input type="text" ng-model="new.name">
+    <label>Image url: </label>
+    <input type="text" ng-model="new.imgUrl">
+    <img class="thumbnail" src="{{new.imgUrl}}">
+    <label>Description: </label>
+    <textarea cols="80" rows="15" ng-model="new.description"></textarea>
+    <button type="submit">Add</button>
+</form>
