@@ -49,6 +49,15 @@ function controller(juiceService, ingredientService) {
         console.log('update juice: ', juice);
     };
 
+    this.createJuice = () => {
+        juiceService.create(this.newJuice, this.token)
+            .then(saved => {
+                this.juices.push(saved);
+                this.newJuice = {};
+                // alphabetize(this.juices);
+            });
+    };
+
     this.removeIngredient = (juice, ingredient) => {
         const index = juice.ingredients.indexOf(ingredient);
         juice.ingredients.splice(index, 1);
@@ -66,6 +75,15 @@ function controller(juiceService, ingredientService) {
         } else {
             console.log('already has ingredient', newIngredient.name);
         }
+    };
+
+    this.deleteJuice = juice => {
+        juiceService.delete(juice._id, this.token)
+            .then(deleted => {
+                const index = this.juices.indexOf(juice);
+                this.juices.splice(index, 1);
+                console.log('has been deleted', deleted);
+            });
     };
 
     this.deleteIngredient = ingredient => {

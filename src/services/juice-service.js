@@ -20,6 +20,17 @@ export default function juiceService($http, apiUrl) {
                 data: juice
             }).then(res => res.data);
         },
+        create(juice, token) {
+            return $http({
+                method: 'POST',
+                url: `${apiUrl}/juices`,
+                headers: {
+                    'Authorization': token
+                },
+                data: juice
+            }).then(res => res.data);
+        },
+       
         delete(id, token) {
             return $http({
                 method: 'DELETE',
