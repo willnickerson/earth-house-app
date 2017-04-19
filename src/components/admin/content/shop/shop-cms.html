@@ -1,1 +1,8 @@
 <h1>Shop</h1>
+
+<ul>
+    <li ng-repeat="ingredient in $ctrl.ingredients">
+        <h3>{{ingredient.name}}</h3>
+        <button ng-click="$ctrl.delete(ingredient)">delete</button>
+    </li>
+</ul>
