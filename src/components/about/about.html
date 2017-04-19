@@ -5,7 +5,15 @@
 
     <div class="about-text">
         <img class="behind-text" src="http://res.cloudinary.com/lejipni8p/image/upload/c_crop,g_south,h_1100,w_4096/v1482867033/earth%20house/top-cut_m3mrs8.jpg">
-        <section>
+        <section ng-repeat="article in $ctrl.articles">
+            <h2>{{article.title}}</h2>
+            <div data-ng-bind-html="article.text">
+                {{article.text}}
+            </div>
+            <img ng-if="article.imgUrl !== '#'" src="{{article.imgUrl}}">
+            <hr class="section-divider">
+        </section>
+        <!--<section>
             <h2>Our Juices</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates pariatur distinctio cumque voluptatum? Eaque nihil, quibusdam laudantium sint quas, quos aliquam inventore ducimus debitis itaque mollitia dolorum impedit vero ad!
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque aliquam quod tempora dolorem, cum. Quidem mollitia repellat quasi iure. Dolorem, quo, laudantium? Culpa quisquam numquam, rem in est nostrum, error.
@@ -13,9 +21,9 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates pariatur distinctio cumque voluptatum? Eaque nihil, quibusdam laudantium sint quas, quos aliquam inventore ducimus debitis itaque mollitia dolorum impedit vero ad!
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque aliquam quod tempora dolorem, cum. Quidem mollitia repellat quasi iure. Dolorem, quo, laudantium? Culpa quisquam numquam, rem in est nostrum, error.
             </p>
+            <hr class="section-divider">
         </section>
 
-        <hr class="section-divider">
 
         <section>
             <h2>Our Mission</h2>
@@ -27,7 +35,7 @@
         <section>
             <h2>Our Customers</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates pariatur distinctio cumque voluptatum? Eaque nihil, quibusdam laudantium sint quas, quos aliquam inventore ducimus debitis itaque mollitia dolorum impedit vero ad!</p>
-        </section>
+        </section>-->
     </div>
 
 </div>

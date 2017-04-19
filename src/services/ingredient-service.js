@@ -1,40 +1,39 @@
-juiceService.$inject = ['$http', 'apiUrl'];
+ingredientService.$inject = ['$http', 'apiUrl'];
 
-export default function juiceService($http, apiUrl) {
+export default function ingredientService($http, apiUrl) {
     return {
         getAll() {
-            return $http.get(`${apiUrl}/juices`)
+            return $http.get(`${apiUrl}/ingredients`)
                 .then(res => res.data);
         },
         get(id) {
-            return $http.get(`${apiUrl}/juices/${id}`)
+            return $http.get(`${apiUrl}/ingredients/${id}`)
                 .then(res => res.data);
         },
-        update(juice, id, token) {
-            return $http({
-                method: 'PUT',
-                url: `${apiUrl}/juices/${id}`,
-                headers: {
-                    'Authorization': token
-                },
-                data: juice
-            }).then(res => res.data);
-        },
-        create(juice, token) {
+        create(ingredient, token) {
             return $http({
                 method: 'POST',
-                url: `${apiUrl}/juices`,
+                url: `${apiUrl}/ingredients`,
                 headers: {
                     'Authorization': token
                 },
-                data: juice
+                data: ingredient   
             }).then(res => res.data);
         },
-       
+        update(ingredient, id, token) {
+            return $http({
+                method: 'PUT',
+                url: `${apiUrl}/ingredients/${id}`,
+                headers: {
+                    'Authorization': token
+                },
+                data: ingredient
+            }).then(res => res.data);
+        },
         delete(id, token) {
             return $http({
                 method: 'DELETE',
-                url: `${apiUrl}/juices/${id}`,
+                url: `${apiUrl}/ingredients/${id}`,
                 headers: {
                     'Authorization': token
                 }

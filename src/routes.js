@@ -54,6 +54,11 @@ export default function routes($stateProvider, $urlRouterProvider) {
     $stateProvider.state({
         name: 'about',
         url: '/about',
+        resolve: {
+            articles: ['aboutService', aboutService => {
+                return aboutService.getVisible();
+            }]
+        },
         component: 'about'
     });
 
@@ -99,6 +104,16 @@ export default function routes($stateProvider, $urlRouterProvider) {
         views: {
             main: {
                 component: 'orders'
+            }
+        }
+    });
+
+    $stateProvider.state({
+        name: 'admin.content',
+        url: '/content',
+        views: {
+            main: {
+                component: 'content'
             }
         }
     });
