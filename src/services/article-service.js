@@ -4,12 +4,19 @@ export default function articleService($http, apiUrl) {
     return {
         getAll() {
             return $http.get(`${apiUrl}/articles`)
-                .then(res => {
-                    console.log('in about service', res.data);
-                    return res.data;
-                });
+                .then(res => res.data);
         },
-        updateArticle(article, token) {
+        create(article, token) {
+            return $http({
+                method: 'POST',
+                url: `${apiUrl}/articles`,
+                headers: {
+                    'Authorization': token
+                },
+                data: article
+            }).then(res => res.data);
+        },
+        update(article, token) {
             return $http({
                 method: 'PUT',
                 url: `${apiUrl}/articles/${article._id}`,
@@ -17,10 +24,7 @@ export default function articleService($http, apiUrl) {
                     'Authorization': token
                 },
                 data: article
-            }).then(res => {
-                console.log(res.data);
-                return res.data;
-            });
+            }).then(res => res.data);
         }
     };
 }

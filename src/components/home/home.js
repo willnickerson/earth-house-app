@@ -3,14 +3,9 @@ import template from './home.html';
 export default {
     template,
     bindings: {
-        slides: '<'
-    },
-    controller
+        slides: '<',
+        articles: '<'
+    }
 };
 
-function controller() {
-    this.$onInit = () => {
-        console.log(this);
-    };
-}
 

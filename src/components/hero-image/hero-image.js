@@ -40,12 +40,10 @@ function controller($window, $interval) {
             do {
                 const index = Math.floor(Math.random() * this.slides.length);
                 if(this.slidesVisible.indexOf(this.slides[index]) === -1) {
-                    console.log('in if: ', index);
                     this.slidesVisible.push(this.slides[index]);
                 }
             } while (this.slidesVisible.length < 3);
         }
-        console.log('slides: ', this.slidesVisible);
         this.currIndex = 0;
         this.currText = this.slidesVisible[0].text;    
     };

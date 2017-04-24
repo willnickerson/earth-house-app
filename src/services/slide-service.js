@@ -8,10 +8,7 @@ export default function slideService($http, apiUrl) {
         },
         getVisible() {
             return $http.get(`${apiUrl}/slides?show=true`)
-                .then(res => {
-                    console.log(res.data);
-                    return res.data;
-                });
+                .then(res => res.data);
         },
         create(slide, token) {
             return $http({

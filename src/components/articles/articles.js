@@ -3,6 +3,9 @@ import styles from './articles.scss';
 
 export default {
     template,
+    bindings: {
+        articles: '<'
+    },
     controller
 };
 

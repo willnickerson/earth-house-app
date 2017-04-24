@@ -12,6 +12,9 @@ export default function routes($stateProvider, $urlRouterProvider) {
         resolve: {
             slides: ['slideService', slideService => {
                 return slideService.getVisible();
+            }],
+            articles: ['articleService', articleService => {
+                return articleService.getAll();
             }]
         },
         component: 'home'
