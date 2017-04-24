@@ -6,6 +6,13 @@ export default function slideService($http, apiUrl) {
             return $http.get(`${apiUrl}/slides`)
                 .then(res => res.data);
         },
+        getVisible() {
+            return $http.get(`${apiUrl}/slides?show=true`)
+                .then(res => {
+                    console.log(res.data);
+                    return res.data;
+                });
+        },
         create(slide, token) {
             return $http({
                 method: 'POST',
