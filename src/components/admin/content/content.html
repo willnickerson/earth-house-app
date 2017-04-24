@@ -15,7 +15,7 @@
     </li>
 </ul>
 
-<image-slider-cms ng-if="$ctrl.contentToManage === 'slider'"></image-slider-cms>
-<articles-cms ng-if="$ctrl.contentToManage === 'articles'"></articles-cms>
+<image-slider-cms ng-if="$ctrl.contentToManage === 'slider'" token="$ctrl.token"></image-slider-cms>
+<articles-cms ng-if="$ctrl.contentToManage === 'articles'" token="$ctrl.token"></articles-cms>
 <shop-cms ng-if="$ctrl.contentToManage === 'shop'" token="$ctrl.token"></shop-cms>
 <about-cms ng-if="$ctrl.contentToManage === 'about'"  aboutArticles="$ctrl.aboutArticles" token="$ctrl.token"></about-cms>

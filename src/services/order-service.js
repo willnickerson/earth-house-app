@@ -10,7 +10,6 @@ export default function orderService($http, apiUrl) {
                     'Authorization': token
                 }
             }).then(res => {
-                console.log('in order service', res.data);
                 return res.data;
             });
         },

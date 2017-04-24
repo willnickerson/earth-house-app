@@ -9,6 +9,11 @@ export default function routes($stateProvider, $urlRouterProvider) {
     $stateProvider.state({
         name: 'home',
         url: '/home',
+        resolve: {
+            slides: ['slideService', slideService => {
+                return slideService.getAll();
+            }]
+        },
         component: 'home'
     });
 

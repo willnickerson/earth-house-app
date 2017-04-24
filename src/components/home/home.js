@@ -2,6 +2,15 @@ import template from './home.html';
 
 export default {
     template,
-    controller() {}
+    bindings: {
+        slides: '<'
+    },
+    controller
 };
+
+function controller() {
+    this.$onInit = () => {
+        console.log(this);
+    };
+}
 
