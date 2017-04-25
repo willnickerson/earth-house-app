@@ -1,0 +1,21 @@
+<h2>Pickup Locations</h2>
+<table ng-class="$ctrl.styles.table">
+    <tr>
+        <th>name: </th>
+        <th>start date: </th>
+        <th>end date: </th>
+        <th>day: </th>
+        <th>start time: </th>
+        <th>end time: </th>
+
+    </tr>
+    <tr ng-repeat="pickup in $ctrl.pickups">
+        <td>{{pickup.name}}</td>
+        <td>{{pickup.start}}</td>
+        <td>{{pickup.end}}</td>
+        <td>{{pickup.day}}</td>
+        <td>{{pickup.startTime}}:00</td>
+        <td>{{pickup.endTime}}:00</td>
+    </tr>
+</table>
+

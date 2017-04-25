@@ -16,9 +16,10 @@ function controller($state) {
         if(!this.token) $state.go('admin.login');
     };
     
-    this.contentToManage = 'slider';
+    this.contentToManage = 'pickups';
 
     this.setCms = content => {
         this.contentToManage = content;
+        console.log('content set to: ', this.contentToManage);
     };
 }
