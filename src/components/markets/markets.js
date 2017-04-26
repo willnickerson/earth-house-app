@@ -6,14 +6,21 @@ export default({
     controller
 });
 
-controller.$inject = ['pickupService'];
-function controller(pickupService) {
+controller.$inject = ['pickupService', 'dateService'];
+function controller(pickupService, dateService) {
     this.styles = styles;
-
+    this.markets = [];
     this.$onInit = () => {
         pickupService.getVisible()
             .then(pickups => {
-                this.markets = pickups;
+                pickups.forEach(market => {
+                    if(market.isFarmersMarket) {
+                        market.start = dateService.dateStringToObj(new Date(market.start).toDateString());
+                        market.end = dateService.dateStringToObj(new Date(market.end).toDateString());
+                        this.markets.push(market);
+                    }
+                });
+                dateService.alphabetize(this.markets);
             });
     };
 }

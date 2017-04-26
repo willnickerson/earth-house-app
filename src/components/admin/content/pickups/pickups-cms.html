@@ -13,7 +13,7 @@
 
     </tr>
     <tr ng-repeat="pickup in $ctrl.pickups">
-        <td>{{pickup.name}}</td>
+        <td><input type="text" ng-model="pickup.name"></td>
         <td>
             <select ng-model="pickup.start.month" ng-options="month for month in $ctrl.months">
                 <option ng-repeat="month in $ctrl.months" ng-value="{{month}}">{{month}}</option>

@@ -7,11 +7,21 @@
     width: 85%;
     margin: 0 auto;
     margin-top: 5%;
-    margin-bottom: 5%;
+    margin-bottom: 100px;
+    font-size: 1.4em;
     ul, li, p {
         margin-left: 0;
         margin-right: 0;
         font-family: $main-font;
+    }
+    .divider {
+        border-bottom: 1px solid #777;
+        width: 20%;
+        margin: 50px auto;
+    }
+    p {
+        font-size: .7em;
+        color: #777;
     }
     ul {
         text-align: center;
@@ -20,7 +30,7 @@
         margin: 0 auto;
     }
     a {
-        color: black;
+        color: #777;
         transition: all .3s ease;
     }
     a:hover {

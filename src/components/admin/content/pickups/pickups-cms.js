@@ -9,9 +9,9 @@ export default({
     controller
 });
 
-controller.$inject = ['pickupService'];
+controller.$inject = ['pickupService', 'dateService'];
 
-function controller(pickupService) {
+function controller(pickupService, dateService) {
     this.styles = styles;
     this.days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     this.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -21,7 +21,7 @@ function controller(pickupService) {
         this.hours = [];
 
         for(var i = 0; i < 24; i++) {
-            this.hours.push(hourValuetoObj(i));
+            this.hours.push(dateService.hourValuetoObj(i));
         }
 
         pickupService.getAll()
@@ -32,13 +32,14 @@ function controller(pickupService) {
                     const startDate = new Date(pickup.start).toDateString();
                     const endDate = new Date(pickup.end).toDateString();
 
-                    pickup.start = dateStringToObj(startDate);
-                    pickup.end = dateStringToObj(endDate);
-                    pickup.startTime = hourValuetoObj(pickup.startTime);
-                    pickup.endTime = hourValuetoObj(pickup.endTime);
+                    pickup.start = dateService.dateStringToObj(startDate);
+                    pickup.end = dateService.dateStringToObj(endDate);
+                    pickup.startTime = dateService.hourValuetoObj(pickup.startTime);
+                    pickup.endTime = dateService.hourValuetoObj(pickup.endTime);
 
                     this.pickups.push(pickup);
                 });
+                dateService.alphabetize(this.pickups);
             });
     };
 
@@ -49,8 +50,8 @@ function controller(pickupService) {
             formatedPickup[key] = pickup[key];
         });
 
-        formatedPickup.start = new Date(dateObjToString(pickup.start));
-        formatedPickup.end = new Date(dateObjToString(pickup.end));
+        formatedPickup.start = new Date(dateService.dateObjToString(pickup.start));
+        formatedPickup.end = new Date(dateService.dateObjToString(pickup.end));
         formatedPickup.startTime = pickup.startTime.value;
         formatedPickup.endTime = pickup.endTime.value;
 
@@ -58,14 +59,15 @@ function controller(pickupService) {
             .then(updated => console.log(updated));
     };
     this.add = () => {
-        this.new.start = dateObjToString(this.new.start);
-        this.new.end = dateObjToString(this.new.end);
+        this.new.start = dateService.dateObjToString(this.new.start);
+        this.new.end = dateService.dateObjToString(this.new.end);
         this.new.day = this.new.start.split(' ')[0];
         pickupService.create(this.new, this.token)
             .then(saved => {
                 saved.start = new Date(saved.start).toDateString();
                 saved.end = new Date(saved.end).toDateString();
                 this.pickups.push(saved);
+                dateService.alphabetize(this.pickups);
                 this.new = {};
             });
     };
@@ -76,46 +78,5 @@ function controller(pickupService) {
             .then(() => {
                 this.pickups.splice(index, 1);
             });
-    };
-
-    const dateObjToString = date => {
-        const dateString = new Date(`${date.month} ${date.date}, ${date.year}`).toDateString();
-        return dateString;
-    };
-
-    const dateStringToObj = dateString => {
-        const arr = dateString.split(' ');
-        return {
-            day: arr[0],
-            month: arr[1],
-            date: arr[2],
-            year: arr [3]
-        };
-    };
-
-    const hourValuetoObj = i => {
-        let hour = {};
-        if(i > 0 & i < 12) {
-            hour = {
-                time: i + ':00am',
-                value: i
-            };
-        } else if(i === 12) {
-            hour = {
-                time: i  + ':00pm',
-                value: i
-            };
-        } else if(i > 12) {
-            hour = {
-                time: i  - 12+ ':00pm',
-                value: i
-            };
-        } else {
-            hour = {
-                time: '12:00am',
-                value: i
-            };
-        }
-        return hour;
     };
 }
