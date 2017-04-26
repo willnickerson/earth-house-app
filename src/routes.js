@@ -126,5 +126,11 @@ export default function routes($stateProvider, $urlRouterProvider) {
         }
     });
 
+    $stateProvider.state({
+        name: 'markets',
+        url: '/farmers-markets',
+        component: 'markets'
+    });
+    
     $urlRouterProvider.otherwise('/home');
 }
