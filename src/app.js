@@ -38,9 +38,7 @@ app.config(function($windowProvider) {
 });
 
 app.run(($rootScope, $state, $transitions, $anchorScroll) => {
-    console.log('in run block');
     $transitions.onSuccess({to: '*'}, () => {
-        console.log('state changing');
         $anchorScroll();
     });
 });

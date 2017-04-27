@@ -1,21 +1,19 @@
 <div class="slider">
-    <div ng-repeat="slide in $ctrl.slides">
+    <div ng-repeat="slide in $ctrl.slidesVisible">
         <img ng-hide="!$ctrl.isCurrIndex($index)"
             ng-src="{{slide.imgUrl}}"
              class="slide-image slide-animation ">
          <div ng-if="$ctrl.isCurrIndex($index)"
             class="slide-text fade">
-            <p><a ui-sref="shop">{{$ctrl.currText}}</a></p>
+            <p ng-if="slide.link !== '#'"><a href="{{slide.link}}">{{$ctrl.currText}}</a></p>
+            <p ng-if="slide.link === '#'"><a ui-sref="shop">{{$ctrl.currText}}</a></p>
          </div>
     </div>
-
-    <!--<a class="arrow next" href="#" ng-click="$ctrl.nextSlide()"><span class="icon-arrow-right2"></span></a>
-    <a class="arrow prev" href="#" ng-click="$ctrl.prevSlide()"><span class="icon-arrow-left2"></span></a>-->
-    
+   
     <nav class="slider-nav">
         <div class="wrapper">
             <ul class="dots">
-                <li class="dot" ng-repeat="slide in $ctrl.slides">
+                <li class="dot" ng-repeat="slide in $ctrl.slidesVisible">
                     <a href="#" 
                         ng-class="{'active': $ctrl.isCurrIndex($index)}"
                         ng-click="$ctrl.setCurrIndex($index)"></a>

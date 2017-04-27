@@ -10,9 +10,9 @@ export default {
     controller
 };
 
-controller.$inject = ['paymentService', '$scope', '$state'];
+controller.$inject = ['paymentService', '$scope', '$state', 'pickupService', 'dateService', 'orderPickupService'];
 
-function controller(paymentService, $scope, $state) {
+function controller(paymentService, $scope, $state, pickupService, dateService, orderPickupService) {
     this.styles = styles;
     this.address = {
         firstName: null,
@@ -40,6 +40,28 @@ function controller(paymentService, $scope, $state) {
     this.$onInit = () => {
         this.updateTotals();
         if(!this.cart.items.length) this.cartEmpty = true;
+        
+        pickupService.getVisible()
+            .then(pickups => {
+                dateService.alphabetize(pickups);
+                this.pickups = pickups;
+            });
+    };
+
+    this.confirmPickup = () => {
+        const currentTime = Date.now();
+        this.timeLimit = currentTime + 1000 * 60 * 60 * 48; //48 hours from the current time;
+        for(var i = 0; i < 8; i++) {
+            const date = new Date(3600000 * 24 * i + this.timeLimit);
+            const day = date.toDateString().split(' ')[0];
+            if(day === this.pickup.day) {
+                i = 8;
+                this.pickupDate = date;
+            }
+        }
+        this.pickup.startPretty = dateService.hourValuetoObj(this.pickup.startTime).time;
+        this.pickup.endPretty = dateService.hourValuetoObj(this.pickup.endTime).time;
+        console.log(this.pickupDate);
     };
 
     this.updateTotals = function() {
@@ -70,7 +92,6 @@ function controller(paymentService, $scope, $state) {
 
     //for browsers that do not support the form require attribute
     this.checkAddress = () => {
-        console.log(this.address);
         let valid = true;
         Object.keys(this.address).forEach(key => {
             if(key !== 'line2' && !this.address[key]) {
@@ -82,14 +103,17 @@ function controller(paymentService, $scope, $state) {
     };
 
     this.showPaymentDiv = () => {
-        if(!this.checkAddress()) {
-            this.invalidAddress = true;
-            return;
+        if(this.orderType === 'delivery') {
+            if(!this.checkAddress()) {
+                this.invalidAddress = true;
+                return;
+            }
         }
-        if(this.address.email === this.address.emailCheck) {
+        if(this.address.email === this.address.emailCheck && this.address.firstName && this.address.lastName) {
             this.showPayment = true;
             this.emailWarning = false;
-            this.showAddressForm = false; 
+            this.showAddressForm = false;
+            this.showPickupForm = false;
             this.setOrderInfo();
         }
         else {
@@ -98,44 +122,71 @@ function controller(paymentService, $scope, $state) {
     };
 
     this.setOrderInfo = () => {
+        console.log('in set info');
+        $scope.orderType = this.orderType;
         $scope.orderInfo = {
             name: this.address.firstName + ' ' + this.address.lastName,
             email: this.address.email,
-            address: {
+            items: this.cart.items,
+            total: this.total
+        };
+        if($scope.orderType === 'delivery') {
+            console.log('this is a delivery');
+            $scope.orderInfo.address = {
                 line_1: this.address.line1,
                 line_2: this.address.line2,
                 city: this.address.city,
                 state: this.address.state,
                 zip: this.address.zip
-            },
-            items: this.cart.items,
-            total: this.total
-        };
+            };
+        } 
+        if($scope.orderType === 'pickup'){
+            console.log('this is a pickup');
+            $scope.orderInfo.pickup = this.pickup._id;
+            $scope.orderInfo.pickupDate = this.pickupDate;
+        }
         $scope.resetCart = this.initializeCart;
     };
 
 
     $scope.stripeCallback = function(code, result) {
-        console.log('In stripe callback', $scope.orderInfo);
+
         if(result.error) {
             console.log('ERROR', result.error.message);
             $scope.invalidPayment = true;
             console.log($scope.invalidPayment);
         } else {
             //we need to put an order into our db and send the _id as the metadata to stripe
-            paymentService.createOrder($scope.orderInfo)
-                .then(data => {
-                    const orderId = data._id;
-                    console.log('data returned from payment service', data, orderId);
-                    const paymentInfo = {
-                        stripeToken: result.id,
-                        chargeAmount: $scope.total,
-                        description: orderId
-                    };
-                    paymentService.post(paymentInfo);
-                    localStorage.removeItem('earth-house-cart'); //eslint-disable-line
-                    $state.go('success');
-                });
+            if($scope.orderType === 'delivery') {
+                console.log('calling service to make delivery order');
+                paymentService.createOrder($scope.orderInfo)
+                    .then(data => {
+                        const orderId = data._id;
+                        const paymentInfo = {
+                            stripeToken: result.id,
+                            chargeAmount: $scope.total,
+                            description: orderId
+                        };
+                        paymentService.post(paymentInfo);
+                        localStorage.removeItem('earth-house-cart'); //eslint-disable-line
+                        $state.go('success');
+                    });
+            } else {
+                console.log('calling service to make pickup orders', $scope.orderInfo);
+                orderPickupService.create($scope.orderInfo)
+                    .then(data => {
+                        console.log(data);
+                        const orderId = data._id;
+                        const paymentInfo = {
+                            stripeToken: result.id,
+                            chargeAmount: $scope.total,
+                            description: orderId
+                        };
+                        paymentService.post(paymentInfo);
+                        localStorage.removeItem('earth-house-cart'); //eslint-disable-line
+                        $state.go('success');
+                    });
+            }
         }
     };
 

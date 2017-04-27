@@ -27,7 +27,6 @@ function controller() {
                 this.items = storedItems;
                 this.updateTotalItems();
             } else {
-                console.log('we didnt find anything');
                 this.items = [];
                 this.totalItems = 0;
             }    

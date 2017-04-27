@@ -14,6 +14,7 @@ function controller(orderService, $state) {
     this.$onInit = () => {
         if(this.token) this.getOrders();
         else $state.go('admin.login');
+        this.type = 'delivery';
     };
 
     this.getOrders = () => {

@@ -8,14 +8,14 @@ export default({
     controller
 });
 
-controller.$inject = ['juiceService','ingredientService'];
+controller.$inject = ['juiceService','ingredientService', 'dateService'];
 
-function controller(juiceService, ingredientService) {
+function controller(juiceService, ingredientService, dateService) {
     this.$onInit = () => {
         this.juices = [];
         ingredientService.getAll()
             .then(ingredients => {
-                alphabetize(ingredients);
+                dateService.alphabetize(ingredients);
                 this.ingredients = ingredients;
             });
         juiceService.getAll()
@@ -24,26 +24,13 @@ function controller(juiceService, ingredientService) {
                     juiceService.get(juice._id)
                         .then(juice => {
                             this.juices.push(juice);
-                            alphabetize(this.juices);
+                            dateService.alphabetize(this.juices);
                         });
                 });
             });
     };
 
-    const alphabetize = arr => {
-        arr.sort((curr, next) => {
-            const currName = curr.name.toUpperCase();
-            const nextName = next.name.toUpperCase();
 
-            if(currName < nextName) {
-                return -1;
-            }
-            if(currName > nextName) {
-                return 1;
-            }
-            return 0;
-        });
-    };
 
     this.updateJuice = juice => {
         console.log('update juice: ', juice);
@@ -54,7 +41,6 @@ function controller(juiceService, ingredientService) {
             .then(saved => {
                 this.juices.push(saved);
                 this.newJuice = {};
-                // alphabetize(this.juices);
             });
     };
 
@@ -101,7 +87,7 @@ function controller(juiceService, ingredientService) {
             .then(saved => {
                 this.newIngredient = {};
                 this.ingredients.push(saved);
-                alphabetize(this.ingredients);
+                dateService.alphabetize(this.ingredients);
             });
     };
 }

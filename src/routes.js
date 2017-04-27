@@ -9,6 +9,14 @@ export default function routes($stateProvider, $urlRouterProvider) {
     $stateProvider.state({
         name: 'home',
         url: '/home',
+        resolve: {
+            slides: ['slideService', slideService => {
+                return slideService.getVisible();
+            }],
+            articles: ['articleService', articleService => {
+                return articleService.getAll();
+            }]
+        },
         component: 'home'
     });
 
@@ -118,5 +126,11 @@ export default function routes($stateProvider, $urlRouterProvider) {
         }
     });
 
+    $stateProvider.state({
+        name: 'markets',
+        url: '/farmers-markets',
+        component: 'markets'
+    });
+    
     $urlRouterProvider.otherwise('/home');
 }

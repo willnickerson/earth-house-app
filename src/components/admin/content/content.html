@@ -2,7 +2,7 @@
 
 <ul>
     <li>
-        <a ng-click="$ctrl.setCms('slider')">Image Carousel</a>
+        <a ng-click="$ctrl.setCms('slider')">Image Slider</a>
     </li>
     <li>
         <a ng-click="$ctrl.setCms('articles')">Articles</a>
@@ -13,9 +13,13 @@
     <li>
         <a ng-click="$ctrl.setCms('about')">About</a>
     </li>
+    <li>
+        <a ng-click="$ctrl.setCms('pickups')">Pickups</a>
+    </li>
 </ul>
 
-<image-slider-cms ng-if="$ctrl.contentToManage === 'slider'"></image-slider-cms>
-<articles-cms ng-if="$ctrl.contentToManage === 'articles'"></articles-cms>
+<image-slider-cms ng-if="$ctrl.contentToManage === 'slider'" token="$ctrl.token"></image-slider-cms>
+<articles-cms ng-if="$ctrl.contentToManage === 'articles'" token="$ctrl.token"></articles-cms>
 <shop-cms ng-if="$ctrl.contentToManage === 'shop'" token="$ctrl.token"></shop-cms>
 <about-cms ng-if="$ctrl.contentToManage === 'about'"  aboutArticles="$ctrl.aboutArticles" token="$ctrl.token"></about-cms>
+<pickups-cms ng-if="$ctrl.contentToManage === 'pickups'" token="$ctrl.token"></pickups-cms>

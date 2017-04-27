@@ -1,1 +1,46 @@
 <h2>Image Slider</h2>
+
+<h3>Slides</h3>
+
+<ul>
+    <li ng-repeat="slide in $ctrl.slides">
+        <label>name: </label>
+        <input type="text" ng-model="slide.name">
+
+        <label>image url: </label>
+        <input type="text" ng-model="slide.imgUrl">
+        <img ng-src="{{slide.imgUrl}}" class="thumbnail">
+
+        <label>text: </label>
+        <input type="text" ng-model="slide.text">
+
+        <label>link: </label>
+        <input type="text" ng-model="slide.link">
+
+        <label>show: </label>
+        <select ng-model="slide.show">
+            <option ng-value="true">true</option>
+            <option ng-value="false">false</option>
+        </select>
+
+        <button ng-click="$ctrl.update(slide)">update</button>
+        <button ng-click="$ctrl.delete(slide)">delete</button>
+
+        <hr>
+    </li>
+</ul>
+
+<h3>Add slide</h3>
+
+<form ng-submit="$ctrl.addSlide()">
+    <label>name: </label>
+    <input type="text" ng-model="$ctrl.newSlide.name" required>
+    <label>image url: </label>
+    <input type="text" ng-model="$ctrl.newSlide.imgUrl" required>
+    <img class="thumbnail" ng-src="{{$ctrl.newSlide.imgUrl}}">
+    <label>text: </label>
+    <input type="text" ng-model="$ctrl.newSlide.text">
+    <label>link to: </label>
+    <input type="text" ng-model="$ctrl.newSlide.link">
+    <button type="submit">create</button>
+</form>

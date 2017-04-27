@@ -1,1 +1,23 @@
 <h1>Articles</h1>
+
+<ul>
+    <li ng-repeat="article in $ctrl.articles">
+        <form ng-submit="$ctrl.update(article)">
+            <label>title: </label>
+            <input type="text" ng-model="article.title" required>
+
+            <label>image url: </label>
+            <input type="text" ng-model="article.imgUrl">
+            <img class="thumbnail" ng-if="article.imgUrl !== ''" ng-src="{{article.imgUrl}}">
+            <p ng-if="article.imgUrl === ''">No image proved</p>
+
+            <label>text: </label>
+            <input type="text" ng-model="article.text">
+
+            <label>link: </label>
+            <input type="text" ng-model="article.link">
+            <button type="submit">update</button>
+        </form>
+        <hr>
+    </li>
+</ul>

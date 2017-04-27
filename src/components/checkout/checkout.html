@@ -1,7 +1,7 @@
 <div class="checkout">
     <div class="cart-edit" ng-if="!$ctrl.confirmCart">
         <h2>Ordering Online</h2>
-        <p>Due to the unpasturized nature of our product, we are only able to deliver to the Portland Metro Area and require a minimum of $50 for online purchases.</p>
+        <p>Due to the unpasturized nature of our product, we are currently only able to do orders for pickup.</p>
         <h2>Shopping Cart</h2>
         
         <div ng-if="$ctrl.cartEmpty">
@@ -63,11 +63,12 @@
             <h3 ng-if="$ctrl.total < $ctrl.minPurchase">Online purchases must be over ${{$ctrl.minPurchase}}.00</h3>
             <div class="form-bottom">
                 <a ui-sref="shop">Keep shopping!</a>
-                <button class="confirm-cart" ng-if="$ctrl.total > $ctrl.minPurchase" ng-click="$ctrl.confirmCart = true; $ctrl.showAddressForm = true">Confirm Cart</button>
+                <button class="confirm-cart" ng-if="$ctrl.total > $ctrl.minPurchase" ng-click="$ctrl.confirmCart = true">Confirm Cart</button>
             </div>
 
         </div>
     </div>
+
 
     <div class="cart" ng-if="$ctrl.confirmCart">
         <h2>Your Order <a ng-click="$ctrl.confirmCart = false">edit</a></h2>
@@ -96,6 +97,11 @@
             </tfoot>
         </table>
         
+    </div>
+    <div class="checkoutInfo" ng-if="$ctrl.confirmCart && !$ctrl.showPayment">
+        <h2>Select your delivery method</h2>
+        <button ng-click="$ctrl.showAddressForm = true; $ctrl.showPickupForm = false; $ctrl.orderType = 'delivery'">Delivery</button>
+        <button ng-click="$ctrl.showPickupForm = true; $ctrl.showAddressForm = false; $ctrl.orderType = 'pickup'">Pickup</button>
     </div>
 
     <div class="checkoutInfo" ng-if="$ctrl.showAddressForm && $ctrl.confirmCart">
@@ -129,16 +135,37 @@
         </form>
     </div>
 
+    <div class="checkoutInfo" ng-if="$ctrl.showPickupForm && $ctrl.confirmCart">
+        <h2>Pickup Info</h2>
+        <form ng-submit="$ctrl.showPaymentDiv()">
+            <select ng-model="$ctrl.pickup" ng-change="$ctrl.confirmPickup()" ng-options="pickup as pickup.name for pickup in $ctrl.pickups track by pickup._id">
+                <option value="">select your location</option>
+            </select>
+            <p ng-if="$ctrl.pickup">Pick up at {{$ctrl.pickup.name}} on {{$ctrl.pickupDate.toDateString()}}, between {{$ctrl.pickup.startPretty}} and {{$ctrl.pickup.endPretty}}.</p>
+            <h4>Name for order*</h4>
+                <input placeholder="first name" ng-model="$ctrl.address.firstName" required>
+                <input placeholder="last name" ng-model="$ctrl.address.lastName" required>
+            <h4>Email*</h4>
+            <input type="email" placeholder="enter a valid email address" ng-model="$ctrl.address.email" required>
+            <input type="email" placeholder="confirm email address" ng-model="$ctrl.address.emailCheck" required> 
+            <p class="warning" ng-if="$ctrl.emailWarning">Make sure your email addresses are the same!!!!</p>
+            <button ng-if="$ctrl.pickup" type="submit">Confirm</button>
+        </form>
+    </div>
 
-    <div class="payment" ng-show="$ctrl.showPayment && !$ctrl.showAddressForm">
-        <div class="address-table">
-            <h2>Delivery Info <a ng-click="$ctrl.showAddressForm = true">edit</a></h2>
+    <div class="payment" ng-show="$ctrl.showPayment && !$ctrl.showAddressForm && !$ctrl.showPickupForm">
+        <div class="address-table" ng-if="$ctrl.orderType === 'delivery'">
+            <h2>Delivery Info <a ng-click="$ctrl.showAddressForm = true; $ctrl.showPayment = false">edit</a></h2>
             <p><span class="bold">name: </span>{{$ctrl.address.firstName}} {{$ctrl.address.lastName}}<p>
             <p><span class="bold">email for order: </span>{{$ctrl.address.email}}</p>
             <h4>Address: </h4>
             <p>{{$ctrl.address.line1}}</p>
             <p>{{$ctrl.address.line2}}</p>
             <p>{{$ctrl.address.city}}, {{$ctrl.address.state}} {{$ctrl.address.zip}}</p>
+        </div>
+        <div class="address-table" ng-if="$ctrl.orderType === 'pickup'">
+            <h2>Pickup Info <a ng-click="$ctrl.showPickupForm = true; $ctrl.showPayment = false">edit</a></h2>
+            <p ng-if="$ctrl.pickup">Pick up at {{$ctrl.pickup.name}} on {{$ctrl.pickupDate.toDateString()}}, between {{$ctrl.pickup.startPretty}} and {{$ctrl.pickup.endPretty}}.</p>
         </div>
 
 

@@ -8,8 +8,8 @@
             <option ng-value="true">complete</option>
             <option ng-value="'all'">all</option>
         </select>
-
-        <ul>
+        <ul ng-if="$ctrl.type === 'pickup'"></ul>
+        <ul ng-if="$ctrl.type === 'deliveries'">
             <li ng-repeat="order in $ctrl.orders" ng-if="order.completed === $ctrl.completed || $ctrl.completed === 'all'">
                     <h4>{{order.name}}</h4>
                     <p>{{order.date}}</p>

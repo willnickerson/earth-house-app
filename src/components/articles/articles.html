@@ -1,32 +1,13 @@
 <div class="loading-bar"></div>
 
 <section class="articles">
-
-    <div class="article">
+    <div ng-repeat="article in $ctrl.articles" class="article">
         <div class="text-button">
-            <a href="https://www.instagram.com/earthhousejuice/?hl=en">Follow Us on Instagram!</a>
+            <a href="{{article.link}}">{{article.title}}</a>
         </div>
         <div class="frame">
-                <img src="http://res.cloudinary.com/lejipni8p/image/upload/c_crop,g_north,h_920,w_1080/v1488237699/14027299_622727931235134_1244126147_n_nzudku.jpg">   
+            <img ng-if="article.imgUrl !== ''" ng-src="{{article.imgUrl}}">
+            <p ng-if="article.text !== ''">{{article.text}}</p>
         </div>
-    </div>
-
-    <div class="article">
-        <div class="text-button">
-            <a href="http://www.portlandfarmersmarket.org/vendors/">Farmer's markets</a>
-        </div>
-        <div class="frame">
-                <img src="https://www.portlandfarmersmarket.org/wp-content/uploads/2016/04/PFM-Logo-Horizontal-Green.png">
-                <p>We will be selling our juices at markets around the Portland Area all summer long! Come take a look at our schedule.</p>
-        </div>    
-    </div>
-
-    <div class="article">
-        <div class="text-button">
-            <a ui-sref="about">Learn about our Juices</a>
-        </div>
-        <div class="frame">
-                <img src="http://res.cloudinary.com/lejipni8p/image/upload/v1488245973/14360103_955849944561168_6715517624580571136_n_xvdpj1.jpg">
-        </div>    
     </div>
 </section>

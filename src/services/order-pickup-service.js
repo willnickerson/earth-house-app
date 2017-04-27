@@ -1,6 +1,6 @@
-orderService.$inject = ['$http', 'apiUrl'];
+orderPickupService.$inject = ['$http', 'apiUrl'];
 
-export default function orderService($http, apiUrl) {
+export default function orderPickupService($http, apiUrl) {
     return {
         getOrders(token) {
             return $http({
@@ -12,6 +12,17 @@ export default function orderService($http, apiUrl) {
             }).then(res => {
                 return res.data;
             });
+        },
+        //TODO on server side restructure routes so that we have an /orders/delivery and /orders/pickup
+        create(order) {
+            return $http({
+                method: 'POST',
+                url: `${apiUrl}/orders-pickup`,
+                // headers: {
+                //     'Authorization': token
+                // },
+                data: order
+            }).then(res => res.data);
         },
         deleteOrder(id, token) {
             return $http({
