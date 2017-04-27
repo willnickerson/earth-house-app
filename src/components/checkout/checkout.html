@@ -137,10 +137,20 @@
 
     <div class="checkoutInfo" ng-if="$ctrl.showPickupForm && $ctrl.confirmCart">
         <h2>Pickup Info</h2>
-        <select ng-model="$ctrl.pickup" ng-change="$ctrl.confirmPickup()" ng-options="pickup as pickup.name for pickup in $ctrl.pickups track by pickup._id">
-            <option value="">select your location</option>
-        </select>
-        <p ng-if="$ctrl.pickup">Pick up at {{$ctrl.pickup.name}} on {{$ctrl.pickupDate.toDateString()}}, between {{$ctrl.pickup.startPretty}} and {{$ctrl.pickup.endPretty}}. <button ng-click="$ctrl.showPayment = true; $ctrl.showPickupForm = false">Confirm</button></p>
+        <form ng-submit="$ctrl.showPaymentDiv()">
+            <select ng-model="$ctrl.pickup" ng-change="$ctrl.confirmPickup()" ng-options="pickup as pickup.name for pickup in $ctrl.pickups track by pickup._id">
+                <option value="">select your location</option>
+            </select>
+            <p ng-if="$ctrl.pickup">Pick up at {{$ctrl.pickup.name}} on {{$ctrl.pickupDate.toDateString()}}, between {{$ctrl.pickup.startPretty}} and {{$ctrl.pickup.endPretty}}.</p>
+            <h4>Name for order*</h4>
+                <input placeholder="first name" ng-model="$ctrl.address.firstName" required>
+                <input placeholder="last name" ng-model="$ctrl.address.lastName" required>
+            <h4>Email*</h4>
+            <input type="email" placeholder="enter a valid email address" ng-model="$ctrl.address.email" required>
+            <input type="email" placeholder="confirm email address" ng-model="$ctrl.address.emailCheck" required> 
+            <p class="warning" ng-if="$ctrl.emailWarning">Make sure your email addresses are the same!!!!</p>
+            <button ng-if="$ctrl.pickup" type="submit">Confirm</button>
+        </form>
     </div>
 
     <div class="payment" ng-show="$ctrl.showPayment && !$ctrl.showAddressForm && !$ctrl.showPickupForm">
