@@ -11,12 +11,12 @@ function controller(authService, $state) {
     this.styles = styles;
     //delete this eventually
     this.$onInit = () => {
-        this.credentials = {
-            username: 'test',
-            password: '123'
-        };
+        // this.credentials = {
+        //     username: 'test',
+        //     password: '123'
+        // };
 
-        this.signin();
+        // this.signin();
     };
     this.signin = () => {
         authService.signin(this.credentials)

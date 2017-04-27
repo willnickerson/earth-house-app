@@ -10,9 +10,9 @@ export default {
     controller
 };
 
-controller.$inject = ['paymentService', '$scope', '$state'];
+controller.$inject = ['paymentService', '$scope', '$state', 'pickupService', 'dateService'];
 
-function controller(paymentService, $scope, $state) {
+function controller(paymentService, $scope, $state, pickupService, dateService) {
     this.styles = styles;
     this.address = {
         firstName: null,
@@ -40,6 +40,28 @@ function controller(paymentService, $scope, $state) {
     this.$onInit = () => {
         this.updateTotals();
         if(!this.cart.items.length) this.cartEmpty = true;
+        
+        pickupService.getVisible()
+            .then(pickups => {
+                dateService.alphabetize(pickups);
+                this.pickups = pickups;
+            });
+    };
+
+    this.confirmPickup = () => {
+        const currentTime = Date.now();
+        this.timeLimit = currentTime + 1000 * 60 * 60 * 48; //48 hours from the current time;
+        for(var i = 0; i < 8; i++) {
+            const date = new Date(3600000 * 24 * i + this.timeLimit);
+            const day = date.toDateString().split(' ')[0];
+            if(day === this.pickup.day) {
+                i = 8;
+                this.pickupDate = date;
+            }
+        }
+        this.pickup.startPretty = dateService.hourValuetoObj(this.pickup.startTime).time;
+        this.pickup.endPretty = dateService.hourValuetoObj(this.pickup.endTime).time;
+        console.log(this.pickupDate);
     };
 
     this.updateTotals = function() {
@@ -82,6 +104,7 @@ function controller(paymentService, $scope, $state) {
     };
 
     this.showPaymentDiv = () => {
+        console.log(this.orderType);
         if(!this.checkAddress()) {
             this.invalidAddress = true;
             return;
