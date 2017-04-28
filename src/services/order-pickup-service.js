@@ -2,10 +2,10 @@ orderPickupService.$inject = ['$http', 'apiUrl'];
 
 export default function orderPickupService($http, apiUrl) {
     return {
-        getOrders(token) {
+        getAll(token) {
             return $http({
                 method: 'GET',
-                url: `${apiUrl}/orders`,
+                url: `${apiUrl}/orders-pickup`,
                 headers: {
                     'Authorization': token
                 }
@@ -27,7 +27,7 @@ export default function orderPickupService($http, apiUrl) {
         deleteOrder(id, token) {
             return $http({
                 method: 'DELETE',
-                url: `${apiUrl}/orders/${id}`,
+                url: `${apiUrl}/orders-pickup/${id}`,
                 headers: {
                     'Authorization': token
                 }
@@ -36,7 +36,7 @@ export default function orderPickupService($http, apiUrl) {
         updateOrder(id, order, token) {
             return $http({
                 method: 'PUT',
-                url: `${apiUrl}/orders/${id}`,
+                url: `${apiUrl}/orders-pickup/${id}`,
                 headers: {
                     'Authorization': token
                 },
