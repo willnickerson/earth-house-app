@@ -20,7 +20,7 @@ function controller(orderService, $state, orderPickupService, dateService) {
             this.getPickups();
         }
         else $state.go('admin.login');
-        this.type = 'delivery';
+        this.type = 'pickup';
     };
 
     this.getOrders = () => {
