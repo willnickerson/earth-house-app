@@ -59,7 +59,7 @@ function controller(orderService, $state, orderPickupService, dateService) {
         const copy = {};
         Object.keys(order).forEach(key => {
             copy[key] = order[key];
-        })
+        });
         copy.date = new Date(copy.date);
         copy.pickup = copy.pickup._id;
         copy.pickupDate = dateService.dateObjToString(copy.pickupDate);
