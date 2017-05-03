@@ -16,10 +16,13 @@
     <li>
         <a ng-click="$ctrl.setCms('pickups')">Pickups</a>
     </li>
+    <li>
+        <a ng-click="$ctrl.setCms('contact')">Contact</a>
+    </li>
 </ul>
 
 <image-slider-cms ng-if="$ctrl.contentToManage === 'slider'" token="$ctrl.token"></image-slider-cms>
 <articles-cms ng-if="$ctrl.contentToManage === 'articles'" token="$ctrl.token"></articles-cms>
 <shop-cms ng-if="$ctrl.contentToManage === 'shop'" token="$ctrl.token"></shop-cms>
 <about-cms ng-if="$ctrl.contentToManage === 'about'"  aboutArticles="$ctrl.aboutArticles" token="$ctrl.token"></about-cms>
-<pickups-cms ng-if="$ctrl.contentToManage === 'pickups'" token="$ctrl.token"></pickups-cms>
+<contact-cms ng-if="$ctrl.contentToManage === 'contact'" token="$ctrl.token"></contact-cms>
