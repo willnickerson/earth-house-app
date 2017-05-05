@@ -1,4 +1,13 @@
 <h1>Shop</h1>
+<h2>Shop Content</h2>
+
+<form ng-submit="$ctrl.updateContent()">
+    <label>header image: </label>
+    <input type="text" ng-model="$ctrl.shopContent.imgUrl">
+    <label>button text: </label>
+    <input type="text" ng-model="$ctrl.shopContent.buttonText">
+    <button type="submit">update</button>
+</form>
 <h2>Juices</h2>
 <ul>
     <li ng-repeat="juice in $ctrl.juices">

@@ -29,7 +29,7 @@ function controller(juiceService, ingredientService, dateService, shopService) {
                     console.log('in else', this.shopContent);
                 }
             });
-            
+
         ingredientService.getAll()
             .then(ingredients => {
                 dateService.alphabetize(ingredients);
@@ -48,7 +48,11 @@ function controller(juiceService, ingredientService, dateService, shopService) {
     };
 
 
-
+    this.updateContent = () => {
+        shopService.update(this.shopContent, this.token)
+            .then(updated => console.log('content updated', updated));
+    };
+    
     this.updateJuice = juice => {
         console.log('update juice: ', juice);
     };
