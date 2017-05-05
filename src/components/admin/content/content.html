@@ -19,6 +19,9 @@
     <li>
         <a ng-click="$ctrl.setCms('contact')">Contact</a>
     </li>
+    <li>
+        <a ng-click="$ctrl.setCms('checkout')">Checkout</a>
+    </li>
 </ul>
 
 <image-slider-cms ng-if="$ctrl.contentToManage === 'slider'" token="$ctrl.token"></image-slider-cms>
@@ -26,3 +29,4 @@
 <shop-cms ng-if="$ctrl.contentToManage === 'shop'" token="$ctrl.token"></shop-cms>
 <about-cms ng-if="$ctrl.contentToManage === 'about'"  aboutArticles="$ctrl.aboutArticles" token="$ctrl.token"></about-cms>
 <contact-cms ng-if="$ctrl.contentToManage === 'contact'" token="$ctrl.token"></contact-cms>
+<checkout-cms ng-if="$ctrl.contentToManage === 'checkout'" token="$ctrl.token"></checkout-cms>
