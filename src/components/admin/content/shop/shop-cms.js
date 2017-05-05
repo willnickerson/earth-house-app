@@ -12,6 +12,7 @@ controller.$inject = ['juiceService','ingredientService', 'dateService', 'shopSe
 
 function controller(juiceService, ingredientService, dateService, shopService) {
     this.$onInit = () => {
+        this.show = 'content';
         this.juices = [];
         shopService.getAll()
             .then(data => {
@@ -52,7 +53,7 @@ function controller(juiceService, ingredientService, dateService, shopService) {
         shopService.update(this.shopContent, this.token)
             .then(updated => console.log('content updated', updated));
     };
-    
+
     this.updateJuice = juice => {
         console.log('update juice: ', juice);
     };

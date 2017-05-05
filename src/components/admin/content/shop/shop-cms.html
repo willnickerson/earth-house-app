@@ -1,85 +1,95 @@
 <h1>Shop</h1>
-<h2>Shop Content</h2>
-
-<form ng-submit="$ctrl.updateContent()">
-    <label>header image: </label>
-    <input type="text" ng-model="$ctrl.shopContent.imgUrl">
-    <label>button text: </label>
-    <input type="text" ng-model="$ctrl.shopContent.buttonText">
-    <button type="submit">update</button>
-</form>
-<h2>Juices</h2>
 <ul>
-    <li ng-repeat="juice in $ctrl.juices">
-        <form ng-submit="$ctrl.updateJuice(juice)">
-            <label>name: </label>
-            <input type="text" ng-model="juice.name">
-            <label>image: </label>
-            <input type="text" ng-model="juice.imgUrl">
-            <img class="thumbnail" ng-src="{{juice.imgUrl}}">
-            <label >price: $</label>
-            <input type="text" ng-model="juice.price">
-            <label>description: </label>
-            <textarea cols="80" rows="8" ng-model="juice.description"></textarea>
-            <button type="submit">update</button>
-        </form>
-        <button ng-click="$ctrl.deleteJuice(juice)">Delete Juice</button>
-        <h3>ingredients</h3>
-        <ul>
-            <li ng-repeat="ingredient in juice.ingredients">
-                {{ingredient.name}}
-                <button ng-click="$ctrl.removeIngredient(juice, ingredient)">remove</button>
-            </li>
-        </ul>
-        <select ng-model="ingredientToAdd" ng-options="ingredient as ingredient.name for ingredient in $ctrl.ingredients">
-        </select>
-        <button ng-click="$ctrl.addIngredient(juice, ingredientToAdd)">Add ingredient</button>
-        <hr>
-    </li>
+    <li><a ng-click="$ctrl.show = 'content'">content</a></li>
+    <li><a ng-click="$ctrl.show = 'juices'">juices</a></li>
+    <li><a ng-click="$ctrl.show = 'ingredients'">ingredients</a></li>
 </ul>
+<div ng-if="$ctrl.show === 'content'">
+    <h2>Shop Content</h2>
+    <form ng-submit="$ctrl.updateContent()">
+        <label>header image: </label>
+        <input type="text" ng-model="$ctrl.shopContent.imgUrl">
+        <label>button text: </label>
+        <input type="text" ng-model="$ctrl.shopContent.buttonText">
+        <button type="submit">update</button>
+    </form>
+</div>
+<div ng-if="$ctrl.show === 'juices'">
+    <h2>Juices</h2>
+    <ul>
+        <li ng-repeat="juice in $ctrl.juices">
+            <form ng-submit="$ctrl.updateJuice(juice)">
+                <label>name: </label>
+                <input type="text" ng-model="juice.name">
+                <label>image: </label>
+                <input type="text" ng-model="juice.imgUrl">
+                <img class="thumbnail" ng-src="{{juice.imgUrl}}">
+                <label >price: $</label>
+                <input type="text" ng-model="juice.price">
+                <label>description: </label>
+                <textarea cols="80" rows="8" ng-model="juice.description"></textarea>
+                <button type="submit">update</button>
+            </form>
+            <button ng-click="$ctrl.deleteJuice(juice)">Delete Juice</button>
+            <h3>ingredients</h3>
+            <ul>
+                <li ng-repeat="ingredient in juice.ingredients">
+                    {{ingredient.name}}
+                    <button ng-click="$ctrl.removeIngredient(juice, ingredient)">remove</button>
+                </li>
+            </ul>
+            <select ng-model="ingredientToAdd" ng-options="ingredient as ingredient.name for ingredient in $ctrl.ingredients">
+            </select>
+            <button ng-click="$ctrl.addIngredient(juice, ingredientToAdd)">Add ingredient</button>
+            <hr>
+        </li>
+    </ul>
 
-<h2>Add new juice</h2>
+    <h2>Add new juice</h2>
 
-<form ng-submit="$ctrl.createJuice()">
-    <label>name: </label>
-    <input type="text" ng-model="$ctrl.newJuice.name">
-    <label>image url: </label>
-    <img class="thumbnail" ng-src="{{$ctrl.newJuice.imgUrl}}">
-    <input type="text" ng-model="$ctrl.newJuice.imgUrl">
-    <label>price: </label>
-    <input type="text" ng-model="$ctrl.newJuice.price">
-    <label>description: </label>
-    <textarea id="" cols="80" rows="8" ng-model="$ctrl.newJuice.description"></textarea>
-    <button type="submit">Create</button>
-</form>
+    <form ng-submit="$ctrl.createJuice()">
+        <label>name: </label>
+        <input type="text" ng-model="$ctrl.newJuice.name">
+        <label>image url: </label>
+        <img class="thumbnail" ng-src="{{$ctrl.newJuice.imgUrl}}">
+        <input type="text" ng-model="$ctrl.newJuice.imgUrl">
+        <label>price: </label>
+        <input type="text" ng-model="$ctrl.newJuice.price">
+        <label>description: </label>
+        <textarea id="" cols="80" rows="8" ng-model="$ctrl.newJuice.description"></textarea>
+        <button type="submit">Create</button>
+    </form>
+</div>
 
+<div ng-if="$ctrl.show === 'ingredients'">
+    <h2>Ingredients</h2>
+    <ul>
+        <li ng-repeat="ingredient in $ctrl.ingredients">
+            <form ng-submit="$ctrl.updateIngredient(ingredient)">
+                <label>name: </label>
+                <input type="text" ng-model="ingredient.name">
+                <label>image: </label>
+                <input type="text" ng-model="ingredient.imgUrl">
+                <img class="thumbnail" ng-src="{{ingredient.imgUrl}}">
+                <label>description: </label>
+                <textarea cols="80" rows="8" ng-model="ingredient.description"></textarea>
+                <button type="submit">update</button>
+            </form>
+            <button ng-click="$ctrl.deleteIngredient(ingredient)">delete</button>
+            <hr>
+        </li>
+    </ul>
 
-<h2>ingredients</h2>
-<ul>
-    <li ng-repeat="ingredient in $ctrl.ingredients">
-        <form ng-submit="$ctrl.updateIngredient(ingredient)">
-            <label>name: </label>
-            <input type="text" ng-model="ingredient.name">
-            <label>image: </label>
-            <input type="text" ng-model="ingredient.imgUrl">
-            <img class="thumbnail" ng-src="{{ingredient.imgUrl}}">
-            <label>description: </label>
-            <textarea cols="80" rows="8" ng-model="ingredient.description"></textarea>
-            <button type="submit">update</button>
-        </form>
-        <button ng-click="$ctrl.deleteIngredient(ingredient)">delete</button>
-        <hr>
-    </li>
-</ul>
+    <h2>Add new Ingredient</h2>
+    <form ng-submit="$ctrl.createIngredient()">
+        <label>Name: </label>
+        <input type="text" ng-model="$ctrl.newIngredient.name">
+        <label>Image url: </label>
+        <input type="text" ng-model="$ctrl.newIngredient.imgUrl">
+        <img class="thumbnail" src="{{$ctrl.newIngredient.imgUrl}}">
+        <label>description: </label>
+        <textarea cols="80" rows="15" ng-model="$ctrl.newIngredient.description"></textarea>
+        <button type="submit">Add</button>
+    </form>
+</div>
 
-<h2>Add new Ingredient</h2>
-<form ng-submit="$ctrl.createIngredient()">
-    <label>Name: </label>
-    <input type="text" ng-model="$ctrl.newIngredient.name">
-    <label>Image url: </label>
-    <input type="text" ng-model="$ctrl.newIngredient.imgUrl">
-    <img class="thumbnail" src="{{$ctrl.newIngredient.imgUrl}}">
-    <label>description: </label>
-    <textarea cols="80" rows="15" ng-model="$ctrl.newIngredient.description"></textarea>
-    <button type="submit">Add</button>
-</form>
