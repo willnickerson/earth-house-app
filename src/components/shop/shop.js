@@ -11,9 +11,22 @@ export default {
     controller 
 };
 
-controller.$inject = ['$scope', '$document', '$timeout'];
+controller.$inject = ['$scope', '$document', '$timeout', 'shopService'];
 
-function controller($scope, $document, $timeout) {
+function controller($scope, $document, $timeout, shopService) {
+    this.$onInit = () => {
+        shopService.getAll()
+            .then(data => {
+                if(!data.length) {
+                    this.content = {
+                        imgUrl: 'http://res.cloudinary.com/lejipni8p/image/upload/c_crop,g_south,h_2530,w_4096/v1482867018/earth%20house/blue-spread_ixxxfx.jpg',
+                        buttonText: 'Juice Rulez!!!'
+                    };
+                } else {
+                    this.content = data[0];
+                }
+            });
+    };
     this.styles = styles;
     this.cartMessage = false;
     this.selectArray = [];

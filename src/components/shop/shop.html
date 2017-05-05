@@ -1,12 +1,11 @@
 <div class="image-text">
     <div class="text-box">
-        <button ng-click="$ctrl.gotoItems()">Check out Our Juices</button>
+        <button ng-click="$ctrl.gotoItems()">{{$ctrl.content.buttonText}}</button>
     </div>
-    <img src="http://res.cloudinary.com/lejipni8p/image/upload/c_crop,g_south,h_2530,w_4096/v1482867018/earth%20house/blue-spread_ixxxfx.jpg">
+    <img ng-src="{{$ctrl.content.imgUrl}}">
 </div>
 
 <div id="items">
     <ui-view autoscroll="$ctrl.hasSeenLanding" name="main" select-array="$ctrl.selectArray" add-to-cart="$ctrl.addToCart" quantity="$ctrl.quantity" cart="$ctrl.cart" goToItem="$ctrl.goToItem"></ui-view>
 </div>
 
-<!-- TODO: work out some way to autoscroll when navigating from all items view to individual item view-->
