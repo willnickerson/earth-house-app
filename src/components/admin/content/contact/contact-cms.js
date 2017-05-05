@@ -26,18 +26,14 @@ function controller(contactService) {
                     contactService.create(contact, this.token)
                         .then(contact => {
                             this.contactInfo = contact;
-                            console.log('in if', this.contactInfo);
                         });
                 }
                 else {
-                    console.log('in else');
                     this.contactInfo = data[0];
-                    console.log(this.contactInfo);
                 }
             });
     };
     this.update = () => {
-        contactService.update(this.contactInfo, this.token)
-            .then(updated => console.log(updated));
+        contactService.update(this.contactInfo, this.token);
     };
 }
