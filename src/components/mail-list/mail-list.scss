@@ -1,0 +1,81 @@
+@import 'colors';
+@import 'fonts';
+
+.mail-list {
+    margin-bottom: 20px;
+}
+
+:local(.title) {
+    font-family: $decorative-font;
+    font-size: 2.5em;
+    text-align: center;
+    background: $black;
+    border: 5px solid $black;
+    color: white;
+    width: 90%;
+    margin: 5px auto 5px auto;
+    h4 {
+        margin: 0;
+    }
+}
+
+:local(.content) {
+    width: 90%;
+    margin: 0 auto 5px auto;
+    background-color: $lightgrey;
+    padding: 5px;
+    form {
+        margin: 20px auto 0 auto;
+        width: 80%;
+        text-align: center;
+    }
+    p {
+        font-family: $main-font;
+        text-align: center;
+        width: 80%;
+        font-size: 1.3em;
+        font-weight: bold;
+        margin: 20px auto;
+    }
+    button {
+        margin-left: 5px;
+        border-radius: 10%;
+        background-color: $accent-color;
+        color: white;
+        border: none;
+        font-family: $main-font;
+        font-weight: bold;
+        font-size: 1.3em;
+        padding: 5px 10px;
+    }
+    input {
+        border: none;
+        height: 20px;
+        width: 180px;
+    }
+    button:hover {
+        cursor: pointer;
+    }
+}
+
+@media all and (min-width: 751px) {
+    :local(.title) {
+        width: 95%;
+        margin: 0 auto 3px auto;
+    }
+
+    :local(.content) {
+        width: 95%;
+        margin: 0 auto 30px auto;
+        p {
+            margin-bottom: 50px;
+        }
+        input: {
+            height: 20px;
+        }
+        button {
+            font-size: 1.5em;
+            padding: 3px 20px;
+        }
+    }
+}
