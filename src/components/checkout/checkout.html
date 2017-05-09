@@ -100,8 +100,16 @@
     </div>
     <div class="checkoutInfo" ng-if="$ctrl.confirmCart && !$ctrl.showPayment">
         <h2>Select your delivery method</h2>
-        <button ng-click="$ctrl.showAddressForm = true; $ctrl.showPickupForm = false; $ctrl.orderType = 'delivery'">Delivery</button>
-        <button ng-click="$ctrl.showPickupForm = true; $ctrl.showAddressForm = false; $ctrl.orderType = 'pickup'">Pickup</button>
+        <div ng-class="$ctrl.pickupStyle" ng-click="$ctrl.selectMethod('pickup')">
+            <h2>Pickup</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus nobis, consequuntur et sit ad ab.</p>
+        </div>
+        <div ng-class="$ctrl.deliveryStyle" ng-click="$ctrl.selectMethod('delivery')">
+            <h2>Delivery</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus nobis, consequuntur et sit ad ab.</p>
+        </div>
+        <!--<button ng-click="$ctrl.showAddressForm = true; $ctrl.showPickupForm = false; $ctrl.orderType = 'delivery'">Delivery</button>
+        <button ng-click="$ctrl.showPickupForm = true; $ctrl.showAddressForm = false; $ctrl.orderType = 'pickup'">Pickup</button>-->
     </div>
 
     <div class="checkoutInfo" ng-if="$ctrl.showAddressForm && $ctrl.confirmCart">

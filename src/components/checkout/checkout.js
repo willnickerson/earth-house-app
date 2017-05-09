@@ -10,9 +10,9 @@ export default {
     controller
 };
 
-controller.$inject = ['paymentService', '$scope', '$state', 'pickupService', 'dateService', 'orderPickupService'];
+controller.$inject = ['paymentService', '$scope', '$state', 'pickupService', 'dateService', 'orderPickupService', 'checkoutContentService'];
 
-function controller(paymentService, $scope, $state, pickupService, dateService, orderPickupService) {
+function controller(paymentService, $scope, $state, pickupService, dateService, orderPickupService, checkoutContentService) {
     this.styles = styles;
     this.address = {
         firstName: null,
@@ -38,6 +38,33 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
     }
 
     this.$onInit = () => {
+        checkoutContentService.getAll()
+            .then(data => {
+                if(!data.length) {
+                    this.content = {
+                        text: '',
+                        pickupText: '',
+                        deliveryText: '',
+                        pickup: false,
+                        cdelivery: false
+                    };
+                } else {
+                    this.content = data[0];
+                    
+                }
+                this.pickupStyle = [this.styles.method];
+                this.deliveryStyle = [this.styles.method];
+                if(this.content.pickup) {
+                    this.pickupStyle.push(this.styles.clickable);
+                } else {
+                    this.pickupStyle.push(this.styles.inactive);
+                }
+                if(this.content.delivery) {
+                    this.deliveryStyle.push(this.styles.clickable);
+                } else {
+                    this.deliveryStyle.push(this.styles.inactive);
+                }
+            });
         this.updateTotals();
         if(!this.cart.items.length) this.cartEmpty = true;
         
@@ -46,6 +73,32 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
                 dateService.alphabetize(pickups);
                 this.pickups = pickups;
             });
+    };
+
+    this.selectMethod = method => {
+        if(method === 'pickup' && this.pickupStyle.indexOf(this.styles.clickable) !== -1) {
+            this.showAddressForm = false;
+            this.showPickupForm = true;
+            this.orderType = 'pickup';
+            
+            const index = this.deliveryStyle.indexOf(this.styles.active);
+            if(index !== -1) {
+                this.deliveryStyle.splice(index, 1);
+            }
+            this.pickupStyle.push(this.styles.active);
+        } else if(method === 'delivery' && this.deliveryStyle.indexOf(this.styles.clickable) !== -1) {
+            this.showAddressForm = true;
+            this.showPickupForm = false;
+            this.orderType = 'delivery';
+
+            const index = this.pickupStyle.indexOf(this.styles.active);
+            if(index !== -1) {
+                this.pickupStyle.splice(index, 1);
+            }
+            this.deliveryStyle.push(this.styles.active);
+        } else {
+            return;
+        }
     };
 
     this.confirmPickup = () => {

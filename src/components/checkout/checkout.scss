@@ -1,6 +1,35 @@
 @import 'colors';
 @import 'fonts';
 
+:local(.method) {
+    border: 3px solid $black;
+    background-color: $lightgrey;
+    width: 35%;
+    float: left;
+    margin: 20px 5% 70px 5%;
+    border-radius: 2%;
+    padding: 20px;
+    h2 {
+        text-align: center;
+    }
+    p {
+        text-indent: 20px;
+    }
+    transition: all .35s ease;
+}
+
+:local(.clickable):hover {
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+:local(.active) {
+    color: white;
+    background-color: black;
+}
+:local(.inactive) {
+    opacity: .4;
+}
 .checkout {
     width: 90%;
     min-height: 70vh;

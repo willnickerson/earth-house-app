@@ -26,4 +26,9 @@ function controller(checkoutContentService) {
                 }
             });
     };
+
+    this.update = () => {
+        checkoutContentService.update(this.checkoutContent, this.token)
+            .then(updated => console.log('updated content to', updated));
+    };
 }
