@@ -3,10 +3,13 @@
         <h4>Join Our Mailing List</h4>
     </div>
     <div ng-class="$ctrl.styles.content">
-    <form>
-        <input type="text"> 
+    <form ng-submit="$ctrl.join()">
+        <input type="email" ng-model="$ctrl.email.email"> 
         <button>Join</button>
     </form>
-    <p>Stay up to date with our latest news, deals, and more.</p>
+    <p>
+        Stay up to date with our latest news, deals, and more.
+        <span ng-if="$ctrl.showMessage">We have added you to our email list!</span>
+    </p>
     </div>
 </div>

@@ -37,6 +37,11 @@
         font-weight: bold;
         margin: 20px auto;
     }
+    span {
+        display: block;
+        margin-top: 10px;
+        font-family: $decorative-font;
+    }
     button {
         margin-left: 5px;
         border-radius: 10%;

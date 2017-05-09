@@ -6,6 +6,15 @@ export default({
     controller
 });
 
-function controller() {
+controller.$inject = ['mailService'];
+
+function controller(mailService) {
     this.styles = styles;
+    this.join = () => {
+        mailService.create(this.email)
+            .then(() => {
+                this.email = {};
+                this.showMessage = true;
+            });
+    };
 }
