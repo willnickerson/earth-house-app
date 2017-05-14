@@ -39,24 +39,26 @@ function controller(aboutService) {
             .then(updated => {
                 const newPosition = updated.position;
                 const currIndex = this.aboutArticles.indexOf(article);
-
+                
                 this.aboutArticles.splice(currIndex, 1);
+                this.aboutArticles.splice(newPosition, 0, updated);
 
-                if(currIndex >= newPosition) {
-                    this.aboutArticles.splice(newPosition, 0, article);
-                    for(var i = 0; i < currIndex - newPosition; i++) {
-                        this.aboutArticles[newPosition + 1 + i].position += 1;
-                        aboutService.updateArticle(this.aboutArticles[newPosition + 1 + i], this.token);
-                    }
-                } else {
-                    for(i = currIndex + 1; i <= newPosition; i++) {
-                        this.aboutArticles[i].position += -1;
-                        this.aboutArticles[i - 1] = this.aboutArticles[i];
-                        aboutService.updateArticle(this.aboutArticles[i], this.token);
-                    }
-                    this.aboutArticles.splice(newPosition, 0, article);
-                    order(this.aboutArticles);
-                }
+
+                // if(currIndex >= newPosition) {
+                //     this.aboutArticles.splice(newPosition, 0, article);
+                //     for(var i = 0; i < currIndex - newPosition; i++) {
+                //         this.aboutArticles[newPosition + 1 + i].position += 1;
+                //         aboutService.updateArticle(this.aboutArticles[newPosition + 1 + i], this.token);
+                //     }
+                // } else {
+                //     for(i = currIndex + 1; i <= newPosition; i++) {
+                //         this.aboutArticles[i].position += -1;
+                //         this.aboutArticles[i - 1] = this.aboutArticles[i];
+                //         aboutService.updateArticle(this.aboutArticles[i], this.token);
+                //     }
+                //     this.aboutArticles.splice(newPosition, 0, article);
+                //     order(this.aboutArticles);
+                // }
             });
     };
 
