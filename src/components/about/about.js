@@ -17,7 +17,7 @@ function controller() {
     };
 
     this.$onInit = () => {
-        console.log(this);
         this.getHeaderHeight();
+        this.articles.sort((curr, next) => curr.position - next.position);
     };
 }

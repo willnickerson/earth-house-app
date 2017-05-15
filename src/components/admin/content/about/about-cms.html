@@ -11,7 +11,7 @@
                 <option ng-value="false">false</option>
             </select>
             <label>position</label>
-            <select ng-if="article.visible" ng-model="article.position">
+            <select ng-model="article.position">
                 <option ng-repeat="position in $ctrl.positions" ng-value="position">{{position}}</option>
             </select>
         </div>
@@ -36,13 +36,13 @@
 
 <div class="add-article">
     <h2>New Article</h2>
-    <form ng-submit="$ctrl.addArticle(newArticle)">
+    <form ng-submit="$ctrl.addArticle()">
         <label>Title: </label>
-        <input type="text" ng-model="newArticle.title">
+        <input type="text" ng-model="$ctrl.newArticle.title">
         <label>Image: </label>
-        <input type="text" ng-model="newArticle.imgUrl">
+        <input type="text" ng-model="$ctrl.newArticle.imgUrl">
         <label>Text: </label>
-        <textarea cols="130" rows="20" ng-model="newArticle.text"></textarea>
+        <textarea cols="130" rows="20" ng-model="$ctrl.newArticle.text"></textarea>
         <button type="submit">Add article</button>
     </form>
 </div>
