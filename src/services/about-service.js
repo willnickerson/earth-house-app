@@ -4,17 +4,11 @@ export default function aboutService($http, apiUrl) {
     return {
         getAll() {
             return $http.get(`${apiUrl}/about-articles`)
-                .then(res => {
-                    console.log('in about service', `${apiUrl}/about-articles`, res.data);
-                    return res.data;
-                });
+                .then(res => res.data);
         },
         getVisible() {
             return $http.get(`${apiUrl}/about-articles?visible=true`)
-                .then(res => {
-                    console.log(res.date);
-                    return res.data;
-                });
+                .then(res => res.data);
         },
         createArticle(article, token) {
             return $http({
@@ -24,10 +18,7 @@ export default function aboutService($http, apiUrl) {
                 headers: {
                     'Authorization': token
                 }
-            }).then(res => {
-                console.log(res.date);
-                return res.data;
-            });
+            }).then(res => res.data);
         },
         updateArticle(article, token) {
             return $http({
@@ -37,10 +28,7 @@ export default function aboutService($http, apiUrl) {
                     'Authorization': token
                 },
                 data: article
-            }).then(res => {
-                console.log(res.data);
-                return res.data;
-            });
+            }).then(res => res.data);
         },
         deleteArticle(article, token) {
             return $http({

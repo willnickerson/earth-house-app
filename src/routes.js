@@ -125,6 +125,15 @@ export default function routes($stateProvider, $urlRouterProvider) {
             }
         }
     });
+    $stateProvider.state({
+        name: 'admin.mail',
+        url: '/mail-list',
+        views: {
+            main: {
+                component: 'mail'
+            }
+        }
+    });
 
     $stateProvider.state({
         name: 'markets',

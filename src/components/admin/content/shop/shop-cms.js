@@ -8,11 +8,29 @@ export default({
     controller
 });
 
-controller.$inject = ['juiceService','ingredientService', 'dateService'];
+controller.$inject = ['juiceService','ingredientService', 'dateService', 'shopService'];
 
-function controller(juiceService, ingredientService, dateService) {
+function controller(juiceService, ingredientService, dateService, shopService) {
     this.$onInit = () => {
+        this.show = 'content';
         this.juices = [];
+        shopService.getAll()
+            .then(data => {
+                if(!data.length) {
+                    const shopContent = {
+                        imgUrl: 'http://res.cloudinary.com/lejipni8p/image/upload/c_crop,g_south,h_2530,w_4096/v1482867018/earth%20house/blue-spread_ixxxfx.jpg'
+                    };
+                    shopService.create(shopContent, this.token)
+                        .then(saved => {
+                            this.shopContent = saved;
+                            console.log('in if', this.shopContent);
+                        });
+                } else {
+                    this.shopContent = data[0];
+                    console.log('in else', this.shopContent);
+                }
+            });
+
         ingredientService.getAll()
             .then(ingredients => {
                 dateService.alphabetize(ingredients);
@@ -31,6 +49,10 @@ function controller(juiceService, ingredientService, dateService) {
     };
 
 
+    this.updateContent = () => {
+        shopService.update(this.shopContent, this.token)
+            .then(updated => console.log('content updated', updated));
+    };
 
     this.updateJuice = juice => {
         console.log('update juice: ', juice);

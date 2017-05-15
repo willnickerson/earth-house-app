@@ -12,7 +12,6 @@ export default({
 controller.$inject = ['aboutService'];
 
 function controller(aboutService) {
-    this.positions = [0, 1, 2, 3, 4];
     this.$onInit = () => {
         this.getArticles();
     };
@@ -20,17 +19,21 @@ function controller(aboutService) {
     this.getArticles = () => {
         aboutService.getAll()
             .then(articles => {
-                // articles.sort((curr, next) => {
-                //     return curr.position - next.position;
-                // });
                 order(articles);
                 this.aboutArticles = articles;
-                console.log('in about cms', this.aboutArticles);
+                this.getPositions();
             });
     };
 
+    this.getPositions = () => {
+        this.positions = [];
+        for(var i = 0; i < this.aboutArticles.length; i++) {
+            console.log('in for loop');
+            this.positions.push(i);
+        }
+    };
+
     const order = function(arr) {
-        console.log(arr);
         arr.sort((curr, next) => curr.position - next.position);
     };
 
@@ -39,34 +42,32 @@ function controller(aboutService) {
             .then(updated => {
                 const newPosition = updated.position;
                 const currIndex = this.aboutArticles.indexOf(article);
-
+                
                 this.aboutArticles.splice(currIndex, 1);
+                this.aboutArticles.splice(newPosition, 0, updated);
 
                 if(currIndex >= newPosition) {
-                    this.aboutArticles.splice(newPosition, 0, article);
-                    for(var i = 0; i < currIndex - newPosition; i++) {
-                        this.aboutArticles[newPosition + 1 + i].position += 1;
-                        aboutService.updateArticle(this.aboutArticles[newPosition + 1 + i], this.token);
-                    }
-                } else {
-                    for(i = currIndex + 1; i <= newPosition; i++) {
-                        this.aboutArticles[i].position += -1;
-                        this.aboutArticles[i - 1] = this.aboutArticles[i];
+                    for(var i = newPosition + 1; i <= currIndex; i++) {
+                        this.aboutArticles[i].position += 1;
                         aboutService.updateArticle(this.aboutArticles[i], this.token);
                     }
-                    this.aboutArticles.splice(newPosition, 0, article);
-                    order(this.aboutArticles);
+                } else if (newPosition > currIndex) {
+                    for( i = currIndex; i < newPosition; i++) {
+                        this.aboutArticles[i].position += -1;
+                        aboutService.updateArticle(this.aboutArticles[i], this.token);
+                    }
                 }
             });
     };
 
-    this.addArticle = newArticle => {
-        newArticle.position = this.aboutArticles.length;
-        aboutService.createArticle(newArticle, this.token)
+    this.addArticle = () => {
+        this.newArticle.position = this.aboutArticles.length;
+        aboutService.createArticle(this.newArticle, this.token)
             .then(saved => {
                 console.log(saved);
                 this.aboutArticles.push(saved);
-                newArticle = {};
+                this.newArticle = {};
+                this.getPositions();
             });
     };
 

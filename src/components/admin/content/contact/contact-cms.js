@@ -1,20 +1,21 @@
-import template from './contact.html';
-import styles from './contact.scss';
+import template from './contact-cms.html';
 
-export default {
+export default({
     template,
+    bindings: {
+        token: '<'
+    },
     controller
-};
+});
 
 controller.$inject = ['contactService'];
-
 function controller(contactService) {
-    this.styles = styles;
     this.$onInit = () => {
+        console.log(this.token);
         contactService.getAll()
             .then(data => {
                 if(!data.length) {
-                    this.contactInfo = {
+                    const contact = {
                         text: 'For any inquiries regarding deliveries, ordering online, or our farmers market schedule, feel free to send us an email or call. We look forward to hearing from you!',
                         phone: '(XXX)XXX-XXXX',
                         email: 'youremail@email.com',
@@ -22,9 +23,17 @@ function controller(contactService) {
                         instagram: '#',
                         twitter: '#',
                     };
-                } else {
+                    contactService.create(contact, this.token)
+                        .then(contact => {
+                            this.contactInfo = contact;
+                        });
+                }
+                else {
                     this.contactInfo = data[0];
                 }
             });
+    };
+    this.update = () => {
+        contactService.update(this.contactInfo, this.token);
     };
 }
