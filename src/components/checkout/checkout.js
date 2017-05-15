@@ -102,8 +102,15 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
     };
 
     this.confirmPickup = () => {
+        const startDate = new Date(this.pickup.start).getTime();
         const currentTime = Date.now();
-        this.timeLimit = currentTime + 1000 * 60 * 60 * 48; //48 hours from the current time;
+        if(startDate > currentTime) {
+            console.log('in if');
+            this.timeLimit = startDate;
+        } else {
+            console.log('in else', startDate, currentTime);
+            this.timeLimit = currentTime + 1000 * 60 * 60 * 48; //48 hours from the current time;
+        }
         for(var i = 0; i < 8; i++) {
             const date = new Date(3600000 * 24 * i + this.timeLimit);
             const day = date.toDateString().split(' ')[0];
@@ -114,7 +121,6 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
         }
         this.pickup.startPretty = dateService.hourValuetoObj(this.pickup.startTime).time;
         this.pickup.endPretty = dateService.hourValuetoObj(this.pickup.endTime).time;
-        console.log(this.pickupDate);
     };
 
     this.updateTotals = function() {
