@@ -1,20 +1,21 @@
 <div ng-class="$ctrl.styles.contact">
     <h2>Contact</h2>
-    <p class="contact-info">For any inquiries regarding deliveries, ordering online, or our farmers market schedule, feel free to send us an email or call. We look forward to hearing from you!</p>
+    <p class="contact-info">{{$ctrl.contactInfo.text}}</p>
     <ul>
         <li>
-            <p>email: <a href="mailto:youremail@email.com">youremail@email.com</a><p>
+            <p>email: <a href="{{$ctrl.contactInfo.email}}">{{$ctrl.contactInfo.email}}</a><p>
         </li>
         <li>
-        <p>phone:<a href="tel:1-510-590-7431"> (503)888-8888</a></p>
+        <p>phone: <a href="{{$ctrl.contactInfo.phone}}">{{$ctrl.contactInfo.phone}}</a></p>
         </li>
         <li>
             <p>social media:</p> 
         </li>
         <li>
             <p>
-                <a href="https://www.instagram.com/"<span class="icon-instagram"></span></a> 
-                <a href="https://www.facebook.com"<span class="icon-facebook2"></span></a>
+                <a ng-if="$ctrl.contactInfo.instagram !== '#'" href="{{$ctrl.contactInfo.instagram}}"><span class="icon-instagram"></span></a> 
+                <a ng-if="$ctrl.contactInfo.facebook !== '#'"href="{{$ctrl.contactInfo.facebook}}"><span class="icon-facebook2"></span></a>
+                <a ng-if="$ctrl.contactInfo.twitter !== '#'" href="{{$ctrl.contactInfo.twitter}}"><span class="icon-twitter"></span></a>
             </p>
         </li>
     </ul>

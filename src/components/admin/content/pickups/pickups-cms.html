@@ -1,0 +1,78 @@
+<h2>Pickup Locations</h2>
+<table ng-class="$ctrl.styles.table">
+    <tr>
+        <th>name: </th>
+        <th>start date: </th>
+        <th>end date: </th>
+        <th>day: </th>
+        <th>start time: </th>
+        <th>end time: </th>
+        <th>link: </th>
+        <th>show: </th>
+        <th>edit: </th>
+
+    </tr>
+    <tr ng-repeat="pickup in $ctrl.pickups">
+        <td><input type="text" ng-model="pickup.name"></td>
+        <td>
+            <select ng-model="pickup.start.month" ng-options="month for month in $ctrl.months">
+                <option ng-repeat="month in $ctrl.months" ng-value="{{month}}">{{month}}</option>
+            </select>
+            <input type="text" ng-model="pickup.start.date">
+        </td>
+        <td>
+            <select ng-model="pickup.end.month" ng-options="month for month in $ctrl.months"></select>
+            <input type="text" ng-model="pickup.end.date">
+        </td>
+        <td>{{pickup.day}}</td>
+        <td><select ng-model="pickup.startTime" ng-options="hour as hour.time for hour in $ctrl.hours track by hour.value"></select></td>
+        <td><select ng-model="pickup.endTime" ng-options="hour as hour.time for hour in $ctrl.hours track by hour.value"></select></td>
+        <td><input type="text" ng-model="pickup.link"></td>
+        <td>
+            <select ng-model="pickup.show">
+                <option ng-value="true">true</option>
+                <option ng-value="false">false</option>
+            </select>
+        </td>
+        <td>
+            <button ng-click="$ctrl.update(pickup)">update</button>
+            <button ng-click="$ctrl.delete(pickup)">delete</button>
+        </td>
+    </tr>
+</table>
+<h2>Add New</h2>
+<form ng-submit="$ctrl.add()">
+    <h4>General</h4>
+    <label>name: </label>
+    <input type="text" ng-model="$ctrl.new.name">
+    <label>link: </label>
+    <input type="text" ng-model="$ctrl.new.link">
+    <h4>Start date: </h4>
+    <label>month: </label>
+    <select ng-model="$ctrl.new.start.month">
+        <option ng-repeat="month in $ctrl.months" ng-value="month">{{month}}</option>
+    </select>
+    <label>date: </label>
+    <input type="text" ng-model="$ctrl.new.start.date"></input>
+    <label>year: </label>
+    <input type="text" ng-model="$ctrl.new.start.year"></input>
+
+    <h4>End date: </h4>
+    <label>month: </label>
+    <select ng-model="$ctrl.new.end.month">
+        <option ng-repeat="month in $ctrl.months" ng-value="month">{{month}}</option>
+    </select>
+    <label>date: </label>
+    <input type="text" ng-model="$ctrl.new.end.date"></input>
+    <label>year: </label>
+    <input type="text" ng-model="$ctrl.new.end.year"></input>
+
+    <h4>times: </h4>
+    <label>start time: </label>
+    <input type="text" ng-model="$ctrl.new.startTime">
+
+    <label>end time: </label>
+    <input type="text" ng-model="$ctrl.new.endTime">
+
+    <button type="submit">Add pickup</button>
+</form>

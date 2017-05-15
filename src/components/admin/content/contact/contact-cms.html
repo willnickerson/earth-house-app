@@ -1,0 +1,31 @@
+<h2>Contact</h2>
+
+<form ng-submit="$ctrl.update()">
+    <label>info text: </label>
+    <textarea cols="100" rows="10" ng-model="$ctrl.contactInfo.text"></textarea>
+
+    <div>
+        <h3>Contact</h3>
+        <label>phone: </label>
+        <input type="text" ng-model="$ctrl.contactInfo.phone">
+
+        <label>email: </label>
+        <input type="text" ng-model="$ctrl.contactInfo.email">
+    </div>
+
+    <div>
+        <h3>Socials</h3>
+        <label>facebook: </label>
+        <input type="text" ng-model="$ctrl.contactInfo.facebook">
+
+        <label>instagram: </label>
+        <input type="text" ng-model="$ctrl.contactInfo.instagram">
+
+        <label>twitter: </label>
+        <input type="text" ng-model="$ctrl.contactInfo.twitter">
+    </div>
+
+    <div>
+        <button type="submit">update</button>
+    </div>
+</form>

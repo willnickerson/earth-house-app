@@ -1,0 +1,32 @@
+<h2>Checkout</h2>
+
+<form ng-submit="$ctrl.update()">
+    <div>
+        <label>text: </label>
+        <textarea cols="80" rows="10" ng-model="$ctrl.checkoutContent.text"></textarea>
+    </div>
+
+    <div>
+        <label>pickup text: </label>
+        <textarea cols="80" rows="10" ng-model="$ctrl.checkoutContent.pickupText"></textarea>      
+    </div>
+    <div>
+        <label>delivery text: </label>
+        <textarea cols="80" rows="10" ng-model="$ctrl.checkoutContent.deliveryText"></textarea>       
+    </div>
+    <div>
+        <label>pickup clickable</label>
+        <select ng-model="$ctrl.checkoutContent.pickup">
+            <option ng-value="true">true</option>
+            <option ng-value="false">false</option>
+        </select>     
+    </div>
+    <div>
+        <label>delivery clickable</label>
+        <select ng-model="$ctrl.checkoutContent.delivery">
+            <option ng-value="true">true</option>
+            <option ng-value="false">false</option>
+        </select>      
+    </div>
+    <button type="submit">update</button>
+</form>

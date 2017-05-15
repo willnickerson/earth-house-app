@@ -4,42 +4,54 @@ import styles from './hero-image.scss';
 
 export default {
     template,
+    bindings: {
+        slides: '<'
+    },
     controller
 };
 
 controller.$inject = ['$window', '$interval'];
 
 function controller($window, $interval) {
-    this.styles = styles;
-    this.slides = [
-        {
-            name: 'img3',
-            imgUrl: 'http://res.cloudinary.com/lejipni8p/image/upload/v1488324567/IMG_1125.tiff_mt0jkc.jpg',
-            text: 'Tranquil Fennel',
-            link: 'https://earth-house.herokuapp.com/#!/shop/item/58c8606ebcc7260011e09169'
-            // text: 'Sit voluptatem accusantium doloremque laudantium, totam rem aperiam <a ui-sref="shop">Check out our online store</a>'
-        },
-        {
-            name: 'img1',
-            imgUrl: 'http://res.cloudinary.com/lejipni8p/image/upload/c_crop,g_south_west,h_2603,w_3800/v1488324606/sumpreme-green-centered_wp639t.jpg',
-            // text: 'Sed ut perspiciatis omnis iste natus error sit voluptatem accusantium doloremque laudantium. <a href="https://www.instagram.com">follow us on instagram!</a>'
-            text: 'Supreme Green',
-            link: 'https://earth-house.herokuapp.com/#!/shop/item/58c860aabcc7260011e0916a'
-        },
-        {
-            name: 'img2',
-            imgUrl: 'http://res.cloudinary.com/lejipni8p/image/upload/v1488324567/IMG_1125.tiff_mt0jkc.jpg',
-            // text: 'Sed sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. <a>Read about our juices</a>'
-            text: 'Pear-adise',
-            link: 'https://earth-house.herokuapp.com/#!/shop/item/58c85e66f36d287eb5cb74ef'
+    this.$onInit = () => {
+        this.slidesVisible = [];
+        if(this.slides.length < 3) {
+            this.slidesVisible = [
+                {
+                    name: 'img3',
+                    imgUrl: 'http://res.cloudinary.com/lejipni8p/image/upload/v1488324567/IMG_1125.tiff_mt0jkc.jpg',
+                    text: 'Tranquil Fennel',
+                    link: 'https://earth-house.herokuapp.com/#!/shop/item/58c8606ebcc7260011e09169'
+                },
+                {
+                    name: 'img1',
+                    imgUrl: 'http://res.cloudinary.com/lejipni8p/image/upload/c_crop,g_south_west,h_2603,w_3800/v1488324606/sumpreme-green-centered_wp639t.jpg',
+                    text: 'Supreme Green',
+                    link: 'https://earth-house.herokuapp.com/#!/shop/item/58c860aabcc7260011e0916a'
+                },
+                {
+                    name: 'img2',
+                    imgUrl: 'http://res.cloudinary.com/lejipni8p/image/upload/v1488324567/IMG_1125.tiff_mt0jkc.jpg',
+                    text: 'Pear-adise',
+                    link: 'https://earth-house.herokuapp.com/#!/shop/item/58c85e66f36d287eb5cb74ef'
+                }
+            ];
+        } else {
+            do {
+                const index = Math.floor(Math.random() * this.slides.length);
+                if(this.slidesVisible.indexOf(this.slides[index]) === -1) {
+                    this.slidesVisible.push(this.slides[index]);
+                }
+            } while (this.slidesVisible.length < 3);
         }
-    ];
+        this.currIndex = 0;
+        this.currText = this.slidesVisible[0].text;    
+    };
+    this.styles = styles;
 
-    this.currIndex = 0;
-    this.currText = this.slides[0].text;    
     
     this.setCurrText = function() {
-        this.currText = this.slides[this.currIndex].text;
+        this.currText = this.slidesVisible[this.currIndex].text;
     };
 
     this.setCurrIndex = function(index) {
@@ -53,14 +65,12 @@ function controller($window, $interval) {
     };
 
     this.nextSlide = function() {
-        // this.progress = this.styles.finish;
-        // console.log(this.progress);
-        this.currIndex = (this.currIndex < this.slides.length - 1) ? ++this.currIndex : 0;
+        this.currIndex = (this.currIndex < this.slidesVisible.length - 1) ? ++this.currIndex : 0;
         this.setCurrText();
     };
 
     this.prevSlide = function() {
-        this.currIndex = (this.currIndex > 0) ? --this.currIndex : this.slides.length -1;
+        this.currIndex = (this.currIndex > 0) ? --this.currIndex : this.slidesVisible.length -1;
         this.setCurrText();
     };
 

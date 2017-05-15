@@ -3,6 +3,9 @@ import styles from './about.scss';
 
 export default {
     template,
+    bindings: {
+        articles: '<'
+    },
     controller
 };
 
@@ -11,10 +14,10 @@ function controller() {
     this.getHeaderHeight = function() {
         this.height = angular.element(document.querySelector('div.header-container'))[0].height; //eslint-disable-line
         this.headerHeight = {height: this.height + 'px'};
-        console.log('headerHeight: ', this.height);
     };
 
     this.$onInit = () => {
         this.getHeaderHeight();
+        this.articles.sort((curr, next) => curr.position - next.position);
     };
 }

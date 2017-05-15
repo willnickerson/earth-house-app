@@ -1,0 +1,13 @@
+<div ng-class="$ctrl.styles.markets">
+    <h2>Farmer's Market Schedule</h2>
+
+    <ul>
+        <li ng-repeat="market in $ctrl.markets">
+            {{market.name}}
+            <p>{{market.day}} from {{market.start.month}} {{market.start.date}} - {{market.end.month}} {{market.end.date}}</p>
+            <p ng-if="market.link !== '#'"><a href="{{market.link}}">{{market.link}}</a></p>
+            <div class="divider"></div>
+        </li>
+    </ul>
+</div>
+

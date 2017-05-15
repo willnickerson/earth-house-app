@@ -9,6 +9,14 @@ export default function routes($stateProvider, $urlRouterProvider) {
     $stateProvider.state({
         name: 'home',
         url: '/home',
+        resolve: {
+            slides: ['slideService', slideService => {
+                return slideService.getVisible();
+            }],
+            articles: ['articleService', articleService => {
+                return articleService.getAll();
+            }]
+        },
         component: 'home'
     });
 
@@ -54,6 +62,11 @@ export default function routes($stateProvider, $urlRouterProvider) {
     $stateProvider.state({
         name: 'about',
         url: '/about',
+        resolve: {
+            articles: ['aboutService', aboutService => {
+                return aboutService.getVisible();
+            }]
+        },
         component: 'about'
     });
 
@@ -103,5 +116,30 @@ export default function routes($stateProvider, $urlRouterProvider) {
         }
     });
 
+    $stateProvider.state({
+        name: 'admin.content',
+        url: '/content',
+        views: {
+            main: {
+                component: 'content'
+            }
+        }
+    });
+    $stateProvider.state({
+        name: 'admin.mail',
+        url: '/mail-list',
+        views: {
+            main: {
+                component: 'mail'
+            }
+        }
+    });
+
+    $stateProvider.state({
+        name: 'markets',
+        url: '/farmers-markets',
+        component: 'markets'
+    });
+    
     $urlRouterProvider.otherwise('/home');
 }

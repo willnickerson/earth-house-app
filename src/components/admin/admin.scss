@@ -8,10 +8,7 @@
 .admin-body {
     min-height: 85vh;
     width: 90%;
-    margin: 0 auto;
-}
-
-.admin-nav {
+    margin: 0 auto 100px auto;
     a {
         color: blue;
     }
@@ -19,3 +16,13 @@
         text-decoration: underline;
     }
 }
+
+input.article-title {
+    display: block;
+}
+
+.thumbnail {
+    max-width: 100px;
+}
+
+
