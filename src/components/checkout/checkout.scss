@@ -1,13 +1,30 @@
 @import 'colors';
 @import 'fonts';
 
-:local(.method) {
-    border: 3px solid $black;
-    background-color: $lightgrey;
+:local(.container) {
+    position: relative;
     width: 35%;
     float: left;
     margin: 20px 5% 70px 5%;
+    .coming-soon {
+        h2{
+            text-align: center;
+            width: 100%;
+        }
+        color: $black;
+        margin: 0;
+        opacity: 1;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 5%;
+    }
+}
+:local(.method) {
+    border: 3px solid $black;
+    background-color: $lightgrey;
     border-radius: 2%;
+    min-height: 170px;
     padding: 20px;
     h2 {
         text-align: center;
