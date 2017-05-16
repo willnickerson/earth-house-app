@@ -3,9 +3,8 @@
 
 :local(.container) {
     position: relative;
-    width: 35%;
-    float: left;
-    margin: 20px 5% 70px 5%;
+    width: 80%;
+    margin: 25px auto;
     .coming-soon {
         h2{
             text-align: center;
@@ -24,7 +23,7 @@
     border: 3px solid $black;
     background-color: $lightgrey;
     border-radius: 2%;
-    min-height: 170px;
+    min-height: 110px;
     padding: 20px;
     h2 {
         text-align: center;
@@ -181,5 +180,17 @@
         h4 {
             margin: 0;
         }
+    }
+}
+
+@media all and (min-width: 600px) {
+    :local(.container) {
+        width: 35%;
+        float: left;
+        margin: 20px 5% 70px 5%;
+    }
+
+    :local(.method) {
+        min-height: 170px;
     }
 }
