@@ -53,6 +53,7 @@ function controller(orderService, $state, orderPickupService, dateService, picku
                     return new Date(curr.pickupDate) - new Date(next.pickupDate);
                 });
                 data.forEach(order => {
+                    order.unsavedCompleted = order.completed;
                     order.date = new Date(order.date).toDateString();
                     order.pickupDate = dateService.dateStringToObj(new Date(order.pickupDate).toDateString());
                     console.log(order.pickupDate);
@@ -72,9 +73,11 @@ function controller(orderService, $state, orderPickupService, dateService, picku
 
     this.updatePickup = order => {
         const copy = {};
+        order.completed = order.unsavedCompleted;
         Object.keys(order).forEach(key => {
             copy[key] = order[key];
         });
+        delete copy.unsavedCompleted;
         copy.date = new Date(copy.date);
         copy.pickup = copy.pickup._id;
         copy.pickupDate = dateService.dateObjToString(copy.pickupDate);

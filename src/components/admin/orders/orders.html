@@ -56,7 +56,7 @@
                             </tr>
                         </table>
                         <h5>complete:</h5>
-                        <select ng-model="order.completed" ng-change="$ctrl.updatePickup(order)">
+                        <select ng-model="order.unsavedCompleted">
                             <option ng-value="true">completed</option>
                             <option ng-value="false">incomplete</option>
                         </select>
