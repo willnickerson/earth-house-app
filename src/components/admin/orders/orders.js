@@ -8,13 +8,13 @@ export default ({
     controller
 });
 
-controller.$inject = ['orderService', '$state', 'orderPickupService', 'dateService', 'pickupService'];
+controller.$inject = ['orderService', '$state', 'orderPickupService', 'dateService', 'pickupService', '$window'];
 
-function controller(orderService, $state, orderPickupService, dateService, pickupService) {
+function controller(orderService, $state, orderPickupService, dateService, pickupService, $window) {
     this.days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     this.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-    this.$onInit = () => {
+    this.$onInit = () => {  
         if(this.token) {
             this.getOrders();
             this.getPickups();
@@ -64,19 +64,26 @@ function controller(orderService, $state, orderPickupService, dateService, picku
     };
 
     this.removePickup = order => {
-        const index = this.orders.indexOf(order);
-        orderPickupService.deleteOrder(order._id, this.token)
-            .then(() => {
-                this.pickups.splice(index, 1);
-            });
+        const prompt = $window.prompt('Are you sure you want to delete this order? Once it is deleted, it is gone forever! (y/n)');
+        if(prompt === 'y') {
+            const index = this.orders.indexOf(order);
+            orderPickupService.deleteOrder(order._id, this.token)
+                .then(() => {
+                    this.pickups.splice(index, 1);
+                });
+        } else {
+            return;
+        }
     };
 
     this.updatePickup = order => {
         const copy = {};
         order.completed = order.unsavedCompleted;
+
         Object.keys(order).forEach(key => {
             copy[key] = order[key];
         });
+
         delete copy.unsavedCompleted;
         copy.date = new Date(copy.date);
         copy.pickup = copy.pickup._id;
@@ -86,6 +93,7 @@ function controller(orderService, $state, orderPickupService, dateService, picku
     };
 
     this.removeOrder = order => {
+        $window.alert('Are you sure you want to delete this order?');
         const index = this.orders.indexOf(order);
         orderService.deleteOrder(order._id, this.token)
             .then(() => {

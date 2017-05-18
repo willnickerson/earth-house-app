@@ -105,10 +105,8 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
         const startDate = new Date(this.pickup.start).getTime();
         const currentTime = Date.now();
         if(startDate > currentTime) {
-            console.log('in if');
             this.timeLimit = startDate;
         } else {
-            console.log('in else', startDate, currentTime);
             this.timeLimit = currentTime + 1000 * 60 * 60 * 48; //48 hours from the current time;
         }
         for(var i = 0; i < 8; i++) {
@@ -181,7 +179,6 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
     };
 
     this.setOrderInfo = () => {
-        console.log('in set info');
         $scope.orderType = this.orderType;
         $scope.orderInfo = {
             name: this.address.firstName + ' ' + this.address.lastName,
@@ -190,7 +187,6 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
             total: this.total
         };
         if($scope.orderType === 'delivery') {
-            console.log('this is a delivery');
             $scope.orderInfo.address = {
                 line_1: this.address.line1,
                 line_2: this.address.line2,
@@ -200,7 +196,7 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
             };
         } 
         if($scope.orderType === 'pickup'){
-            console.log('this is a pickup');
+            $scope.orderInfo.phone = this.phone;
             $scope.orderInfo.pickup = this.pickup._id;
             $scope.orderInfo.pickupDate = this.pickupDate;
         }

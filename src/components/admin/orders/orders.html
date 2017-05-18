@@ -44,7 +44,8 @@
                             <input type="text" ng-model="order.pickupDate.date"> 
                         </h4>
                         <p>order placed: {{order.date}}</p>
-                        <a ng-href="mailto:{{order.email}}">{{order.email}}</a>
+                        <p><a ng-href="tel:{{order.phone}}">phone: {{order.phone}} </a></p>
+                        <p><a ng-href="mailto:{{order.email}}">email: {{order.email}}</a></p>
                         <h5>total: ${{order.total}}.00</h5>
                         <h4>Items</h4>
                         <table class="order-items">
