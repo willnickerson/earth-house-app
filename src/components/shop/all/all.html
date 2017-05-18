@@ -7,11 +7,13 @@
         <ul>
             <li class="item" ng-repeat="juice in $ctrl.juices">
                 <img src="{{juice.imgUrl}}"
+                    ng-click="$ctrl.goToItems()"
                     ui-sref="shop.item({
                     id: juice._id})">
                 <div class="item-info">
                     <h3 ui-sref="shop.item({
-                    id: juice._id})">{{juice.name}}</h3>
+                    id: juice._id})"
+                    ng-click="$ctrl.goToItems()">{{juice.name}}</h3>
                     <p>${{juice.price}}.00</p>
                     <select ng-model="juice.quantity">
                         <option ng-repeat="number in $ctrl.selectArray" ng-value="number">{{number}}</option>

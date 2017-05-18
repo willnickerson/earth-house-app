@@ -10,9 +10,9 @@ export default {
     controller
 };
 
-controller.$inject = ['paymentService', '$scope', '$state', 'pickupService', 'dateService', 'orderPickupService', 'checkoutContentService'];
+controller.$inject = ['paymentService', '$scope', '$state', 'pickupService', 'dateService', 'orderPickupService', 'checkoutContentService', '$document'];
 
-function controller(paymentService, $scope, $state, pickupService, dateService, orderPickupService, checkoutContentService) {
+function controller(paymentService, $scope, $state, pickupService, dateService, orderPickupService, checkoutContentService, $document) {
     this.styles = styles;
     this.address = {
         firstName: null,
@@ -29,7 +29,6 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
     this.total = 0;
     this.cityArray = ['Portland', 'Beaverton', 'Vancouver', 'Gresham', 'Lake Oswego'];
     this.confirmCart = false;
-    this.minPurchase = 50;
     this.invalidAddress = false;
     //we will use min purchase to ensure that you cannot checkout unless you total is greater than this number
 
@@ -46,12 +45,15 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
                         pickupText: '',
                         deliveryText: '',
                         pickup: false,
-                        cdelivery: false
+                        delivery: false,
+                        minPurchase: 50
                     };
                 } else {
                     this.content = data[0];
                     
                 }
+                this.minPurchase = this.content.minPurchase;
+
                 this.pickupStyle = [this.styles.method];
                 this.deliveryStyle = [this.styles.method];
                 if(this.content.pickup) {
@@ -73,6 +75,12 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
                 dateService.alphabetize(pickups);
                 this.pickups = pickups;
             });
+    };
+
+    const checkoutRegion = angular.element(document.getElementById('checkout-region')); //eslint-disable-line
+    
+    this.goToCheckout = function() {
+        $document.scrollToElement(checkoutRegion, 0, 600);
     };
 
     this.selectMethod = method => {
@@ -99,11 +107,17 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
         } else {
             return;
         }
+        this.goToCheckout();
     };
 
     this.confirmPickup = () => {
+        const startDate = new Date(this.pickup.start).getTime();
         const currentTime = Date.now();
-        this.timeLimit = currentTime + 1000 * 60 * 60 * 48; //48 hours from the current time;
+        if(startDate > currentTime) {
+            this.timeLimit = startDate;
+        } else {
+            this.timeLimit = currentTime + 1000 * 60 * 60 * 48; //48 hours from the current time;
+        }
         for(var i = 0; i < 8; i++) {
             const date = new Date(3600000 * 24 * i + this.timeLimit);
             const day = date.toDateString().split(' ')[0];
@@ -114,7 +128,6 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
         }
         this.pickup.startPretty = dateService.hourValuetoObj(this.pickup.startTime).time;
         this.pickup.endPretty = dateService.hourValuetoObj(this.pickup.endTime).time;
-        console.log(this.pickupDate);
     };
 
     this.updateTotals = function() {
@@ -175,7 +188,6 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
     };
 
     this.setOrderInfo = () => {
-        console.log('in set info');
         $scope.orderType = this.orderType;
         $scope.orderInfo = {
             name: this.address.firstName + ' ' + this.address.lastName,
@@ -184,7 +196,6 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
             total: this.total
         };
         if($scope.orderType === 'delivery') {
-            console.log('this is a delivery');
             $scope.orderInfo.address = {
                 line_1: this.address.line1,
                 line_2: this.address.line2,
@@ -194,7 +205,7 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
             };
         } 
         if($scope.orderType === 'pickup'){
-            console.log('this is a pickup');
+            $scope.orderInfo.phone = this.phone;
             $scope.orderInfo.pickup = this.pickup._id;
             $scope.orderInfo.pickupDate = this.pickupDate;
         }

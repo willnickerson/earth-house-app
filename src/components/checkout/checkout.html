@@ -99,16 +99,32 @@
         
     </div>
 
-    <div class="checkoutInfo" ng-if="$ctrl.confirmCart && !$ctrl.showPayment">
+    <div class="checkoutInfo clearfix" ng-if="$ctrl.confirmCart && !$ctrl.showPayment">
         <h2>Select your delivery method</h2>
-        <div ng-class="$ctrl.pickupStyle" ng-click="$ctrl.selectMethod('pickup')">
-            <h2>Pickup</h2>
-            <p>{{$ctrl.content.pickupText}}</p>
+        
+        <div ng-class="$ctrl.styles.container">
+            <div ng-class="$ctrl.pickupStyle" ng-click="$ctrl.selectMethod('pickup')">
+                <h2>Pickup</h2>
+                <p ng-if="$ctrl.content.pickup">{{$ctrl.content.pickupText}}</p>
+            </div>
+            <div ng-if="!$ctrl.content.pickup" class="coming-soon">
+                <h2>Coming Soon!</h2>
+            </div>
         </div>
-        <div ng-class="$ctrl.deliveryStyle" ng-click="$ctrl.selectMethod('delivery')">
-            <h2>Delivery</h2>
-            <p>{{$ctrl.content.deliveryText}}</p>
+
+        <div ng-class="$ctrl.styles.container">
+            <div ng-class="$ctrl.deliveryStyle" ng-click="$ctrl.selectMethod('delivery')">
+                <h2>Delivery</h2>
+                <p ng-if="$ctrl.content.delivery">{{$ctrl.content.deliveryText}}</p>
+            </div>
+            <div ng-if="!$ctrl.content.delivery" class="coming-soon">
+                <h2>Coming Soon!</h2>
+            </div>
         </div>
+    </div>
+
+    <div id="checkout-region">
+        
     </div>
 
     <div class="checkoutInfo" ng-if="$ctrl.showAddressForm && $ctrl.confirmCart">
@@ -152,6 +168,8 @@
             <h4>Name for order*</h4>
                 <input placeholder="first name" ng-model="$ctrl.address.firstName" required>
                 <input placeholder="last name" ng-model="$ctrl.address.lastName" required>
+            <h4>Phone Number*</h4>
+            <input type="tel" ng-model="$ctrl.phone" required>
             <h4>Email*</h4>
             <input type="email" placeholder="enter a valid email address" ng-model="$ctrl.address.email" required>
             <input type="email" placeholder="confirm email address" ng-model="$ctrl.address.emailCheck" required> 
