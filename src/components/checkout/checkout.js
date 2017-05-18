@@ -140,7 +140,6 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
     };
     
     this.updateCart = function(item, newQunatity) {
-        //do we want to completely remove item if the new quant is 0?
         const index = this.cart.items.indexOf(item);
         this.cart.items[index].quantity = newQunatity;
         this.updateTotals();
@@ -222,7 +221,6 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
         } else {
             //we need to put an order into our db and send the _id as the metadata to stripe
             if($scope.orderType === 'delivery') {
-                console.log('calling service to make delivery order');
                 paymentService.createOrder($scope.orderInfo)
                     .then(data => {
                         const orderId = data._id;
@@ -236,10 +234,8 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
                         $state.go('success');
                     });
             } else {
-                console.log('calling service to make pickup orders', $scope.orderInfo);
                 orderPickupService.create($scope.orderInfo)
                     .then(data => {
-                        console.log(data);
                         const orderId = data._id;
                         const paymentInfo = {
                             stripeToken: result.id,
