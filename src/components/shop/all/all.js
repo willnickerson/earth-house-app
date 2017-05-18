@@ -4,9 +4,16 @@ export default {
     template,
     bindings: {
         juices: '<',
-        gotoItem: '<',
+        goToItems: '<',
         selectArray: '<',
         addToCart: '<',
         cart: '='
-    }
+    },
+    controller
 };
+
+function controller() {
+    this.$onInit = () => {
+        console.log('from all component', this);
+    };
+}

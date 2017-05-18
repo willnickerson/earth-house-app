@@ -32,7 +32,8 @@ function controller($scope, $document, $timeout, shopService) {
     this.selectArray = [];
 
     const items = angular.element(document.getElementById('items')); //eslint-disable-line
-    this.gotoItems = function() {
+    this.goToItems = function() {
+        console.log('function called');
         this.hasSeenLanding = true;
         $document.scrollToElement(items, 0, 600);
     };

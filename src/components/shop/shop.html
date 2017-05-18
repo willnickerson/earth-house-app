@@ -1,11 +1,11 @@
 <div class="image-text">
     <div class="text-box">
-        <button ng-click="$ctrl.gotoItems()">{{$ctrl.content.buttonText}}</button>
+        <button ng-click="$ctrl.goToItems()">{{$ctrl.content.buttonText}}</button>
     </div>
     <img ng-src="{{$ctrl.content.imgUrl}}">
 </div>
 
 <div id="items">
-    <ui-view autoscroll="$ctrl.hasSeenLanding" name="main" select-array="$ctrl.selectArray" add-to-cart="$ctrl.addToCart" quantity="$ctrl.quantity" cart="$ctrl.cart" goToItem="$ctrl.goToItem"></ui-view>
+    <ui-view autoscroll="$ctrl.hasSeenLanding" name="main" select-array="$ctrl.selectArray" add-to-cart="$ctrl.addToCart" quantity="$ctrl.quantity" cart="$ctrl.cart" go-to-items="$ctrl.goToItems"></ui-view>
 </div>
 
