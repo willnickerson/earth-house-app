@@ -1,4 +1,5 @@
 import template from './shop-cms.html';
+import styles from './shop-cms.scss';
 
 export default({
     template,
@@ -11,7 +12,7 @@ export default({
 controller.$inject = ['juiceService','ingredientService', 'dateService', 'shopService'];
 
 function controller(juiceService, ingredientService, dateService, shopService) {
-
+    this.styles = styles;
     this.$onInit = () => {
         this.show = 'content';
         this.juices = [];

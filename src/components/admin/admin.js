@@ -12,7 +12,7 @@ function controller(authService, $state) {
     //delete this eventually
     this.$onInit = () => {
         this.credentials = {
-            username: 'test',
+            username: 'super_user',
             password: '123'
         };
 

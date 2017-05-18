@@ -29,7 +29,6 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
     this.total = 0;
     this.cityArray = ['Portland', 'Beaverton', 'Vancouver', 'Gresham', 'Lake Oswego'];
     this.confirmCart = false;
-    this.minPurchase = 50;
     this.invalidAddress = false;
     //we will use min purchase to ensure that you cannot checkout unless you total is greater than this number
 
@@ -46,12 +45,15 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
                         pickupText: '',
                         deliveryText: '',
                         pickup: false,
-                        cdelivery: false
+                        delivery: false,
+                        minPurchase: 50
                     };
                 } else {
                     this.content = data[0];
                     
                 }
+                this.minPurchase = this.content.minPurchase;
+
                 this.pickupStyle = [this.styles.method];
                 this.deliveryStyle = [this.styles.method];
                 if(this.content.pickup) {

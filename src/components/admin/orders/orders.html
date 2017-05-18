@@ -1,6 +1,6 @@
 <div class="orders" ng-if="$ctrl.token">
     <div class="static" ng-if="!$ctrl.orderToUpdate">
-        <h2>Orders</h2>
+        <h2 class="admin-centered-header">Orders</h2>
 
         <div class="clearfix">
             <h3 class="admin-sub-header">Filter</h3>
@@ -29,10 +29,10 @@
 
 
         <div ng-if="$ctrl.type === 'pickup'">
-            <h3>Pickups</h3>
+            <h3 class="admin-centered-header">Pickups</h3>
             <ul>
                 <li ng-repeat="order in $ctrl.pickups" ng-if="(order.completed === $ctrl.completed || $ctrl.completed === 'all') && ($ctrl.filterLocation._id === 'all' || $ctrl.filterLocation._id === order.pickup._id)">
-                    <h4>Name: {{order.name}}</h4>
+                    <h4>Name: <span>{{order.name}}</span></h4>
                         <h4>
                             Pickup: {{order.pickup.name}}, on 
                             <select ng-model="order.pickupDate.day">
@@ -56,15 +56,15 @@
                                 <td>${{item.subTotal}}.00</td>
                             </tr>
                         </table>
-                        <h5>complete:</h5>
+                        <h4>complete:</h4>
                         <select ng-model="order.unsavedCompleted">
                             <option ng-value="true">completed</option>
                             <option ng-value="false">incomplete</option>
                         </select>
-                        <h5>Notes:</h5>
+                        <h4>Notes:</h4>
                         <textarea ng-model="order.notes" cols="100" rows="4">{{order.notes}}</textarea>
                         <div>
-                            <button ng-click="$ctrl.removePickup(order)">delete</button>
+                            <button class="delete-button" ng-click="$ctrl.removePickup(order)">delete</button>
                             <button ng-click="$ctrl.updatePickup(order)">update</button>
                         </div>
                         <hr>
@@ -73,10 +73,10 @@
             </ul>
         </div>
         <div ng-if="$ctrl.type === 'delivery'">
-            <h3>Deliveries</h3>
+            <h3 class="admin-centered-header">Deliveries</h3>
             <ul>
                 <li ng-repeat="order in $ctrl.orders" ng-if="order.completed === $ctrl.completed || $ctrl.completed === 'all'">
-                        <h4>{{order.name}}</h4>
+                        <h4>Name: <span>{{order.name}}</span></h4>
                         <p>{{order.date}}</p>
                         <a ng-href="mailto:{{order.email}}">{{order.email}}</a>
                         <h5>total: ${{order.total}}.00</h5>
@@ -96,7 +96,7 @@
                         </h5>
                         <h5>complete: {{order.completed}}</h5>
                         <p>Notes: {{order.notes}}</p>
-                        <button ng-click="$ctrl.removeOrder(order)">delete</button>
+                        <button class="delete-button" ng-click="$ctrl.removeOrder(order)">delete</button>
                         <button ng-click="$ctrl.setOrderToUpdate(order)">edit</button>
                         <hr>
                 </li>
