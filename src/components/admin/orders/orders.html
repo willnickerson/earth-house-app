@@ -20,7 +20,10 @@
             <option ng-value="'all'">all</option>
         </select>
         <label ng-if="$ctrl.type ==='pickup'">location: </label>
-        <select ng-init="$ctrl.filterLocation = 'all'" ng-model="$ctrl.filterLocation" ng-if="$ctrl.type ==='pickup'" ng-options="pickup as pickup.name for pickup in $ctrl.pickupLocations track by pickup._id">
+        <select ng-change="$ctrl.logChange()" 
+                ng-model="$ctrl.filterLocation" 
+                ng-if="$ctrl.type ==='pickup'" 
+                ng-options="pickup as pickup.name for pickup in $ctrl.pickupLocations track by pickup._id">
         </select>
         <hr>
 
@@ -28,7 +31,7 @@
         <div ng-if="$ctrl.type === 'pickup'">
             <h3>Pickups</h3>
             <ul>
-                <li ng-repeat="order in $ctrl.pickups" ng-if="order.completed === $ctrl.completed || $ctrl.completed === 'all'">
+                <li ng-repeat="order in $ctrl.pickups" ng-if="(order.completed === $ctrl.completed || $ctrl.completed === 'all') && ($ctrl.filterLocation._id === 'all' || $ctrl.filterLocation._id === order.pickup._id)">
                     <h4>Name: {{order.name}}</h4>
                         <h4>
                             Pickup: {{order.pickup.name}}, on 

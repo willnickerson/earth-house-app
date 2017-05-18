@@ -22,6 +22,9 @@ function controller(orderService, $state, orderPickupService, dateService, picku
             pickupService.getAll()
                 .then(data => {
                     this.pickupLocations = data;
+                    const all = {_id: 'all', name: 'all'};
+                    this.pickupLocations.push(all);
+                    this.filterLocation = all;
                 });
         }
         else $state.go('admin.login');
@@ -33,6 +36,10 @@ function controller(orderService, $state, orderPickupService, dateService, picku
             .then(data => {
                 this.orders = data;
             });
+    };
+
+    this.logChange = () => {
+        console.log(this.filterLocation);
     };
 
     this.set = type => {
