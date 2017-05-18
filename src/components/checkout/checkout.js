@@ -10,9 +10,9 @@ export default {
     controller
 };
 
-controller.$inject = ['paymentService', '$scope', '$state', 'pickupService', 'dateService', 'orderPickupService', 'checkoutContentService'];
+controller.$inject = ['paymentService', '$scope', '$state', 'pickupService', 'dateService', 'orderPickupService', 'checkoutContentService', '$document'];
 
-function controller(paymentService, $scope, $state, pickupService, dateService, orderPickupService, checkoutContentService) {
+function controller(paymentService, $scope, $state, pickupService, dateService, orderPickupService, checkoutContentService, $document) {
     this.styles = styles;
     this.address = {
         firstName: null,
@@ -77,6 +77,12 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
             });
     };
 
+    const checkoutRegion = angular.element(document.getElementById('checkout-region')); //eslint-disable-line
+    
+    this.goToCheckout = function() {
+        $document.scrollToElement(checkoutRegion, 0, 600);
+    };
+
     this.selectMethod = method => {
         if(method === 'pickup' && this.pickupStyle.indexOf(this.styles.clickable) !== -1) {
             this.showAddressForm = false;
@@ -101,6 +107,7 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
         } else {
             return;
         }
+        this.goToCheckout();
     };
 
     this.confirmPickup = () => {

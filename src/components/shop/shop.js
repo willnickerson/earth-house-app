@@ -33,7 +33,6 @@ function controller($scope, $document, $timeout, shopService) {
 
     const items = angular.element(document.getElementById('items')); //eslint-disable-line
     this.goToItems = function() {
-        console.log('function called');
         this.hasSeenLanding = true;
         $document.scrollToElement(items, 0, 600);
     };
@@ -44,7 +43,6 @@ function controller($scope, $document, $timeout, shopService) {
     }
 
     this.addToCart = function(juice) {
-        console.log('add to cart', juice.name, ':', juice.quantity);
         if(Number.isInteger(juice.quantity)) {
             let cartHasItem = false;
             let index = null;
