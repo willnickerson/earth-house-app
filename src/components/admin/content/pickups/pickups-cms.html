@@ -1,4 +1,4 @@
-<h2>Pickup Locations</h2>
+<h2>Pickup Locations: </h2>
 <table ng-class="$ctrl.styles.table">
     <tr>
         <th>name: </th>
@@ -36,11 +36,11 @@
         </td>
         <td>
             <button ng-click="$ctrl.update(pickup)">update</button>
-            <button ng-click="$ctrl.delete(pickup)">delete</button>
+            <button class="delete-button" ng-click="$ctrl.delete(pickup)">delete</button>
         </td>
     </tr>
 </table>
-<h2>Add New</h2>
+<h2 class="admin-centered-header">Add New</h2>
 <form ng-submit="$ctrl.add()">
     <h4>General</h4>
     <label>name: </label>

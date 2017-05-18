@@ -1,11 +1,11 @@
-<h2>About</h2>
+<h2 class="admin-centered-header">About</h2>
 
 <ul>
     <li ng-repeat="article in $ctrl.aboutArticles">
         <div class="cms-title">
-            <label>Title: </label>
-            <input class="article-title" type="text" ng-model="article.title">
-            <label>visible</label>
+                <label>Title: </label>
+                <input type="text" ng-model="article.title">
+            <label>Visible: </label>
             <select ng-model="article.visible">
                 <option ng-value="true">true</option>
                 <option ng-value="false">false</option>
@@ -20,29 +20,32 @@
             <label>Image: </label>
             <input type="text" ng-model="article.imgUrl">
             <img class="thumbnail" ng-if="article.imgUrl !== '#'" src="{{article.imgUrl}}">
-            <p ng-if="article.imgUrl === '#'">No image provided</p>
+            <!--<p ng-if="article.imgUrl === '#'">No image provided</p>-->
         </div>
 
         <div class="cms-text">
-            <label>Text: </label>
+            <h4>Text: </h4>
             <textarea cols="130" rows="20" ng-model="article.text"></textarea>      
         </div>
-
-        <button ng-click="$ctrl.updateArticle(article)">Update</button>
-        <button ng-click="$ctrl.deleteArticle(article)">Delete</button>
+        <div>
+            <button ng-click="$ctrl.updateArticle(article)">Update</button>
+            <button class="delete-button" ng-click="$ctrl.deleteArticle(article)">Delete</button>
+        </div>
         <hr>
     </li>
 </ul>
 
 <div class="add-article">
-    <h2>New Article</h2>
+    <h2 class="admin-centered-header">New Article</h2>
     <form ng-submit="$ctrl.addArticle()">
         <label>Title: </label>
         <input type="text" ng-model="$ctrl.newArticle.title">
         <label>Image: </label>
         <input type="text" ng-model="$ctrl.newArticle.imgUrl">
-        <label>Text: </label>
+        <h4>Text: </h4>
         <textarea cols="130" rows="20" ng-model="$ctrl.newArticle.text"></textarea>
-        <button type="submit">Add article</button>
+        <div>
+            <button type="submit">Add article</button>
+       </div>
     </form>
 </div>

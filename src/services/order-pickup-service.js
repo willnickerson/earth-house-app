@@ -15,12 +15,10 @@ export default function orderPickupService($http, apiUrl) {
         },
         //TODO on server side restructure routes so that we have an /orders/delivery and /orders/pickup
         create(order) {
+            console.log(order);
             return $http({
                 method: 'POST',
                 url: `${apiUrl}/orders-pickup`,
-                // headers: {
-                //     'Authorization': token
-                // },
                 data: order
             }).then(res => res.data);
         },

@@ -26,7 +26,6 @@ function controller(pickupService, dateService) {
 
         pickupService.getAll()
             .then(pickups => {
-                //alphabetize
 
                 pickups.forEach(pickup => {
                     const startDate = new Date(pickup.start).toDateString();
@@ -50,13 +49,16 @@ function controller(pickupService, dateService) {
             formatedPickup[key] = pickup[key];
         });
 
-        formatedPickup.start = new Date(dateService.dateObjToString(pickup.start));
+        formatedPickup.start = new Date(`${pickup.start.month} ${pickup.start.date} ${pickup.start.year}`);
+        formatedPickup.day = new Date(`${pickup.start.month} ${pickup.start.date} ${pickup.start.year}`).toDateString().split(' ')[0];
         formatedPickup.end = new Date(dateService.dateObjToString(pickup.end));
         formatedPickup.startTime = pickup.startTime.value;
         formatedPickup.endTime = pickup.endTime.value;
 
+        console.log('in update function', formatedPickup);
+
         pickupService.update(formatedPickup, this.token)
-            .then(updated => console.log(updated));
+            .then(() => pickupService.get);
     };
     this.add = () => {
         this.new.start = dateService.dateObjToString(this.new.start);
