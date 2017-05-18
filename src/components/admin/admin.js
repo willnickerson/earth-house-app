@@ -9,14 +9,8 @@ controller.$inject = ['authService', '$state'];
 
 function controller(authService, $state) {
     this.styles = styles;
-    //delete this eventually
-    this.$onInit = () => {
-        this.credentials = {
-            username: 'super_user',
-            password: '123'
-        };
 
-        this.signin();
+    this.$onInit = () => {
         this.ordersClass = [this.styles.active];
         this.contentClass = [];
         this.mailClass = [];
