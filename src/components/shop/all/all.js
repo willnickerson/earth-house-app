@@ -8,12 +8,6 @@ export default {
         selectArray: '<',
         addToCart: '<',
         cart: '='
-    },
-    controller
+    }
 };
 
-function controller() {
-    this.$onInit = () => {
-        console.log('from all component', this);
-    };
-}

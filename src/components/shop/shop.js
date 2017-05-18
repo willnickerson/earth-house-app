@@ -64,7 +64,6 @@ function controller($scope, $document, $timeout, shopService) {
             }
             this.cart.updateTotalItems();
             this.cart.storeCart();
-            console.log(this.cart);
             juice.messageNum = juice.quantity;
             juice.checkoutMessage = false;
             juice.cartMessage = true;
