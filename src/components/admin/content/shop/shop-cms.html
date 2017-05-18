@@ -1,9 +1,12 @@
-<h1>Shop</h1>
-<ul>
-    <li><a ng-click="$ctrl.show = 'content'">content</a></li>
-    <li><a ng-click="$ctrl.show = 'juices'">juices</a></li>
-    <li><a ng-click="$ctrl.show = 'ingredients'">ingredients</a></li>
-</ul>
+<div class="clearfix">
+    <h1 class="admin-sub-header">Shop</h1>
+    <ul class="admin-sub-nav">
+        <li><a ng-class="{selected: $ctrl.show == 'content'}" ng-click="$ctrl.show = 'content'">content</a></li>
+        <li><a ng-class="{selected: $ctrl.show == 'juices'}" ng-click="$ctrl.show = 'juices'">juices</a></li>
+        <li><a ng-class="{selected: $ctrl.show == 'ingredients'}" ng-click="$ctrl.show = 'ingredients'">ingredients</a></li>
+    </ul>
+</div>
+
 <div ng-if="$ctrl.show === 'content'">
     <h2>Shop Content</h2>
     <form ng-submit="$ctrl.updateContent()">

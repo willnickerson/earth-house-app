@@ -99,20 +99,23 @@
         
     </div>
 
-    <div class="checkoutInfo" ng-if="$ctrl.confirmCart && !$ctrl.showPayment">
+    <div class="checkoutInfo clearfix" ng-if="$ctrl.confirmCart && !$ctrl.showPayment">
         <h2>Select your delivery method</h2>
         
         <div ng-class="$ctrl.styles.container">
             <div ng-class="$ctrl.pickupStyle" ng-click="$ctrl.selectMethod('pickup')">
                 <h2>Pickup</h2>
-                <p>{{$ctrl.content.pickupText}}</p>
+                <p ng-if="$ctrl.content.pickup">{{$ctrl.content.pickupText}}</p>
+            </div>
+            <div ng-if="!$ctrl.content.pickup" class="coming-soon">
+                <h2>Coming Soon!</h2>
             </div>
         </div>
 
         <div ng-class="$ctrl.styles.container">
             <div ng-class="$ctrl.deliveryStyle" ng-click="$ctrl.selectMethod('delivery')">
                 <h2>Delivery</h2>
-                <p>{{$ctrl.content.deliveryText}}</p>
+                <p ng-if="$ctrl.content.delivery">{{$ctrl.content.deliveryText}}</p>
             </div>
             <div ng-if="!$ctrl.content.delivery" class="coming-soon">
                 <h2>Coming Soon!</h2>

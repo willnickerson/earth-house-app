@@ -8,9 +8,9 @@ export default ({
     controller
 });
 
-controller.$inject = ['orderService', '$state', 'orderPickupService', 'dateService'];
+controller.$inject = ['orderService', '$state', 'orderPickupService', 'dateService', 'pickupService'];
 
-function controller(orderService, $state, orderPickupService, dateService) {
+function controller(orderService, $state, orderPickupService, dateService, pickupService) {
     this.days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     this.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -18,6 +18,11 @@ function controller(orderService, $state, orderPickupService, dateService) {
         if(this.token) {
             this.getOrders();
             this.getPickups();
+
+            pickupService.getAll()
+                .then(data => {
+                    this.pickupLocations = data;
+                });
         }
         else $state.go('admin.login');
         this.type = 'pickup';
@@ -28,6 +33,10 @@ function controller(orderService, $state, orderPickupService, dateService) {
             .then(data => {
                 this.orders = data;
             });
+    };
+
+    this.set = type => {
+        this.type = type;
     };
 
     this.getPickups = () => {
@@ -42,15 +51,14 @@ function controller(orderService, $state, orderPickupService, dateService) {
                     console.log(order.pickupDate);
                 });
                 this.pickups = data;
-                console.log(this.pickups);
+                console.log('pickups', this.pickups);
             });
     };
 
     this.removePickup = order => {
         const index = this.orders.indexOf(order);
         orderPickupService.deleteOrder(order._id, this.token)
-            .then(data => {
-                console.log(data);
+            .then(() => {
                 this.pickups.splice(index, 1);
             });
     };
@@ -63,7 +71,6 @@ function controller(orderService, $state, orderPickupService, dateService) {
         copy.date = new Date(copy.date);
         copy.pickup = copy.pickup._id;
         copy.pickupDate = dateService.dateObjToString(copy.pickupDate);
-        console.log('copy of the order', copy);
         orderPickupService.updateOrder(copy._id, copy, this.token)
             .then(updated => console.log(updated));
     };
@@ -71,17 +78,14 @@ function controller(orderService, $state, orderPickupService, dateService) {
     this.removeOrder = order => {
         const index = this.orders.indexOf(order);
         orderService.deleteOrder(order._id, this.token)
-            .then(data => {
-                console.log(data);
+            .then(() => {
                 this.orders.splice(index, 1);
             });
     };
     this.updateOrder = update => {
         this.calcNewTotal(update);
-        console.log('update function called', update);
         orderService.updateOrder(update._id, update, this.token)
-            .then(data => {
-                console.log(data);
+            .then(() => {
                 this.setOrderToUpdate(null);
             });
     };
@@ -100,6 +104,5 @@ function controller(orderService, $state, orderPickupService, dateService) {
     this.addItem = newItem => {
         this.orderToUpdate.items.push(newItem);
         newItem = {};
-        console.log(this.orderToUpdate.items);
     };
 }

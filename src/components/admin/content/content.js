@@ -1,4 +1,5 @@
 import template from './content.html';
+import styles from './content.scss';
 
 export default({
     template,
@@ -15,6 +16,8 @@ function controller($state) {
     this.$onInit = () => {
         if(!this.token) $state.go('admin.login');
     };
+
+    this.styles = styles;
     
     this.contentToManage = 'slider';
 

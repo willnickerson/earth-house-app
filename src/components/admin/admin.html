@@ -1,5 +1,4 @@
 <div class="admin-header">
-
 </div>
 
 <div class="admin-body">
@@ -13,21 +12,22 @@
             <button type="submit">Submit</button>
         </form>
     </div>
-
-    <ul class="admin-nav" ng-if="$ctrl.token">
-        <li>
-            <a ui-sref="admin.orders">orders</a>
-        </li>
-        <li>
-            <a ui-sref="admin.content">content</a>
-        </li>
-        <li>
-            <a ui-sref="admin.mail">email list</a>
-        </li>
-        <li>
-            <a ng-click="$ctrl.logOut()">logout</a>
-        </li>
-    </ul>
+    <div class="admin-container">
+        <ul class="admin-nav" ng-if="$ctrl.token">
+            <li>
+                <a ng-class="$ctrl.ordersClass" ng-click="$ctrl.changeClass('orders')" ui-sref="admin.orders">orders</a>
+            </li>
+            <li>
+                <a ng-class="$ctrl.contentClass" ng-click="$ctrl.changeClass('content')" ui-sref="admin.content">content</a>
+            </li>
+            <li>
+                <a ng-class="$ctrl.mailClass" ng-click="$ctrl.changeClass('mail')" ui-sref="admin.mail">email list</a>
+            </li>
+            <li>
+                <a ng-click="$ctrl.logOut()">logout</a>
+            </li>
+        </ul>
+    </div>
 
     <ui-view name="main" token="$ctrl.token"></ui-view>
 </div>

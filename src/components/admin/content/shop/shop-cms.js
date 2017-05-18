@@ -11,6 +11,7 @@ export default({
 controller.$inject = ['juiceService','ingredientService', 'dateService', 'shopService'];
 
 function controller(juiceService, ingredientService, dateService, shopService) {
+
     this.$onInit = () => {
         this.show = 'content';
         this.juices = [];

@@ -2,15 +2,29 @@
     <div class="static" ng-if="!$ctrl.orderToUpdate">
         <h2>Orders</h2>
 
-        <h3>Filter</h3>
-        <button ng-click="$ctrl.type = 'pickup'">pickups</button>
-        <button ng-click="$ctrl.type = 'delivery'">deliveries</button>
+        <div class="clearfix">
+            <h3 class="admin-sub-header">Filter</h3>
+            <ul class="admin-sub-nav">
+                <li>
+                    <a ng-class="{selected: $ctrl.type == 'pickup'}" ng-click="$ctrl.set('pickup')">pickups</a>
+                </li>
+                <li>
+                    <a ng-class="{selected: $ctrl.type == 'delivery'}" ng-click="$ctrl.set('delivery')">deliveries</a>
+                </li>
+            </ul>
+        </div>
+        <label>complete: </label>
         <select ng-model="$ctrl.completed" ng-init="$ctrl.completed = false">
             <option ng-value="false">incomplete</option>
             <option ng-value="true">complete</option>
             <option ng-value="'all'">all</option>
         </select>
+        <label ng-if="$ctrl.type ==='pickup'">location: </label>
+        <select ng-init="$ctrl.filterLocation = 'all'" ng-model="$ctrl.filterLocation" ng-if="$ctrl.type ==='pickup'" ng-options="pickup as pickup.name for pickup in $ctrl.pickupLocations track by pickup._id">
+        </select>
         <hr>
+
+
         <div ng-if="$ctrl.type === 'pickup'">
             <h3>Pickups</h3>
             <ul>
