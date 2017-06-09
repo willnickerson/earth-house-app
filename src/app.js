@@ -34,7 +34,7 @@ app.config(routes);
 app.config(function($windowProvider) {
     const $window = $windowProvider.$get();
     //TODO: put in drew's key
-    $window.Stripe.setPublishableKey('pk_test_HS62OmJo7gCzA7fcN2ObL2rF');
+    $window.Stripe.setPublishableKey('pk_live_gC3j9sfE9qRsYIUJkK8ZfKOY');
 });
 
 app.run(($rootScope, $state, $transitions, $anchorScroll) => {
