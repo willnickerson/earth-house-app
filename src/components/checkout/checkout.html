@@ -63,7 +63,7 @@
             <h3 ng-if="$ctrl.total < $ctrl.minPurchase">Online purchases must be over ${{$ctrl.minPurchase}}.00</h3>
             <div class="form-bottom">
                 <a ui-sref="shop">Keep shopping!</a>
-                <button class="confirm-cart" ng-if="$ctrl.total > $ctrl.minPurchase" ng-click="$ctrl.confirmCart = true">Confirm Cart</button>
+                <button class="confirm-cart" ng-if="$ctrl.total >= $ctrl.minPurchase" ng-click="$ctrl.confirmCart = true">Confirm Cart</button>
             </div>
 
         </div>
