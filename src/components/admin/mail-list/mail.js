@@ -8,12 +8,12 @@ export default({
     controller
 });
 
-controller.$inject = ['$state', 'mailService', 'dateService'];
+controller.$inject = ['$state', 'mailService'];
 
-function controller($state, mailService, dateService) {
+function controller($state, mailService) {
     this.$onInit = () => {
         if(this.token) {
-            mailService.getAll()
+            mailService.getAll(this.token)
                 .then(data => {
                     data.sort((curr, next) => {
                         const currName = curr.email.toUpperCase();

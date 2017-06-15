@@ -32,7 +32,6 @@ function controller(authService, $state) {
     this.changeClass = (state) => {
 
         this.navArray.forEach(navItem => {
-            console.log(navItem);
             navItem.pop();
         });
 

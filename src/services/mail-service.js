@@ -2,8 +2,14 @@ mailService.$inject = ['$http', 'apiUrl', 'dateService'];
 
 export default function mailService($http, apiUrl) {
     return {
-        getAll() {
-            return $http.get(`${apiUrl}/emails`)
+        getAll(token) {
+            return $http({
+                method: 'GET',
+                url: `${apiUrl}/emails`,
+                headers: {
+                    'Authorization': token
+                }
+            })
                 .then(res => res.data);
         },
         create(email) {
