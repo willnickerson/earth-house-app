@@ -1,9 +1,15 @@
-mailService.$inject = ['$http', 'apiUrl'];
+mailService.$inject = ['$http', 'apiUrl', 'dateService'];
 
 export default function mailService($http, apiUrl) {
     return {
-        getAll() {
-            return $http.get(`${apiUrl}/emails`)
+        getAll(token) {
+            return $http({
+                method: 'GET',
+                url: `${apiUrl}/emails`,
+                headers: {
+                    'Authorization': token
+                }
+            })
                 .then(res => res.data);
         },
         create(email) {
@@ -21,6 +27,15 @@ export default function mailService($http, apiUrl) {
                     'Authorization': token
                 },
                 data: email
+            }).then(res => res.data);
+        },
+        delete(email, token) {
+            return $http({
+                method: 'DELETE',
+                url: `${apiUrl}/emails/${email._id}`,
+                headers: {
+                    'Authorization': token
+                }
             }).then(res => res.data);
         }
     };

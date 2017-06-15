@@ -46,7 +46,7 @@ function controller(paymentService, $scope, $state, pickupService, dateService, 
                         deliveryText: '',
                         pickup: false,
                         delivery: false,
-                        minPurchase: 50
+                        minPurchase: 0
                     };
                 } else {
                     this.content = data[0];

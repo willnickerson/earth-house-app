@@ -56,10 +56,8 @@ function controller(orderService, $state, orderPickupService, dateService, picku
                     order.unsavedCompleted = order.completed;
                     order.date = new Date(order.date).toDateString();
                     order.pickupDate = dateService.dateStringToObj(new Date(order.pickupDate).toDateString());
-                    console.log(order.pickupDate);
                 });
                 this.pickups = data;
-                console.log('pickups', this.pickups);
             });
     };
 
