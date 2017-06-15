@@ -22,6 +22,15 @@ export default function mailService($http, apiUrl) {
                 },
                 data: email
             }).then(res => res.data);
+        },
+        delete(email, token) {
+            return $http({
+                method: 'DELETE',
+                url: `${apiUrl}/emails/${email._id}`,
+                headers: {
+                    'Authorization': token
+                }
+            }).then(res => res.data);
         }
     };
 }
