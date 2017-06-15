@@ -11,10 +11,9 @@ controller.$inject = ['mailService'];
 function controller(mailService) {
     this.styles = styles;
     this.join = () => {
-        mailService.create(this.email)
-            .then(() => {
-                this.email = {};
-                this.showMessage = true;
-            });
+        const email = this.email;
+        this.email = {};
+        this.showMessage = true;
+        mailService.create(email);
     };
 }
