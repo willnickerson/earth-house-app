@@ -57,7 +57,8 @@ function controller(juiceService, ingredientService, dateService, shopService) {
     };
 
     this.updateJuice = juice => {
-        console.log('update juice: ', juice);
+        juiceService.update(juice, juice._id, this.token)
+            .then(updated => console.log('updated juice', updated));
     };
 
     this.createJuice = () => {
