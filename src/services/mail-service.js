@@ -1,4 +1,4 @@
-mailService.$inject = ['$http', 'apiUrl'];
+mailService.$inject = ['$http', 'apiUrl', 'dateService'];
 
 export default function mailService($http, apiUrl) {
     return {
