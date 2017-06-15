@@ -46,18 +46,11 @@
     }
     input {
         margin-right: 15px;
-        resize: horizontal;
     }
 
     input:active {
         width: auto;
     }
-
-    input:focus {
-        min-width: 200px;
-    }
-
-
 }
 
 input.article-title {

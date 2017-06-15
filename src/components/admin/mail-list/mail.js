@@ -28,6 +28,7 @@ function controller($state, mailService) {
                         return 0;
                     });
                     this.mailList = data;
+                    createString();
                 });
         } else {
             $state.go('admin.login');
@@ -40,6 +41,14 @@ function controller($state, mailService) {
             .then(data => {
                 console.log('deleted', data);
                 this.mailList.splice(index, 1);
+                createString();
             });
+    };
+
+    const createString = () => {
+        this.listString = '';
+        this.mailList.forEach(email => {
+            this.listString += `${email.email}, `;
+        });
     };
 }

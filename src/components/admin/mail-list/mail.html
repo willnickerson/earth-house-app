@@ -1,5 +1,10 @@
 <h2>Email List</h2>
 
+<p>Copy and paste into email recipients</p>
+
+<textarea ng-model="$ctrl.listString" cols="100" rows="10"></textarea>
+
+<h3>Edit List</h3>
 <ul>
     <li ng-repeat="email in $ctrl.mailList">{{email.email}}, <button class="delete-button" ng-click="$ctrl.remove(email)">delete</button></li>
 </ul>
